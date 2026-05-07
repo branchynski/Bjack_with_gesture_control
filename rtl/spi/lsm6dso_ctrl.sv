@@ -20,7 +20,6 @@ module lsm6dso_ctrl (
     input  logic       spi_valid,
 
     output logic       sensor_cs_n,
-
     output logic [15:0] gyro_x, 
     output logic [15:0] gyro_y, 
     output logic [15:0] gyro_z,
@@ -61,6 +60,13 @@ logic       sensor_cs_n_nxt;
 logic [7:0] spi_data_tx_nxt;
 logic       spi_start_nxt;
 
+logic [15:0] gyro_x_nxt; 
+logic [15:0] gyro_y_nxt; 
+logic [15:0] gyro_z_nxt;
+logic [15:0] acc_x_nxt; 
+logic [15:0] acc_y_nxt; 
+logic [15:0] acc_z_nxt;
+
 /* Module internal logic */
 
 /* State Sequencer Logic */
@@ -73,6 +79,13 @@ always_ff @(posedge clk or negedge rst_n) begin
         spi_data_tx <= '0;
         spi_start   <= 1'b0;
 
+        gyro_x <= '0;
+        gyro_y <= '0;
+        gyro_z <= '0;
+        acc_x <= '0;
+        acc_y <= '0;
+        acc_z <= '0;
+
         for (int i = 0; i < 12; i++) begin
             data_buffer[i] <= 8'h00;
         end
@@ -83,6 +96,13 @@ always_ff @(posedge clk or negedge rst_n) begin
         sensor_cs_n <= sensor_cs_n_nxt;
         spi_data_tx <= spi_data_tx_nxt;
         spi_start   <= spi_start_nxt;
+
+        gyro_x <= gyro_x_nxt;
+        gyro_y <= gyro_y_nxt;
+        gyro_z <= gyro_z_nxt;
+        acc_x <= acc_x_nxt;
+        acc_y <= acc_y_nxt;
+        acc_z <= acc_z_nxt;
         
         /* Saving received data in Burst mode */
         if (state == ST_BURST_READ && spi_valid) begin
@@ -182,13 +202,13 @@ always_comb begin
 
     /* Assembling 8-bit data from buffer into 16-bit outputs */
     /* Little Endian: {High_Byte, Low_Byte} */
-    gyro_x = {data_buffer[1],  data_buffer[0]};
-    gyro_y = {data_buffer[3],  data_buffer[2]};
-    gyro_z = {data_buffer[5],  data_buffer[4]};
+    gyro_x_nxt = {data_buffer[1],  data_buffer[0]};
+    gyro_y_nxt = {data_buffer[3],  data_buffer[2]};
+    gyro_z_nxt = {data_buffer[5],  data_buffer[4]};
 
-    acc_x  = {data_buffer[7],  data_buffer[6]};
-    acc_y  = {data_buffer[9],  data_buffer[8]};
-    acc_z  = {data_buffer[11], data_buffer[10]};
+    acc_x_nxt  = {data_buffer[7],  data_buffer[6]};
+    acc_y_nxt  = {data_buffer[9],  data_buffer[8]};
+    acc_z_nxt  = {data_buffer[11], data_buffer[10]};
 
     case (state)
         ST_RESET: begin

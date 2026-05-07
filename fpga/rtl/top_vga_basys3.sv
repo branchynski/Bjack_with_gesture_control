@@ -85,7 +85,7 @@ module top_vga_basys3 (
      *  Project functional top module
      */
 
-    top_vga u_top_vga (
+    top_game u_top_game (
         .clk(pclk),
         .rst_n(!btnC && locked),
         .ps2_clk(PS2Clk),

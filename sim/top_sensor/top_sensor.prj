@@ -1,0 +1,17 @@
+# Copyright (C) 2026  AGH University of Science and Technology
+# MTM UEC2
+# Author: Bartłomiej Raczyński
+#
+# Description:
+# List of files defining the modules used during the test.
+# Specify the file paths relative to THIS file.
+# For syntax detail see AMD Xilinx UG 900:
+# https://docs.xilinx.com/r/en-US/ug900-vivado-logic-simulation/Project-File-.prj-Syntax
+
+
+sv work ../../rtl/top_sensor.sv \
+        ../../rtl/spi/lsm6dso_pkg.sv \
+        ../../rtl/spi/lsm6dso_ctrl.sv \
+        ../../rtl/spi/spi_master.sv \
+        ../../rtl/spi/spi_ce_gen.sv \
+        top_sensor_tb.sv

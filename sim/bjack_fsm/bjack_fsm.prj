@@ -1,0 +1,14 @@
+# Copyright (C) 2026  AGH University of Science and Technology
+# MTM UEC2
+# Author: Eryk Rutka
+#
+# Description:
+# List of files defining the modules used during the test.
+# Specify the file paths relative to THIS file.
+# For syntax detail see AMD Xilinx UG 900:
+# https://docs.xilinx.com/r/en-US/ug900-vivado-logic-simulation/Project-File-.prj-Syntax
+
+
+sv work ../../rtl/bjack_fsm/bjack_fsm_pkg.sv \
+        ../../rtl/bjack_fsm/bjack_fsm.sv \
+        bjack_fsm_tb.sv

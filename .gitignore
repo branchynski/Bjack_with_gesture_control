@@ -37,3 +37,10 @@ xcelium.d
 xrun.log
 
 results/
+
+daq/.devcontainer
+daq/.vscode
+daq/build
+
+model/.idea
+model/.venv

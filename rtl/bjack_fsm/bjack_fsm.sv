@@ -16,7 +16,7 @@
  * - Ensures the game logic follows standard Blackjack rules, including 
  * immediate transition to the Game Over state if the player exceeds 21 points.
  ********************************************************************************/
- import bjack_fsm_pkg::*;
+ import bjack_pkg::*;
 
  module bjack_fsm(
     input  logic clk,

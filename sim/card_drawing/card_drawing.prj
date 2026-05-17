@@ -10,5 +10,5 @@
 
 
 sv work ../../rtl/bjack_fsm/bjack_pkg.sv \
-        ../../rtl/bjack_fsm/bjack_fsm.sv \
-        bjack_fsm_tb.sv
+        ../../rtl/card_drawing/card_drawing.sv \
+        card_drawing_tb.sv

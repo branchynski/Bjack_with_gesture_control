@@ -96,11 +96,13 @@ model = models.Sequential([
     layers.Conv1D(filters=8, kernel_size=5, strides=2, padding='valid', use_bias=False),
     layers.BatchNormalization(),
     layers.ReLU(),
+    layers.MaxPooling1D(pool_size=2),
 
     # Block 2: catches higher-order patterns (gesture shape)
-    layers.Conv1D(filters=16, kernel_size=3, strides=2, padding='valid', use_bias=False),
+    layers.Conv1D(filters=8, kernel_size=3, strides=2, padding='valid', use_bias=False),
     layers.BatchNormalization(),
     layers.ReLU(),
+    layers.MaxPooling1D(pool_size=2),
 
     layers.Flatten(),
 

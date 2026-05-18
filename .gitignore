@@ -44,3 +44,4 @@ daq/build
 
 model/.idea
 model/.venv
+model/dataset

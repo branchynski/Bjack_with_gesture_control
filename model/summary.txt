@@ -1,0 +1,10 @@
+=== Classification Report ===
+                   precision    recall  f1-score   support
+
+Background (Rest)       0.92      1.00      0.96        24
+            Swipe       0.96      1.00      0.98        27
+            Knock       1.00      0.88      0.94        26
+
+         accuracy                           0.96        77
+        macro avg       0.96      0.96      0.96        77
+     weighted avg       0.96      0.96      0.96        77

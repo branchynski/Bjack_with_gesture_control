@@ -44,3 +44,8 @@ daq/build
 
 model/.idea
 model/.venv
+model/dataset
+model/.gitignore
+model/model_ai_4
+model/my_fpga_project_3
+model/_ide

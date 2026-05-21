@@ -9,7 +9,7 @@
 # https://docs.xilinx.com/r/en-US/ug900-vivado-logic-simulation/Project-File-.prj-Syntax
 
 
-sv work ../../rtl/top_sensor.sv \
+sv work ../../rtl/ai/top_sensor.sv \
         ../../rtl/spi/lsm6dso_pkg.sv \
         ../../rtl/spi/lsm6dso_ctrl.sv \
         ../../rtl/spi/spi_master.sv \

@@ -60,9 +60,7 @@ module top_vga_basys3 (
 
         .clk(clk),
 
-        .clk100MHz(clk_out),
-
-        .clk40MHz(pclk),
+        .clk_65MHz(pclk),
 
         .locked(locked)
 

@@ -4,8 +4,8 @@
 ## - rename the used ports (in each line, after get_ports) according to the top level signal names in the project
 
 ## Clock signal
-set_property PACKAGE_PIN W5 [get_ports clk]
-	set_property IOSTANDARD LVCMOS33 [get_ports clk]
+#set_property PACKAGE_PIN W5 [get_ports clk]
+	#set_property IOSTANDARD LVCMOS33 [get_ports clk]
 	##create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports clk]
 
 ## Switches
@@ -179,29 +179,29 @@ set_property PACKAGE_PIN J1 [get_ports {JA1}]
 
 ##Pmod Header JC
 ##Sch name = JC1
-#set_property PACKAGE_PIN K17 [get_ports {JC[0]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[0]}]
+set_property PACKAGE_PIN K17 [get_ports {JC1}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC1}]
 ##Sch name = JC2
-#set_property PACKAGE_PIN M18 [get_ports {JC[1]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[1]}]
+set_property PACKAGE_PIN M18 [get_ports {JC2}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC2}]
 ##Sch name = JC3
-#set_property PACKAGE_PIN N17 [get_ports {JC[2]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[2]}]
+#set_property PACKAGE_PIN N17 [get_ports {JC3}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {JC3}]
 ##Sch name = JC4
-#set_property PACKAGE_PIN P18 [get_ports {JC[3]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[3]}]
+#set_property PACKAGE_PIN P18 [get_ports {JC4}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {JC4}]
 ##Sch name = JC7
-#set_property PACKAGE_PIN L17 [get_ports {JC[4]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[4]}]
+set_property PACKAGE_PIN L17 [get_ports {JC7}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC7}]
 ##Sch name = JC8
-#set_property PACKAGE_PIN M19 [get_ports {JC[5]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[5]}]
+set_property PACKAGE_PIN M19 [get_ports {JC8}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC8}]
 ##Sch name = JC9
-#set_property PACKAGE_PIN P17 [get_ports {JC[6]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[6]}]
+#set_property PACKAGE_PIN P17 [get_ports {JC9}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {JC9}]
 ##Sch name = JC10
-#set_property PACKAGE_PIN R18 [get_ports {JC[7]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC[7]}]
+#set_property PACKAGE_PIN R18 [get_ports {JC10}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {JC10}]
 
 
 ##Pmod Header JXADC
@@ -271,12 +271,12 @@ set_property PACKAGE_PIN R19 [get_ports Vsync]
 
 
 ##USB HID (PS/2)
-set_property PACKAGE_PIN C17 [get_ports PS2Clk]
-	set_property IOSTANDARD LVCMOS33 [get_ports PS2Clk]
-	set_property PULLUP true [get_ports PS2Clk]
-set_property PACKAGE_PIN B17 [get_ports PS2Data]
-	set_property IOSTANDARD LVCMOS33 [get_ports PS2Data]
-	set_property PULLUP true [get_ports PS2Data]
+#set_property PACKAGE_PIN C17 [get_ports PS2Clk]
+	#set_property IOSTANDARD LVCMOS33 [get_ports PS2Clk]
+	#set_property PULLUP true [get_ports PS2Clk]
+#set_property PACKAGE_PIN B17 [get_ports PS2Data]
+	#set_property IOSTANDARD LVCMOS33 [get_ports PS2Data]
+	#set_property PULLUP true [get_ports PS2Data]
 
 
 ##Quad SPI Flash

@@ -25,7 +25,7 @@ module ring_buffer #(
 );
     /* Local variables and signals */
     logic [DATA_WIDTH-1:0] mem [0:DEPTH-1];
-\
+
     logic [ADDR_WIDTH-1:0] wr_ptr;
     logic [ADDR_WIDTH-1:0] rd_ptr;
     
@@ -83,7 +83,7 @@ module ring_buffer #(
                 count_nxt    = count - 1'b1;
             end
             /* BOTH WRITE AND READ */
-            2'b11: begin /
+            2'b11: begin 
                 wr_ptr_nxt   = wr_ptr + 1'b1;
                 rd_ptr_nxt   = rd_ptr + 1'b1;
                 data_out_nxt = mem[rd_ptr];

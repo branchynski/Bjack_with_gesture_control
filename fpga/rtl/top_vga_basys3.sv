@@ -15,14 +15,16 @@
 module top_vga_basys3 (
         input  wire clk,
         input  wire btnC,
-        inout  wire PS2Clk,
-        inout  wire PS2Data,
         output wire Vsync,
         output wire Hsync,
         output wire [3:0] vgaRed,
         output wire [3:0] vgaGreen,
         output wire [3:0] vgaBlue,
-        output wire JA1
+        output wire JA1,
+        output wire JC1,
+        output wire JC7,
+        output wire JC2,
+        output wire JC8
     );
 
     timeunit 1ns;
@@ -54,7 +56,6 @@ module top_vga_basys3 (
     /**
      * FPGA submodules placement
      */
-
     clk_wiz_0 clk_wiz_0_inst (
 
         .clk(clk),
@@ -66,6 +67,7 @@ module top_vga_basys3 (
         .locked(locked)
 
      );
+
 
     // Mirror pclk on a pin for use by the testbench;
     // not functionally required for this design to work.
@@ -88,14 +90,10 @@ module top_vga_basys3 (
     top_game u_top_game (
         .clk(pclk),
         .rst_n(!btnC && locked),
-        .ps2_clk(PS2Clk),
-        .ps2_data(PS2Data),
-        .clk_100MHz(clk_out),
-        .r(vgaRed),
-        .g(vgaGreen),
-        .b(vgaBlue),
-        .hs(Hsync),
-        .vs(Vsync)
+        .cs_n(JC2),
+        .sclk(JC8),
+        .mosi(JC1),
+        .miso(JC7)
     );
 
 endmodule

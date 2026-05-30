@@ -13,7 +13,7 @@
 #                   Project details                   #
 #-----------------------------------------------------#
 # Project name                                  -- EDIT
-set project_name vga_project
+set project_name game_project
 
 # Top module name                               -- EDIT
 set top_module top_vga_basys3
@@ -27,33 +27,29 @@ set target xc7a35tcpg236-1
 # Specify .xdc files location                   -- EDIT
 set xdc_files {
     constraints/top_vga_basys3.xdc
-    constraints/clk_wiz_0.xdc
 }
 
 # Specify SystemVerilog design files location   -- EDIT
 set sv_files {
-    ../rtl/vga_pkg.sv
-    ../rtl/vga_timing.sv
-    ../rtl/vga_if.sv
-    ../rtl/draw_bg.sv
-    ../rtl/draw_rect.sv
-    ../rtl/draw_mouse.sv
-    ../rtl/top_vga.sv
+    ../rtl/ai/top_sensor.sv
+    ../rtl/ai/ring_buffer.sv   
+    ../rtl/bjack_fsm/bjack_fsm_pkg.sv
+    ../rtl/bjack_fsm/bjack_fsm.sv    
+    ../rtl/spi/lsm6dso_ctrl.sv
+    ../rtl/spi/lsm6dso_pkg.sv
+    ../rtl/spi/spi_ce_gen.sv
+    ../rtl/spi/spi_master.sv
+    ../rtl/top_game.sv
     rtl/top_vga_basys3.sv
 }
 
 # Specify Verilog design files location         -- EDIT
-set verilog_files {
-    rtl/clk_wiz_0.v
-    rtl/clk_wiz_0_clk_wiz.v
-}
+# set verilog_files {
+# }
 
 # Specify VHDL design files location            -- EDIT
-set vhdl_files {
-    ../rtl/MouseCtl.vhd
-    ../rtl/Ps2Interface.vhd
-    ../rtl/MouseDisplay.vhd 
-}
+# set vhdl_files {
+# }
 
 # Specify files for a memory initialization     -- EDIT
 # set mem_files {

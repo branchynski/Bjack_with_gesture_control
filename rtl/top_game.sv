@@ -12,7 +12,7 @@ module top_game (
         output logic cs_n,
         output logic sclk,
         output logic mosi,
-        input  logic miso,
+        input  logic miso
     );
 
     timeunit 1ns;

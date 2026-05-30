@@ -1,5 +1,6 @@
 import hls4ml
 import tensorflow as tf
+import numpy as np
 import pprint
 
 model = tf.keras.models.load_model("best_model.keras")
@@ -11,6 +12,12 @@ config = hls4ml.utils.config_from_keras_model(model, granularity='name')
 config['Model']['Precision'] = 'ap_fixed<8,4>'
 config['Model']['ReuseFactor'] = 1
 config['Model']['Strategy'] = 'Resource'
+config['LayerName']['input_layer']['Precision'] = 'ap_int<16>'
+config['Model']['IOType'] = 'io_stream'
+#config['Model']['BramFactor'] = 0
+
+if 'BramFactor' in config['Model']:
+    del config['Model']['BramFactor']
 
 for layer in config['LayerName']:
     layer_cfg = config['LayerName'][layer]
@@ -18,13 +25,13 @@ for layer in config['LayerName']:
 
     if 'dense' in layer:
         layer_cfg['Precision'] = 'ap_fixed<16,6>'
-        layer_cfg['accum_t'] = 'ap_fixed<12,6>'
+        layer_cfg['accum_t'] = 'ap_fixed<12,6>'  # ← jawny akumulator, nie auto
         layer_cfg['result_t'] = 'ap_fixed<16,6>'
         layer_cfg['ReuseFactor'] = 96
 
     elif 'conv' in layer:
         layer_cfg['Precision'] = 'ap_fixed<16,6>'
-        layer_cfg['accum_t'] = 'ap_fixed<12,6>'
+        layer_cfg['accum_t'] = 'ap_fixed<12,6>'  # ← jawny akumulator
         layer_cfg['result_t'] = 'ap_fixed<16,6>'
         layer_cfg['ReuseFactor'] = 24
 

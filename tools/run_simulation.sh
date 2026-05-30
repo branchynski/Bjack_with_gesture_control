@@ -38,6 +38,8 @@ function execute_test {
     mkdir -p build
     cd build
 
+    cp ../../rtl/ai/ml_net/*.dat . 2>/dev/null
+
     test_name=$1
 
     # Elaboration and simulation options

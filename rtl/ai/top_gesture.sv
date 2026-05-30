@@ -97,7 +97,7 @@ module top_gesture (
         .empty(buffer_empty) 
     );    
 
-    ml_sensor u_ml_sensor (
+    ML_sensor u_ml_sensor (
         .input_layer_TDATA(input_layer_TDATA),
         .input_layer_TREADY(input_layer_TREADY),
         .input_layer_TVALID(input_layer_TVALID),

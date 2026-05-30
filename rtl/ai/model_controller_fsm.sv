@@ -23,7 +23,7 @@ module model_controller_fsm (
     input logic ap_idle,
     input logic ap_ready,
     output logic ap_start,
-    input logic layer15_out_TDATA,
+    input logic [47:0] layer15_out_TDATA,
     output logic layer15_out_TREADY,
     input logic layer15_out_TVALID,
 
@@ -42,7 +42,7 @@ module model_controller_fsm (
 
     gesture_out gesture_nxt;
 
-    signed logic [15:0] score_bg, score_gest_1, score_gest_2;
+    logic signed [15:0] score_bg, score_gest_1, score_gest_2;
 
     /* Next State Decode Logic */
     always_ff @(posedge clk or negedge rst_n) begin
@@ -66,7 +66,7 @@ module model_controller_fsm (
 
         case (state)
             IDLE: begin
-                if (ap_ready) begin
+                if (ap_idle) begin
                     state_nxt = START;
                 end
             end
@@ -98,44 +98,35 @@ module model_controller_fsm (
         score_bg = layer15_out_TDATA[15:0];
         score_gest_1 = layer15_out_TDATA[31:16];
         score_gest_2 = layer15_out_TDATA[47:32];
-        gesture_nxt = gesture;
+        gesture_nxt = gesture; // Pamięć gestu
 
+        // AXI-Stream Handshake Capture - łapiemy w locie, niezależnie od stanu!
+        if (layer15_out_TVALID && layer15_out_TREADY) begin
+            if ((score_bg > score_gest_1) && (score_bg > score_gest_2)) begin
+                gesture_nxt = NOTHING;
+            end 
+            else if ((score_gest_1 > score_bg) && (score_gest_1 > score_gest_2)) begin
+                gesture_nxt = SWIPE_RIGHT;
+            end 
+            else begin
+                gesture_nxt = KNOCK; 
+            end
+        end
+
+        // Zwykłe sterowanie flagami zależne od stanów
         case (state)
             IDLE: begin
-                start_nxt = 1'b0;
-                tready_nxt = 1'b0;
             end
-
             START: begin
                 start_nxt = 1'b1;
-                tready_nxt = 1'b0;
             end
-
             PROCESSING: begin
-                start_nxt = 1'b0;
                 tready_nxt = 1'b1;
             end
-
             DONE: begin
-                start_nxt = 1'b0;
                 tready_nxt = 1'b1;
-                if(layer15_out_TVALID) begin
-                    if ((score_bg > score_gest_1) && (score_bg > score_gest_2)) begin
-                        gesture_nxt = NOTHING;
-                    end 
-                    else if ((score_gest_1 > score_bg) && (score_gest_1 > score_gest_2)) begin
-                        gesture_nxt = SWIPE_RIGHT;
-                    end 
-                    else begin
-                        gesture_nxt = KNOCK; 
-                    end
-                end
-
             end
-
             default: begin
-                start_nxt = 1'b0;
-                tready_nxt = 1'b0;
             end
         endcase 
     end

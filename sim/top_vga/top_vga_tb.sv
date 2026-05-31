@@ -15,6 +15,9 @@ module top_vga_tb;
      * Local variables and signals
      */
     logic clk, rst_n;
+    logic btn_start;
+    logic btn_hit;
+    logic btn_stand;
     wire vs, hs;
     wire [3:0] r, g, b;
     wire tb_ps2_clk, tb_ps2_data;
@@ -39,6 +42,9 @@ module top_vga_tb;
     top_vga dut (
         .clk(clk),
         .rst_n(rst_n),
+        .btn_start(btn_start),
+        .btn_hit(btn_hit),
+        .btn_stand(btn_stand),
         .vs(vs),
         .hs(hs),
         .r(r),
@@ -66,6 +72,12 @@ module top_vga_tb;
      * Main test
      */
     initial begin
+        // 1. Inicjalizacja sygnałów (likwidujemy stan 'X')
+        btn_start = 1'b0;
+        btn_hit   = 1'b0;
+        btn_stand = 1'b0;
+        
+        // 2. Sekwencja resetu układu
         rst_n = 1'b1;
         #(RST_START_TIME) rst_n = 1'b0;
         #(RST_ACTIVE_TIME) rst_n = 1'b1;
@@ -74,14 +86,25 @@ module top_vga_tb;
         $display("completes, use the menu option to run all.");
         $display("Prepare to wait a long time...");
 
-        // (Usunięto wymuszanie sygnałów myszki, bo usunęliśmy myszkę z topa)
+        // 3. Czekamy chwilę po resecie na ustabilizowanie układu
+        #100;
 
+        // 4. SYMULUJEMY WCIŚNIĘCIE PRZYCISKU "START"
+        $display("Info: Wciskanie przycisku START w czasie %t", $time);
+        btn_start = 1'b1;
+        #(5 * CLK_PERIOD); // Trzymamy wciśnięty przez 5 taktów zegara wideo
+        btn_start = 1'b0;  // Puszczamy przycisk
+
+        // W tym momencie FSM budzi się z IDLE, uruchamia Datapath i rozdaje 4 karty.
+
+        // 5. Czekamy na wygenerowanie klatek
         wait (vs == 1'b0);
-        @(negedge vs) $display("Info: negedge VS at %t",$time);
-        @(negedge vs) $display("Info: negedge VS at %t",$time);
+        @(negedge vs) $display("Info: negedge VS at %t (Ramka 1 - inicjalizacja)", $time);
+        @(negedge vs) $display("Info: negedge VS at %t (Ramka 2 - karty lądują na stole)", $time);
+        @(negedge vs) $display("Info: negedge VS at %t (Ramka 3 - finalny obraz)", $time);
 
         // End the simulation.
-        $display("Simulation is over, check the waveforms.");
+        $display("Simulation is over, check the waveforms and TIFFs.");
         $finish;
     end
 

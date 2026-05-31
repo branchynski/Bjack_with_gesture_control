@@ -25,4 +25,6 @@
 
     /*card_drawing*/
     localparam logic [5:0] CARD_DECK = 6'd54;
+
+    localparam logic MONEY = 16'd100;
 endpackage

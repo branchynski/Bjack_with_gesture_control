@@ -1,6 +1,3 @@
-Jasne, robimy wersję w pigułce. Krótko, zwięźle i na temat:
-
-```systemverilog
 /********************************************************************************
  * Module Name:    draw_bg
  * Author:         Eryk Rutka

@@ -69,18 +69,18 @@
             hcount_nxt = vga_out.hcount + 1;
         end
 
-        // Generowanie HSYNC
+        /* Generowanie HSYNC */
         hsync_nxt = ((vga_out.hcount+1) >= HOR_SYNC_START) && ((vga_out.hcount+1) < (HOR_SYNC_START + HOR_SYNC_TIME));
         
-        // Generowanie VSYNC
+        /* Generowanie VSYNC */
         vsync_nxt = (((((vga_out.vcount+1) >= VER_SYNC_START) && (vga_out.hcount == (HOR_TOTAL_TIME - 1))) 
         && ((vga_out.vcount +1) < (VER_SYNC_START + VER_SYNC_TIME))) 
         || (vga_out.hcount != (HOR_TOTAL_TIME - 1) && (vga_out.vcount >= (VER_SYNC_START)) && (vga_out.vcount < ((VER_SYNC_START + VER_SYNC_TIME)))));
 
-        // Generowanie HBLNK
+        /* Generowanie HBLNK */
         hblnk_nxt = ((vga_out.hcount+1) >= HOR_BLANK_START) && ((vga_out.hcount+1) < (HOR_BLANK_START + HOR_BLANK_TIME));
         
-        // Generowanie VBLNK
+        /* Generowanie VBLNK */
         vblnk_nxt = (((((vga_out.vcount+1) >= VER_BLANK_START) && (vga_out.hcount == (HOR_TOTAL_TIME - 1))) 
         && ((vga_out.vcount +1) < (VER_BLANK_START + VER_BLANK_TIME))) 
         || (vga_out.hcount != (HOR_TOTAL_TIME - 1) && (vga_out.vcount >= (VER_BLANK_START)) && (vga_out.vcount < ((VER_BLANK_START + VER_BLANK_TIME)))));

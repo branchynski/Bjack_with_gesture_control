@@ -3,11 +3,10 @@
  * EE178 Lab #4
  * Author: prof. Eric Crabilla
  *
- * Modified by:
+ * Modified by: Piotr Kaczmarczyk
  * 2025  AGH University of Science and Technology
  * MTM UEC2
- * Piotr Kaczmarczyk
- *
+ * 
  * Description:
  * The project top module.
  */
@@ -34,10 +33,10 @@ timeprecision 1ps;
  * Local variables and signals
  */
  
-// VGA signals from timing
+/* VGA signals from timing */
 vga_if vga_tim();
 
-// VGA signals from background
+/* VGA signals from background */
 vga_if vga_bg();
 
 

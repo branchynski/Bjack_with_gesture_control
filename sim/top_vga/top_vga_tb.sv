@@ -102,6 +102,7 @@ module top_vga_tb;
         @(negedge vs) $display("Info: negedge VS at %t (Ramka 1 - inicjalizacja)", $time);
         @(negedge vs) $display("Info: negedge VS at %t (Ramka 2 - karty lądują na stole)", $time);
         @(negedge vs) $display("Info: negedge VS at %t (Ramka 3 - finalny obraz)", $time);
+        @(posedge vs);
 
         // End the simulation.
         $display("Simulation is over, check the waveforms and TIFFs.");

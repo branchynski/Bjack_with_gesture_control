@@ -47,13 +47,16 @@
     vga_if vga_cards();
 
     // --- Kable łączące FSM z Datapathem ---
-    logic bust_sig;
+    logic p0_bust_sig;
+    logic p1_bust_sig;
     logic deal_done_sig;
     logic dealer_done_sig;
     
     logic sig_deal_enable_sig;
-    logic sig_player_turn_sig;
+    logic sig_p0_turn_sig;
+    logic sig_p1_turn_sig;
     logic sig_dealer_turn_sig;
+    logic sig_update_money_sig; // Dodany kabel zaktualizowany w Twoim FSM
     logic busy_sig;
 
     // --- Kable łączące LFSR z Datapathem ---
@@ -62,16 +65,18 @@
     logic card_req_sig;
 
     // --- Kable łączące Datapath z modułem rysującym (VGA) ---
-    logic [5:0] dpath_player_cards [0:4];
+    logic [5:0] dpath_p0_cards [0:4];
+    logic [5:0] dpath_p1_cards [0:4];
     logic [5:0] dpath_dealer_cards [0:4];
-    logic [2:0] dpath_player_cnt;
+    logic [2:0] dpath_p0_cnt;
+    logic [2:0] dpath_p1_cnt;
     logic [2:0] dpath_dealer_cnt;
 
     /**
      * Signals assignments
      */
 
-    // Wyprowadzenie ostatecznego obrazu na fizyczne piny (monitor)
+    
     assign vs = vga_cards.vsync;
     assign hs = vga_cards.hsync;
     assign {r,g,b} = vga_cards.rgb;
@@ -95,16 +100,24 @@
         .clk(clk),
         .rst_n(rst_n),
         .btn_start(btn_start),
-        .btn_hit(btn_hit),
-        .btn_stand(btn_stand),
-        .bust(bust_sig),
+        
+        // Podpinamy fizyczne przyciski do Gracza 0. Gracz 1 jest "sztuczny" na potrzeby testów.
+        .btn_p0_hit(btn_hit),
+        .btn_p0_stand(btn_stand),
+        .btn_p1_hit(1'b0),
+        .btn_p1_stand(1'b0),
+        
+        .p0_bust(p0_bust_sig),
+        .p1_bust(p1_bust_sig),
         .deal_done(deal_done_sig),
         .dealer_done(dealer_done_sig),
         
         .busy(busy_sig),
         .sig_deal_enable(sig_deal_enable_sig),
-        .sig_player_led(sig_player_turn_sig),
-        .sig_dealer_turn(sig_dealer_turn_sig)
+        .sig_p0_turn(sig_p0_turn_sig),
+        .sig_p1_turn(sig_p1_turn_sig),
+        .sig_dealer_turn(sig_dealer_turn_sig),
+        .sig_update_money(sig_update_money_sig)
     );
 
     // --- 3. ŚCIEŻKA DANYCH (DATAPATH) ---
@@ -112,12 +125,17 @@
         .clk(clk),
         .rst_n(rst_n),
         .sig_deal_enable(sig_deal_enable_sig),
-        .sig_player_turn(sig_player_turn_sig),
+        .sig_p0_turn(sig_p0_turn_sig),
+        .sig_p1_turn(sig_p1_turn_sig),
         .sig_dealer_turn(sig_dealer_turn_sig),
-        .btn_hit(btn_hit),
+        
+        // Analogiczne wpięcie sygnałów wejściowych
+        .btn_p0_hit(btn_hit),
+        .btn_p1_hit(1'b0),
         .btn_start(btn_start),
         
-        .bust(bust_sig),
+        .p0_bust(p0_bust_sig),
+        .p1_bust(p1_bust_sig),
         .deal_done(deal_done_sig),
         .dealer_done(dealer_done_sig),
         
@@ -125,9 +143,11 @@
         .card_valid(card_valid_sig),
         .card_req(card_req_sig),
         
-        .player_cards(dpath_player_cards),
+        .p0_cards(dpath_p0_cards),
+        .p1_cards(dpath_p1_cards),
         .dealer_cards(dpath_dealer_cards),
-        .player_card_cnt(dpath_player_cnt),
+        .p0_card_cnt(dpath_p0_cnt),
+        .p1_card_cnt(dpath_p1_cnt),
         .dealer_card_cnt(dpath_dealer_cnt)
     );
 
@@ -137,21 +157,25 @@
         .rst_n(rst_n),
         .vga_out(vga_tim)
     );
-
+    
     draw_bg u_draw_bg (
         .clk(clk),
         .rst_n(rst_n),
+        .p1_money(16'd2500), 
+        .p2_money(16'd3000), 
         .vga_in(vga_tim),
         .vga_out(vga_bg)
     );
 
-    // WŁAŚCIWA NAZWA MODUŁU RYSUJĄCEGO
+    // MODUŁ RYSUJĄCY
     card_generator u_card_generator (
         .clk(clk),
         .rst_n(rst_n),
-        .player_cards(dpath_player_cards),
+        .p0_cards(dpath_p0_cards),
+        .p1_cards(dpath_p1_cards),
         .dealer_cards(dpath_dealer_cards),
-        .player_card_cnt(dpath_player_cnt),
+        .p0_card_cnt(dpath_p0_cnt),
+        .p1_card_cnt(dpath_p1_cnt),
         .dealer_card_cnt(dpath_dealer_cnt),
         .vga_in(vga_bg),
         .vga_out(vga_cards)

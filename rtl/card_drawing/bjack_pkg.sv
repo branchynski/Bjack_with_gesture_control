@@ -11,11 +11,12 @@
 
 /* bjack_fsm  */
     typedef enum logic [2:0] {
-        IDLE, 
-        DEAL_INITIAL, 
-        PLAYER_TURN, 
-        DEALER_TURN, 
-        EVALUATE, 
+        IDLE,
+        DEAL_INITIAL,
+        P0_TURN,       
+        P1_TURN,       
+        DEALER_TURN,
+        EVALUATE,
         GAME_OVER
     } fsm_state_t;
 

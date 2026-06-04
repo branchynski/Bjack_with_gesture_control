@@ -1,19 +1,20 @@
 /********************************************************************************
  * Module Name:    draw_bg
  * Author:         Eryk Rutka
- * Date:           2026-06-02
- * Version:        4.1 (0-Indexed Players & Labeled HUD)
+ * Date:           2026-06-04
+ * Version:        4.2 (Fixed-Point Money Scaling - 10-bit)
  * Description:    
  * Draws the casino green background, a black zone for dealer, 
  * red zone for Player 0, and blue zone for Player 1. 
  * Includes 2 retro arcade money panels with player labels.
+ * Optimized money rendering using hardware 100x multiplier (fixed zeros).
  ********************************************************************************/
 
  module draw_bg (
     input  logic clk,
     input  logic rst_n,
-    input  logic [15:0] p1_money, 
-    input  logic [15:0] p2_money, 
+    input  logic [9:0] p1_money, // Pieniadze gracza skalowane x100
+    input  logic [9:0] p2_money, 
     vga_if.in  vga_in,
     vga_if.out vga_out
 );
@@ -21,7 +22,7 @@
     timeunit 1ns;
     timeprecision 1ps;
 
-    // --- Parametry wymiarów stref 
+    // --- Parametry wymiarów stref (3 poziome pasy) ---
     localparam BOX_X_START = 180;
     localparam BOX_X_END   = 800; 
     
@@ -34,7 +35,7 @@
     localparam P2_BOX_Y_START = 510;
     localparam P2_BOX_Y_END   = 710;
 
-    // --- Parametry paneli Retro 
+    // --- Parametry paneli Retro (Prawa strona) ---
     localparam HUD_X  = 820;
     localparam HUD_W  = 160;
     localparam HUD_H  = 60;
@@ -74,7 +75,7 @@
         in_p1_slot = in_slot_x && (vga_in.vcount >= P1_BOX_Y_START + 30 && vga_in.vcount < P1_BOX_Y_END - 30);
         in_p2_slot = in_slot_x && (vga_in.vcount >= P2_BOX_Y_START + 30 && vga_in.vcount < P2_BOX_Y_END - 30);
 
-        // Geometria paneli cieplinków
+        // Geometria paneli kasy
         in_hud1_panel = (vga_in.hcount >= HUD_X && vga_in.hcount < HUD_X + HUD_W &&
                          vga_in.vcount >= HUD1_Y && vga_in.vcount < HUD1_Y + HUD_H);
         in_hud1_border = in_hud1_panel && (vga_in.hcount < HUD_X + 4 || vga_in.hcount >= HUD_X + HUD_W - 4 ||
@@ -89,9 +90,9 @@
         in_m1_text = 1'b0; in_m2_text = 1'b0;
         target_char = 8'h20; char_x_bit = '0; char_y_line = '0; rom_addr = '0;
 
-        // --- Renderowanie kapitału Gracza 0  ---
+        // --- Renderowanie kasy Gracza 0 (Z 2 sztywnymi zerami na końcu) ---
         if (in_hud1_panel && !in_hud1_border && 
-            vga_in.hcount >= HUD_X + 8 && vga_in.hcount < HUD_X + 152 && // 9 znaków (144px)
+            vga_in.hcount >= HUD_X + 8 && vga_in.hcount < HUD_X + 152 && 
             vga_in.vcount >= HUD1_Y + 14 && vga_in.vcount < HUD1_Y + 46) begin
             in_m1_text = 1'b1;
             char_x_bit = (vga_in.hcount - (HUD_X + 8)) >> 1;
@@ -101,18 +102,18 @@
                 1: target_char = 8'h30; // 0
                 2: target_char = 8'h20; // [spacja]
                 3: target_char = 8'h24; // $
-                4: target_char = 8'h30 + ((p1_money / 10000) % 10);
-                5: target_char = 8'h30 + ((p1_money / 1000) % 10);
-                6: target_char = 8'h30 + ((p1_money / 100) % 10);
-                7: target_char = 8'h30 + ((p1_money / 10) % 10);
-                8: target_char = 8'h30 + (p1_money % 10);
+                4: target_char = 8'h30 + ((p1_money / 100) % 10); 
+                5: target_char = 8'h30 + ((p1_money / 10) % 10);  
+                6: target_char = 8'h30 + (p1_money % 10);         
+                7: target_char = 8'h30;                           
+                8: target_char = 8'h30;                           
                 default: target_char = 8'h20;
             endcase
             rom_addr = {target_char[6:0], char_y_line};
         end
-        // --- Renderowanie kapitału Gracza 1 ---
+        // --- Renderowanie kasy Gracza 1 (Z 2 sztywnymi zerami na końcu) ---
         else if (in_hud2_panel && !in_hud2_border && 
-            vga_in.hcount >= HUD_X + 8 && vga_in.hcount < HUD_X + 152 && // 9 znaków (144px)
+            vga_in.hcount >= HUD_X + 8 && vga_in.hcount < HUD_X + 152 && 
             vga_in.vcount >= HUD2_Y + 14 && vga_in.vcount < HUD2_Y + 46) begin
             in_m2_text = 1'b1;
             char_x_bit = (vga_in.hcount - (HUD_X + 8)) >> 1;
@@ -122,11 +123,11 @@
                 1: target_char = 8'h31; // 1
                 2: target_char = 8'h20; // [spacja]
                 3: target_char = 8'h24; // $
-                4: target_char = 8'h30 + ((p2_money / 10000) % 10);
-                5: target_char = 8'h30 + ((p2_money / 1000) % 10);
-                6: target_char = 8'h30 + ((p2_money / 100) % 10);
-                7: target_char = 8'h30 + ((p2_money / 10) % 10);
-                8: target_char = 8'h30 + (p2_money % 10);
+                4: target_char = 8'h30 + ((p2_money / 100) % 10); 
+                5: target_char = 8'h30 + ((p2_money / 10) % 10);  
+                6: target_char = 8'h30 + (p2_money % 10);         
+                7: target_char = 8'h30;                           
+                8: target_char = 8'h30;                           
                 default: target_char = 8'h20;
             endcase
             rom_addr = {target_char[6:0], char_y_line};
@@ -169,7 +170,7 @@
             rom_addr = {target_char[6:0], char_y_line};
         end
 
-        // --- Kolorowanie Tła  ---
+        // --- Kolorowanie Tła z wygaszaniem martwych stref ---
         if (vga_in.hblnk || vga_in.vblnk) bg_color = 12'h0_0_0; 
         else if (in_hud1_border || in_hud2_border) bg_color = 12'hf_a_0; 
         else if (in_hud1_panel || in_hud2_panel) bg_color = 12'h1_1_2;   
@@ -212,7 +213,7 @@
         .clk(clk), .rst_n(rst_n), .din(delay_in), .dout(delay_out)
     );
 
-    
+    // --- 4. Ostateczny Pędzel ---
     logic [10:0] out_hcount, out_vcount;
     logic        out_hsync, out_vsync, out_hblnk, out_vblnk;
     logic [11:0] out_rgb;

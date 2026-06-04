@@ -129,7 +129,6 @@
         .sig_p1_turn(sig_p1_turn_sig),
         .sig_dealer_turn(sig_dealer_turn_sig),
         
-        // Analogiczne wpięcie sygnałów wejściowych
         .btn_p0_hit(btn_hit),
         .btn_p1_hit(1'b0),
         .btn_start(btn_start),
@@ -149,6 +148,12 @@
         .p0_card_cnt(dpath_p0_cnt),
         .p1_card_cnt(dpath_p1_cnt),
         .dealer_card_cnt(dpath_dealer_cnt)
+
+        .is_master(1'b1),               
+        .uart_card_valid(1'b0),         
+        .uart_card_val(6'd0),           
+        .uart_card_dst(2'd0),           
+        .uart_new_game(1'b0),           
     );
 
     // --- 4. MODUŁY VGA ---
@@ -161,8 +166,8 @@
     draw_bg u_draw_bg (
         .clk(clk),
         .rst_n(rst_n),
-        .p1_money(16'd2500), 
-        .p2_money(16'd3000), 
+        .p1_money(16'd25), 
+        .p2_money(16'd30), 
         .vga_in(vga_tim),
         .vga_out(vga_bg)
     );

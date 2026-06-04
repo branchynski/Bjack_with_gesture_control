@@ -6,7 +6,7 @@ module top_vga_tb;
     /**
      * Local parameters
      */
-    // Zmieniony okres dla zegara 65 MHz (rozdzielczość 1024x768)
+    
     localparam real CLK_PERIOD = 15.385;     
     localparam RST_START_TIME = 30;
     localparam RST_ACTIVE_TIME = 30;
@@ -55,7 +55,7 @@ module top_vga_tb;
         .clk_100MHz(clk_100MHz)
     );
 
-    // Zaktualizowane wymiary całkowite (Total Time) dla 1024x768
+    
     tiff_writer #(
         .XDIM(16'd1344),
         .YDIM(16'd806),
@@ -72,40 +72,55 @@ module top_vga_tb;
      * Main test
      */
     initial begin
-        // 1. Inicjalizacja sygnałów (likwidujemy stan 'X')
+        
         btn_start = 1'b0;
         btn_hit   = 1'b0;
         btn_stand = 1'b0;
         
-        // 2. Sekwencja resetu układu
+        
         rst_n = 1'b1;
         #(RST_START_TIME) rst_n = 1'b0;
         #(RST_ACTIVE_TIME) rst_n = 1'b1;
 
-        $display("If simulation ends before the testbench");
-        $display("completes, use the menu option to run all.");
+        $display("--------------------------------------------------");
+        $display("MULTIPLAYER BLACKJACK - VGA SIMULATION STARTED");
         $display("Prepare to wait a long time...");
+        $display("--------------------------------------------------");
 
-        // 3. Czekamy chwilę po resecie na ustabilizowanie układu
         #100;
 
-        // 4. SYMULUJEMY WCIŚNIĘCIE PRZYCISKU "START"
-        $display("Info: Wciskanie przycisku START w czasie %t", $time);
+        // 4. ROZDANIE POCZĄTKOWE (START)
+        $display("[%0t ns] Wciskanie przycisku START", $time);
         btn_start = 1'b1;
-        #(5 * CLK_PERIOD); // Trzymamy wciśnięty przez 5 taktów zegara wideo
-        btn_start = 1'b0;  // Puszczamy przycisk
+        #(5 * CLK_PERIOD); 
+        btn_start = 1'b0;  
 
-        // W tym momencie FSM budzi się z IDLE, uruchamia Datapath i rozdaje 4 karty.
-
-        // 5. Czekamy na wygenerowanie klatek
+        // Czekamy na wygenerowanie pierwszej klatki (6 kart na stole)
         wait (vs == 1'b0);
-        @(negedge vs) $display("Info: negedge VS at %t (Ramka 1 - inicjalizacja)", $time);
-        @(negedge vs) $display("Info: negedge VS at %t (Ramka 2 - karty lądują na stole)", $time);
-        @(negedge vs) $display("Info: negedge VS at %t (Ramka 3 - finalny obraz)", $time);
+        @(negedge vs) $display("[%0t ns] Ramka 1 - Zapisana (Widać 6 kart: P0, P1, Krupier)", $time);
+
+        // 5. RUCH GRACZA 0 (HIT - Dobiera kartę)
+        $display("[%0t ns] Gracz 0 wciska HIT!", $time);
+        btn_hit = 1'b1;
+        #(5 * CLK_PERIOD); 
+        btn_hit = 1'b0; 
+
+        // Czekamy na wygenerowanie drugiej klatki (Gracz 0 ma teraz 3 karty)
+        @(negedge vs) $display("[%0t ns] Ramka 2 - Zapisana (Gracz 0 dobrał 3. kartę)", $time);
+
+        // 6. RUCH GRACZA 0 (STAND - Oddaje turę Gracza 1)
+        $display("[%0t ns] Gracz 0 wciska STAND!", $time);
+        btn_stand = 1'b1;
+        #(5 * CLK_PERIOD); 
+        btn_stand = 1'b0; 
+
+        // Czekamy na wygenerowanie trzeciej klatki (Układ czeka na UART Gracza 1)
+        @(negedge vs) $display("[%0t ns] Ramka 3 - Zapisana (Oczekiwanie na ruch Gracza 1)", $time);
         @(posedge vs);
 
         // End the simulation.
-        $display("Simulation is over, check the waveforms and TIFFs.");
+        $display("--------------------------------------------------");
+        $display("Simulation is over! Check your results folder for TIFFs.");
         $finish;
     end
 

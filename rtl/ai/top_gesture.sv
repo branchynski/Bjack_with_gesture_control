@@ -42,6 +42,8 @@ module top_gesture (
        [95:80] gyro_z
     */
 
+    logic [95:0] scaled_data_in;
+
     logic full_buffer;
     logic buffer_empty;
 
@@ -81,6 +83,15 @@ module top_gesture (
         .data_ready(data_ready)
     );
 
+    assign scaled_data_in = {
+        16'(data_in[95:80] <<< 2),
+        16'(data_in[79:64] <<< 2),
+        16'(data_in[63:48] <<< 2),
+        16'(data_in[47:32] >>> 4),
+        16'(data_in[31:16] >>> 4),
+        16'(data_in[15:0] >>> 4)
+    };
+
     ring_buffer #(
         .DATA_WIDTH (96),
         .DEPTH (128), 
@@ -89,7 +100,7 @@ module top_gesture (
         .clk(clk),
         .rst_n(rst_n),
 
-        .data_in(data_in),
+        .data_in(scaled_data_in),
         .wr_en(data_ready),
         .full(full_buffer),
         .rd_en(input_layer_TREADY & ~buffer_empty),

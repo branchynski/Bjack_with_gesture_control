@@ -6,7 +6,7 @@
  * Description:   Text overlay module that draws a string using character ROM and font ROM.
  */
 
-module top_string #(
+ module top_string #(
     parameter X_POS = 64,
     parameter Y_POS = 64,
     parameter ROM_DELAY = 2,
@@ -41,13 +41,13 @@ module top_string #(
      * Submodules instances
      */
 
-    draw_rect_char (
+    draw_rect_char #(
         .X_POS(X_POS),
         .Y_POS(Y_POS),
         .ROM_DELAY(ROM_DELAY)
     ) u_draw_rect_char (
-        .clk,
-        .rst_n,
+        .clk(clk),
+        .rst_n(rst_n),
         .char_line_pixel(char_line_pixel),
         .char_xy (char_xy),
         .char_line (string_addr[3:0]),
@@ -56,7 +56,7 @@ module top_string #(
     );
 
     font_rom u_font_rom (
-        .clk,
+        .clk(clk),
         .addr(string_addr),
         .char_line_pixels(char_line_pixel)
     );

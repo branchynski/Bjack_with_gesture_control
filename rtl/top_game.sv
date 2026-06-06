@@ -15,7 +15,20 @@ module top_game (
         output logic cs_n,
         output logic sclk,
         output logic mosi,
-        input  logic miso
+        input  logic miso,
+
+        input logic rx,
+        output logic tx,
+
+        input logic sw_master,
+
+        output logic vs,
+        output logic hs,
+        output logic [3:0] r,
+        output logic [3:0] g,
+        output logic [3:0] b,
+
+        output logic [0:2] leds
     );
 
     timeunit 1ns;
@@ -43,5 +56,27 @@ module top_game (
         .miso(miso),
         .gesture(gesture)
     );
+
+    top_vga u_top_vga(
+        .clk(clk),
+        .rst_n(rst_n),
+        .current_gesture(gesture),
+        .sw_master(sw_master),
+        .uart_rx_pin(rx),   
+        .uart_tx_pin(tx),   
+ 
+        .vs(vs),
+        .hs(hs),
+        .r(r),
+        .g(g),
+        .b(b)
+    );
+
+    gesture_monitor u_gesture_monitor (
+    .clk(clk),
+    .rst_n(rst_n),
+    .current_gesture(gesture),
+    .leds(leds)
+);
 
 endmodule

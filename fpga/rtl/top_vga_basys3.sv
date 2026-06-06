@@ -22,9 +22,16 @@ module top_vga_basys3 (
         output wire [3:0] vgaBlue,
         output wire JA1,
         output wire JC1,
-        output wire JC7,
-        output wire JC2,
-        output wire JC8
+        output wire JC3,
+        input wire JC2,
+        output wire JC4,
+
+        output wire [2:0] led,
+
+        input  wire RsRx,
+        output wire RsTx,
+
+        input wire sw_master
     );
 
     timeunit 1ns;
@@ -88,10 +95,23 @@ module top_vga_basys3 (
     top_game u_top_game (
         .clk(pclk),
         .rst_n(!btnC && locked),
-        .cs_n(JC2),
-        .sclk(JC8),
-        .mosi(JC1),
-        .miso(JC7)
+        .cs_n(JC1), 
+        .sclk(JC3), 
+        .mosi(JC4), 
+        .miso(JC2), 
+
+        .rx(RsRx),
+        .tx(RsTx),
+
+        .sw_master(sw_master),
+        .vs(Vsync),
+        .hs(Hsync),
+        .r(vgaRed),
+        .g(vgaGreen),
+        .b(vgaBlue),
+
+        .leds(led[2:0])
+
     );
 
 endmodule

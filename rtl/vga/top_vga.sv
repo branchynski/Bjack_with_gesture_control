@@ -17,20 +17,12 @@
  module top_vga (
      input  logic clk,
      input  logic rst_n,
- 
-     input  logic btn_start,
-     input  logic btn_hit,
-     input  logic btn_stand,
      
      input  gesture_out current_gesture,
  
      input  logic sw_master,     
      input  logic uart_rx_pin,   
      output logic uart_tx_pin,   
- 
-     inout  logic ps2_clk,
-     inout  logic ps2_data,
-     input  logic clk_100MHz,
  
      output logic vs,
      output logic hs,
@@ -55,14 +47,40 @@
          if (!rst_n) begin
              is_start_screen <= 1'b1; 
          end else begin
-             if (go_to_game_sig || btn_start) begin
+             if (go_to_game_sig) begin
                  is_start_screen <= 1'b0; 
              end
          end
      end
+
+     /* --- GESTURE DETECTION SECTION (EDGE DETECTION) --- */
+     gesture_out prev_gesture;
+     logic gest_knock_pulse;
+     logic gest_swipe_pulse;
+
+     always_ff @(posedge clk or negedge rst_n) begin
+         if (!rst_n) begin
+             prev_gesture <= NOTHING; 
+         end else begin
+             prev_gesture <= current_gesture;
+         end
+     end
+
+     assign gest_knock_pulse = (current_gesture == KNOCK)       && (prev_gesture != KNOCK);
+     assign gest_swipe_pulse = (current_gesture == SWIPE_RIGHT) && (prev_gesture != SWIPE_RIGHT);
  
-     // BLOKADA: Gest działa TYLKO gdy widać menu! Koniec z auto-resetem w tle!
-     assign game_start_trigger = btn_start | (go_to_game_sig & is_start_screen);
+     assign game_start_trigger = is_start_screen ? go_to_game_sig : gest_knock_pulse;
+
+     always_ff @(posedge clk or negedge rst_n) begin
+         if (!rst_n) begin
+             is_start_screen <= 1'b1; 
+         end else begin
+             // Jeśli padnie sygnał startu z menu, wyłączamy ekran startowy
+             if (go_to_game_sig) begin
+                 is_start_screen <= 1'b0; 
+             end
+         end
+     end
  
      logic p0_bust_sig, p1_bust_sig;
      logic deal_done_sig, dealer_done_sig;
@@ -113,7 +131,10 @@
          .go_to_credits() 
      );
  
-     uart #(.DVSR(212)) u_uart (
+     uart #(
+        .DVSR(35),
+        .DVSR_BIT(6)
+        ) u_uart (
          .clk(clk), .reset(uart_rst), .rd_uart(uart_rd), .wr_uart(uart_wr),
          .rx(uart_rx_pin), .w_data(uart_tx_data), .tx_full(uart_tx_full),
          .rx_empty(uart_rx_empty), .tx(uart_tx_pin), .r_data(uart_rx_data)
@@ -126,7 +147,7 @@
          .p1_cards(dpath_p1_cards), .p1_card_cnt(dpath_p1_cnt),
          .dealer_cards(dpath_dealer_cards), .dealer_card_cnt(dpath_dealer_cnt),
          .btn_start_master(game_start_trigger), 
-         .btn_hit_slave(btn_hit), .btn_stand_slave(btn_stand),
+         .btn_hit_slave(gest_knock_pulse), .btn_stand_slave(gest_swipe_pulse),
          .slave_req_hit(slave_req_hit_sig), .slave_req_stand(slave_req_stand_sig),
          .uart_card_valid(uart_c_valid_sig), .uart_card_val(uart_c_val_sig),
          .uart_card_dst(uart_c_dst_sig), .uart_new_game(uart_new_game_sig),
@@ -141,7 +162,7 @@
      bjack_fsm u_bjack_fsm (
          .clk(clk), .rst_n(rst_n),
          .btn_start(game_start_trigger), 
-         .btn_p0_hit(btn_hit), .btn_p0_stand(btn_stand),
+         .btn_p0_hit(gest_knock_pulse), .btn_p0_stand(gest_swipe_pulse),
          .btn_p1_hit(slave_req_hit_sig), .btn_p1_stand(slave_req_stand_sig),
          .p0_bust(p0_bust_sig), .p1_bust(p1_bust_sig),
          .deal_done(deal_done_sig), .dealer_done(dealer_done_sig),
@@ -154,7 +175,7 @@
          .clk(clk), .rst_n(rst_n),
          .sig_deal_enable(sig_deal_enable_sig), .sig_p0_turn(sig_p0_turn_sig),
          .sig_p1_turn(sig_p1_turn_sig), .sig_dealer_turn(sig_dealer_turn_sig),
-         .btn_p0_hit(btn_hit), .btn_p1_hit(slave_req_hit_sig),
+         .btn_p0_hit(gest_knock_pulse), .btn_p1_hit(slave_req_hit_sig),
          .btn_start(game_start_trigger), 
          .p0_bust(p0_bust_sig), .p1_bust(p1_bust_sig),
          .deal_done(deal_done_sig), .dealer_done(dealer_done_sig),

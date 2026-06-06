@@ -39,17 +39,17 @@ set_property PACKAGE_PIN W5 [get_ports clk]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {sw[13]}]
 #set_property PACKAGE_PIN T1 [get_ports {sw[14]}]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {sw[14]}]
-#set_property PACKAGE_PIN R2 [get_ports {sw[15]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {sw[15]}]
+set_property PACKAGE_PIN R2 [get_ports {sw_master}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {sw_master}]
 
 
 ## LEDs
-#set_property PACKAGE_PIN U16 [get_ports {led[0]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {led[0]}]
-#set_property PACKAGE_PIN E19 [get_ports {led[1]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {led[1]}]
-#set_property PACKAGE_PIN U19 [get_ports {led[2]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {led[2]}]
+set_property PACKAGE_PIN U16 [get_ports {led[0]}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {led[0]}]
+set_property PACKAGE_PIN E19 [get_ports {led[1]}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {led[1]}]
+set_property PACKAGE_PIN U19 [get_ports {led[2]}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {led[2]}]
 #set_property PACKAGE_PIN V19 [get_ports {led[3]}]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {led[3]}]
 #set_property PACKAGE_PIN W18 [get_ports {led[4]}]
@@ -185,17 +185,17 @@ set_property PACKAGE_PIN K17 [get_ports {JC1}]
 set_property PACKAGE_PIN M18 [get_ports {JC2}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {JC2}]
 ##Sch name = JC3
-#set_property PACKAGE_PIN N17 [get_ports {JC3}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC3}]
+set_property PACKAGE_PIN N17 [get_ports {JC3}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC3}]
 ##Sch name = JC4
-#set_property PACKAGE_PIN P18 [get_ports {JC4}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JC4}]
+set_property PACKAGE_PIN P18 [get_ports {JC4}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {JC4}]
 ##Sch name = JC7
-set_property PACKAGE_PIN L17 [get_ports {JC7}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {JC7}]
+#set_property PACKAGE_PIN L17 [get_ports {JC7}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {JC7}]
 ##Sch name = JC8
-set_property PACKAGE_PIN M19 [get_ports {JC8}]
-	set_property IOSTANDARD LVCMOS33 [get_ports {JC8}]
+#set_property PACKAGE_PIN M19 [get_ports {JC8}]
+	#set_property IOSTANDARD LVCMOS33 [get_ports {JC8}]
 ##Sch name = JC9
 #set_property PACKAGE_PIN P17 [get_ports {JC9}]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {JC9}]
@@ -264,10 +264,10 @@ set_property PACKAGE_PIN R19 [get_ports Vsync]
 
 
 ##USB-RS232 Interface
-#set_property PACKAGE_PIN B18 [get_ports RsRx]
-	#set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
-#set_property PACKAGE_PIN A18 [get_ports RsTx]
-	#set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
+set_property PACKAGE_PIN B18 [get_ports RsRx]
+	set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
+set_property PACKAGE_PIN A18 [get_ports RsTx]
+	set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
 
 
 ##USB HID (PS/2)

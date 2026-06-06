@@ -33,10 +33,29 @@ set xdc_files {
 
 # Specify SystemVerilog design files location   -- EDIT
 set sv_files {
+    ../rtl/vga/vga_pkg.sv
+    ../rtl/bjack_fsm/bjack_pkg.sv
+    ../rtl/ai/ai_type_pkg.sv
+    ../rtl/vga/vga_if.sv
+    ../rtl/vga/vga_timing.sv
+    ../rtl/vga/draw_bg.sv
+    ../rtl/vga/top_vga.sv
+    ../rtl/vga/card_generator.sv
+    ../rtl/vga/draw_start.sv
+    ../rtl/vga/string/delay.sv
+    ../rtl/vga/string/char_rom.sv
+    ../rtl/vga/string/font_rom.sv
+    ../rtl/vga/string/draw_rect_char.sv
+    ../rtl/vga/string/top_string.sv
+    ../rtl/vga/top_menu.sv
+    ../rtl/bjack_fsm/bjack_fsm.sv
+    ../rtl/bjack_fsm/bjack_datapath.sv
+    ../rtl/bjack_fsm/bjack_money.sv
+    ../rtl/card_drawing/card_drawing.sv
+    ../rtl/uart/uart_protocol_ctrl.sv
+    ../rtl/gesture_monitor.sv
     ../rtl/ai/top_sensor.sv
     ../rtl/ai/ring_buffer.sv   
-    ../rtl/bjack_fsm/bjack_fsm_pkg.sv
-    ../rtl/bjack_fsm/bjack_fsm.sv    
     ../rtl/spi/lsm6dso_ctrl.sv
     ../rtl/spi/lsm6dso_pkg.sv
     ../rtl/spi/spi_ce_gen.sv
@@ -44,7 +63,6 @@ set sv_files {
     ../rtl/top_game.sv
     ../rtl/ai/top_gesture.sv
     ../rtl/ai/model_controller_fsm.sv
-    ../rtl/ai/ai_type_pkg.sv
     rtl/top_vga_basys3.sv
 }
 
@@ -124,6 +142,11 @@ set verilog_files {
     ../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config4_s.v 
     ../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config8_s.v 
     ../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_thresholdedrelu_config14_s.v
+    ../rtl/uart/uart.v
+    ../rtl/uart/uart_tx.v
+    ../rtl/uart/uart_rx.v
+    ../rtl/uart/fifo.v
+    ../rtl/uart/mod_m_counter.v
 }
 
 # Specify VHDL design files location            -- EDIT

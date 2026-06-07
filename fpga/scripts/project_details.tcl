@@ -63,6 +63,7 @@ set sv_files {
     ../rtl/top_game.sv
     ../rtl/ai/top_gesture.sv
     ../rtl/ai/model_controller_fsm.sv
+    ../rtl/gesture_tdebug.sv
     rtl/top_vga_basys3.sv
 }
 

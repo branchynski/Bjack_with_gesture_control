@@ -33,12 +33,12 @@ set_property PACKAGE_PIN W5 [get_ports clk]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {sw[10]}]
 #set_property PACKAGE_PIN R3 [get_ports {sw[11]}]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {sw[11]}]
-#set_property PACKAGE_PIN W2 [get_ports {sw[12]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {sw[12]}]
-#set_property PACKAGE_PIN U1 [get_ports {sw[13]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {sw[13]}]
-#set_property PACKAGE_PIN T1 [get_ports {sw[14]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {sw[14]}]
+set_property PACKAGE_PIN W2 [get_ports {sw[12]}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {sw[12]}]
+set_property PACKAGE_PIN U1 [get_ports {sw[13]}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {sw[13]}]
+set_property PACKAGE_PIN T1 [get_ports {sw[14]}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {sw[14]}]
 set_property PACKAGE_PIN R2 [get_ports {sw_master}]
 	set_property IOSTANDARD LVCMOS33 [get_ports {sw_master}]
 
@@ -212,11 +212,11 @@ set_property PACKAGE_PIN P18 [get_ports {JC4}]
 #set_property PACKAGE_PIN L3 [get_ports {JXADC[1]}]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[1]}]
 ##Sch name = XA3_P
-#set_property PACKAGE_PIN M2 [get_ports {JXADC[2]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[2]}]
+set_property PACKAGE_PIN M2 [get_ports {M2}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {M2}]
 ##Sch name = XA4_P
-#set_property PACKAGE_PIN N2 [get_ports {JXADC[3]}]
-	#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[3]}]
+set_property PACKAGE_PIN N2 [get_ports {N2}]
+	set_property IOSTANDARD LVCMOS33 [get_ports {N2}]
 ##Sch name = XA1_N
 #set_property PACKAGE_PIN K3 [get_ports {JXADC[4]}]
 	#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[4]}]
@@ -264,10 +264,10 @@ set_property PACKAGE_PIN R19 [get_ports Vsync]
 
 
 ##USB-RS232 Interface
-set_property PACKAGE_PIN B18 [get_ports RsRx]
-	set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
-set_property PACKAGE_PIN A18 [get_ports RsTx]
-	set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
+#set_property PACKAGE_PIN B18 [get_ports RsRx]
+	#set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
+#set_property PACKAGE_PIN A18 [get_ports RsTx]
+	#set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
 
 
 ##USB HID (PS/2)

@@ -28,8 +28,10 @@ module top_vga_basys3 (
 
         output wire [2:0] led,
 
-        input  wire RsRx,
-        output wire RsTx,
+        input  wire N2,
+        output wire M2,
+
+        input wire [14:12] sw,
 
         input wire sw_master
     );
@@ -100,8 +102,8 @@ module top_vga_basys3 (
         .mosi(JC4), 
         .miso(JC2), 
 
-        .rx(RsRx),
-        .tx(RsTx),
+        .rx(N2),
+        .tx(M2),
 
         .sw_master(sw_master),
         .vs(Vsync),
@@ -110,7 +112,8 @@ module top_vga_basys3 (
         .g(vgaGreen),
         .b(vgaBlue),
 
-        .leds(led[2:0])
+        .leds(led[2:0]),
+        .sw(sw[14:12])
 
     );
 

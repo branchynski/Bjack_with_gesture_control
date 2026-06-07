@@ -88,7 +88,7 @@ reg    grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s
 reg    ap_block_state2_ignore_call11;
 wire    ap_CS_fsm_state3;
 reg   [5:0] i_iw_fu_118;
-wire   [5:0] i_iw_4_fu_210_p2;
+wire   [5:0] i_iw_2_fu_210_p2;
 reg    ap_block_state1;
 reg   [2:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
@@ -175,7 +175,7 @@ always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state1) & (1'b1 == ap_CS_fsm_state1))) begin
         i_iw_fu_118 <= 6'd0;
     end else if (((1'b0 == ap_block_state2) & (icmp_ln69_fu_204_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
-        i_iw_fu_118 <= i_iw_4_fu_210_p2;
+        i_iw_fu_118 <= i_iw_2_fu_210_p2;
     end
 end
 
@@ -325,7 +325,7 @@ assign ap_ready = internal_ap_ready;
 
 assign grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start = grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start_reg;
 
-assign i_iw_4_fu_210_p2 = (i_iw_fu_118 + 6'd1);
+assign i_iw_2_fu_210_p2 = (i_iw_fu_118 + 6'd1);
 
 assign icmp_ln69_fu_204_p2 = ((i_iw_fu_118 == 6'd51) ? 1'b1 : 1'b0);
 

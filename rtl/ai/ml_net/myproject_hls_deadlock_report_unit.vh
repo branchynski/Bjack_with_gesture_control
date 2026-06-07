@@ -222,7 +222,7 @@
             index = proc_index(dl_vec);
             case (index)
                 0 : begin
-                    proc_path = "myproject_myproject.conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0";
+                    proc_path = "myproject_myproject.conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0";
                 end
                 1 : begin
                     proc_path = "myproject_myproject.normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0";
@@ -317,12 +317,12 @@
             index1 = proc_index(dl_vec1);
             index2 = proc_index(dl_vec2);
             case (index1)
-                0 : begin // for proc 'myproject_myproject.conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0'
+                0 : begin // for proc 'myproject_myproject.conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0'
                     case(index2)
                     1: begin //  for dep proc 'myproject_myproject.normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0'
 // for dep channel 'myproject_myproject.layer2_out_U' info is :
-// blk sig is {~myproject_myproject_inst.conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126.layer2_out_blk_n data_FIFO}
-                        if ((~conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126.layer2_out_blk_n)) begin
+// blk sig is {~myproject_myproject_inst.conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126.layer2_out_blk_n data_FIFO}
+                        if ((~conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126.layer2_out_blk_n)) begin
                             if (~layer2_out_U.if_empty_n) begin
                                 $display("//      Blocked by empty input FIFO 'myproject_myproject.layer2_out_U' written by process 'myproject_myproject.normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0'");
                                 $fdisplay(fp, "Dependence_Channel_path myproject_myproject.layer2_out_U");
@@ -335,8 +335,8 @@
                             end
                         end
 // for dep channel 'myproject_myproject.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U' info is :
-// blk sig is {{~myproject_myproject_inst.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_full_n & myproject_myproject_inst.conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_start & ~myproject_myproject_inst.conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.real_start & (trans_in_cnt_0 == trans_out_cnt_0) & ~myproject_myproject_inst.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_read} start_FIFO}
-                        if ((~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_full_n & conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_start & ~conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.real_start & (trans_in_cnt_0 == trans_out_cnt_0) & ~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_read)) begin
+// blk sig is {{~myproject_myproject_inst.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_full_n & myproject_myproject_inst.conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_start & ~myproject_myproject_inst.conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.real_start & (trans_in_cnt_0 == trans_out_cnt_0) & ~myproject_myproject_inst.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_read} start_FIFO}
+                        if ((~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_full_n & conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_start & ~conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.real_start & (trans_in_cnt_0 == trans_out_cnt_0) & ~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_read)) begin
                             $display("//      Blocked by full output start propagation FIFO 'myproject_myproject.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U' read by process 'myproject_myproject.normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0',");
                         end
                     end
@@ -344,17 +344,17 @@
                 end
                 1 : begin // for proc 'myproject_myproject.normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0'
                     case(index2)
-                    0: begin //  for dep proc 'myproject_myproject.conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0'
+                    0: begin //  for dep proc 'myproject_myproject.conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0'
 // for dep channel 'myproject_myproject.layer2_out_U' info is :
 // blk sig is {~myproject_myproject_inst.normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0.layer2_out_blk_n data_FIFO}
                         if ((~normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0.layer2_out_blk_n)) begin
                             if (~layer2_out_U.if_empty_n) begin
-                                $display("//      Blocked by empty input FIFO 'myproject_myproject.layer2_out_U' written by process 'myproject_myproject.conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0'");
+                                $display("//      Blocked by empty input FIFO 'myproject_myproject.layer2_out_U' written by process 'myproject_myproject.conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0'");
                                 $fdisplay(fp, "Dependence_Channel_path myproject_myproject.layer2_out_U");
                                 $fdisplay(fp, "Dependence_Channel_status EMPTY");
                             end
                             else if (~layer2_out_U.if_full_n) begin
-                                $display("//      Blocked by full output FIFO 'myproject_myproject.layer2_out_U' read by process 'myproject_myproject.conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0'");
+                                $display("//      Blocked by full output FIFO 'myproject_myproject.layer2_out_U' read by process 'myproject_myproject.conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0'");
                                 $fdisplay(fp, "Dependence_Channel_path myproject_myproject.layer2_out_U");
                                 $fdisplay(fp, "Dependence_Channel_status FULL");
                             end
@@ -362,7 +362,7 @@
 // for dep channel 'myproject_myproject.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U' info is :
 // blk sig is {{~myproject_myproject_inst.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_empty_n & myproject_myproject_inst.normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0.ap_idle & ~myproject_myproject_inst.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_write} start_FIFO}
                         if ((~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_empty_n & normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0.ap_idle & ~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_write)) begin
-                            $display("//      Blocked by missing 'ap_start' from start propagation FIFO 'myproject_myproject.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U' written by process 'myproject_myproject.conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0',");
+                            $display("//      Blocked by missing 'ap_start' from start propagation FIFO 'myproject_myproject.start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U' written by process 'myproject_myproject.conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0',");
                         end
                     end
                     2: begin //  for dep proc 'myproject_myproject.thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config4_U0'

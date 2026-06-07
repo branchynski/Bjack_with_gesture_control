@@ -254,12 +254,12 @@
     wire token_clear;
     reg [11:0] origin;
 
-reg [15:0] trans_in_cnt_0;// for process conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0
+reg [15:0] trans_in_cnt_0;// for process conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0
 always @(negedge dl_reset or posedge dl_clock) begin
     if (~dl_reset) begin
          trans_in_cnt_0 <= 16'h0;
     end
-    else if (conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.start_write == 1'b1) begin
+    else if (conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.start_write == 1'b1) begin
         trans_in_cnt_0 <= trans_in_cnt_0 + 16'h1;
     end
     else begin
@@ -267,12 +267,12 @@ always @(negedge dl_reset or posedge dl_clock) begin
     end
 end
 
-reg [15:0] trans_out_cnt_0;// for process conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0
+reg [15:0] trans_out_cnt_0;// for process conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0
 always @(negedge dl_reset or posedge dl_clock) begin
     if (~dl_reset) begin
          trans_out_cnt_0 <= 16'h0;
     end
-    else if (conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_done == 1'b1 && conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_continue == 1'b1) begin
+    else if (conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_done == 1'b1 && conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_continue == 1'b1) begin
         trans_out_cnt_0 <= trans_out_cnt_0 + 16'h1;
     end
     else begin
@@ -540,7 +540,7 @@ always @(negedge dl_reset or posedge dl_clock) begin
     end
 end
 
-    // Process: conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0
+    // Process: conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0
     myproject_hls_deadlock_detect_unit #(12, 0, 1, 1) myproject_hls_deadlock_detect_unit_0 (
         .reset(dl_reset),
         .clock(dl_clock),
@@ -556,9 +556,9 @@ end
         .token_out_vec(token_out_vec_0),
         .dl_detect_out(dl_in_vec[0]));
 
-    assign proc_0_data_FIFO_blk[0] = 1'b0 | (~conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126.layer2_out_blk_n);
+    assign proc_0_data_FIFO_blk[0] = 1'b0 | (~conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126.layer2_out_blk_n);
     assign proc_0_data_PIPO_blk[0] = 1'b0;
-    assign proc_0_start_FIFO_blk[0] = 1'b0 | (~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_full_n & conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_start & ~conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.real_start & (trans_in_cnt_0 == trans_out_cnt_0) & ~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_read);
+    assign proc_0_start_FIFO_blk[0] = 1'b0 | (~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_full_n & conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.ap_start & ~conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0.real_start & (trans_in_cnt_0 == trans_out_cnt_0) & ~start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_U.if_read);
     assign proc_0_TLF_FIFO_blk[0] = 1'b0;
     assign proc_0_input_sync_blk[0] = 1'b0;
     assign proc_0_output_sync_blk[0] = 1'b0;

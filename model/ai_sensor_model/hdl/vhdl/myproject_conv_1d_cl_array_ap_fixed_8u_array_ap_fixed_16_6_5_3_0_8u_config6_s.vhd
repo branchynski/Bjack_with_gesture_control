@@ -99,7 +99,7 @@ attribute shreg_extract : string;
     signal ap_CS_fsm_state3 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state3 : signal is "none";
     signal i_iw_fu_118 : STD_LOGIC_VECTOR (5 downto 0) := "000000";
-    signal i_iw_4_fu_210_p2 : STD_LOGIC_VECTOR (5 downto 0);
+    signal i_iw_2_fu_210_p2 : STD_LOGIC_VECTOR (5 downto 0);
     signal ap_block_state1 : BOOLEAN;
     signal ap_NS_fsm : STD_LOGIC_VECTOR (2 downto 0);
     signal ap_ST_fsm_state1_blk : STD_LOGIC;
@@ -225,7 +225,7 @@ begin
             if (((ap_const_boolean_0 = ap_block_state1) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
                 i_iw_fu_118 <= ap_const_lv6_0;
             elsif (((ap_const_boolean_0 = ap_block_state2) and (icmp_ln69_fu_204_p2 = ap_const_lv1_0) and (ap_const_logic_1 = ap_CS_fsm_state2))) then 
-                i_iw_fu_118 <= i_iw_4_fu_210_p2;
+                i_iw_fu_118 <= i_iw_2_fu_210_p2;
             end if; 
         end if;
     end process;
@@ -345,7 +345,7 @@ begin
 
     ap_ready <= internal_ap_ready;
     grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start <= grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start_reg;
-    i_iw_4_fu_210_p2 <= std_logic_vector(unsigned(i_iw_fu_118) + unsigned(ap_const_lv6_1));
+    i_iw_2_fu_210_p2 <= std_logic_vector(unsigned(i_iw_fu_118) + unsigned(ap_const_lv6_1));
     icmp_ln69_fu_204_p2 <= "1" when (i_iw_fu_118 = ap_const_lv6_33) else "0";
 
     internal_ap_ready_assign_proc : process(ap_CS_fsm_state2, icmp_ln69_fu_204_p2, ap_block_state2)

@@ -36,6 +36,7 @@ set sv_files {
     ../rtl/vga/vga_pkg.sv
     ../rtl/bjack_fsm/bjack_pkg.sv
     ../rtl/ai/ai_type_pkg.sv
+    ../rtl/ai/sliding_window_buffer.sv
     ../rtl/vga/vga_if.sv
     ../rtl/vga/vga_timing.sv
     ../rtl/vga/draw_bg.sv
@@ -55,7 +56,6 @@ set sv_files {
     ../rtl/uart/uart_protocol_ctrl.sv
     ../rtl/gesture_monitor.sv
     ../rtl/ai/top_sensor.sv
-    ../rtl/ai/ring_buffer.sv   
     ../rtl/spi/lsm6dso_ctrl.sv
     ../rtl/spi/lsm6dso_pkg.sv
     ../rtl/spi/spi_ce_gen.sv
@@ -143,6 +143,8 @@ set verilog_files {
     ../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config4_s.v 
     ../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config8_s.v 
     ../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_thresholdedrelu_config14_s.v
+    ../rtl/ai/ml_net/myproject_mul_16s_10s_26_1_1.v
+    ../rtl/ai/ml_net/myproject_mul_16s_16s_26_1_1.v
     ../rtl/uart/uart.v
     ../rtl/uart/uart_tx.v
     ../rtl/uart/uart_rx.v

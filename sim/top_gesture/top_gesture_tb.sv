@@ -1,8 +1,8 @@
 /**
  * Testbench name: top_gesture_tb
  * Author:        Bartłomiej Raczyński
- * Version:       1.0
- * Last modified: 2026-05-30
+ * Version:       2.0
+ * Last modified: 2026-06-07
  * Description:  Testbench for the top_gesture module, simulating the entire gesture recognition system.
  */
 
@@ -33,7 +33,7 @@ module top_gesture_tb;
 
     initial begin
         clk = 0;
-        forever #5 clk = ~clk;
+        forever #7.69 clk = ~clk; 
     end
 
     int fd;
@@ -42,8 +42,7 @@ module top_gesture_tb;
     
     real ts, gx, gy, gz, ax, ay, az; 
     
-    logic [15:0] gx_int, gy_int, gz_int, ax_int, ay_int, az_int;
-    logic [95:0] payload;
+    logic signed [15:0] gx_int, gy_int, gz_int, ax_int, ay_int, az_int;
 
     initial begin
         rst_n = 0;
@@ -51,7 +50,9 @@ module top_gesture_tb;
         #100;
         rst_n = 1;
         #100;
-        $display("START SIMULATION: Opening data file:");
+        $display("=================================================");
+        $display("START SIMULATION: Opening data file...");
+        $display("=================================================");
 
         fd = $fopen("../top_gesture/knock.csv", "r");
         if (fd == 0) begin
@@ -72,43 +73,65 @@ module top_gesture_tb;
                 ay_int = int'(ay);
                 az_int = int'(az);
 
-                payload = {gz_int, gy_int, gx_int, az_int, ay_int, ax_int};
-
-                force uut.data_in = payload;
-                force uut.data_ready = 1'b1;
+                // FIX: Force the output ports of the instantiated top_sensor module directly!
+                // This overrides the SPI logic driving them, which XSIM allows.
+                force uut.u_top_sensor.gyro_x = gx_int;
+                force uut.u_top_sensor.gyro_y = gy_int;
+                force uut.u_top_sensor.gyro_z = gz_int;
+                force uut.u_top_sensor.acc_x  = ax_int;
+                force uut.u_top_sensor.acc_y  = ay_int;
+                force uut.u_top_sensor.acc_z  = az_int;
+                
+                // Also force the data_ready signal coming out of the sensor
+                force uut.u_top_sensor.data_ready = 1'b1;
                 
                 @(posedge clk);
-                force uut.data_ready = 1'b0;
+                force uut.u_top_sensor.data_ready = 1'b0;
 
+                // Odstęp między próbkami (przyspieszony dla symulacji)
                 repeat(10000) @(posedge clk); 
             end
         end
 
         $fclose(fd);
-        $display("Finished reading file. Waiting for pipelines to drain...");
+        $display("Finished reading CSV file. Waiting for pipelines and voting to finish...");
         
-        repeat(150000) @(posedge clk); 
+        repeat(50000) @(posedge clk); 
 
+        $display("=================================================");
         $display("END OF SIMULATION.");
+        $display("=================================================");
         $finish;
     end
 
-    initial begin
-        $monitor("Time: %0t ns | GESTURE DETECTED: %s", $time, gesture.name());
+    gesture_out prev_gesture = NOTHING;
+    always @(posedge clk) begin
+        if (gesture != prev_gesture) begin
+            if (gesture != NOTHING) begin
+                $display(">>> [T=%0t ns] DETECTED: %s (Cooldown timer started!) <<<", $time, gesture.name());
+            end else begin
+                $display("--- [T=%0t ns] SYSTEM IDLE: %s (Cooldown finished or reset) ---", $time, gesture.name());
+            end
+            prev_gesture = gesture;
+        end
     end
         
+    // Opcjonalne: podgląd skalowania danych
+    /*
     initial begin
         @(posedge rst_n);
         forever @(posedge clk)
             if (uut.data_ready)
-                $display("T=%0t | data_ready PULSE | data_in=%h", $time, uut.data_in);
+                $display("T=%0t | RAW IN: GZ=%d | SCALED IN: %h", $time, uut.raw_gyro_z, uut.scaled_data_in);
     end 
+    */
 
+    // Monitorowanie komunikacji AXI
+    
     initial begin
         forever @(posedge clk) begin
-
             if (uut.ap_start)
-                $display("T=%0t | >>> AP_START <<<", $time);
+                $display("T=%0t | >>> AP_START (Inference Begun) <<<", $time);
 
             if (uut.ap_done)
                 $display("T=%0t | AP_DONE | raw_out=%h", $time, uut.layer15_out_TDATA);
@@ -118,10 +141,8 @@ module top_gesture_tb;
 
             if (uut.input_layer_TVALID && uut.input_layer_TREADY)
                 $display("T=%0t | IN  handshake OK | data=%h", $time, uut.input_layer_TDATA);
-
-            if (uut.full_buffer)
-                $display("T=%0t | BUFFER FULL", $time);
         end
     end
+    
 
 endmodule

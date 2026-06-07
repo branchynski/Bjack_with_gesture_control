@@ -33,16 +33,16 @@ architecture behav of myproject is
     constant ap_const_logic_0 : STD_LOGIC := '0';
 
     signal ap_rst_n_inv : STD_LOGIC;
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_start : STD_LOGIC;
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_done : STD_LOGIC;
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_continue : STD_LOGIC;
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_idle : STD_LOGIC;
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_ready : STD_LOGIC;
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_out : STD_LOGIC;
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_write : STD_LOGIC;
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_input_layer_TREADY : STD_LOGIC;
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_din : STD_LOGIC_VECTOR (127 downto 0);
-    signal conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_write : STD_LOGIC;
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_start : STD_LOGIC;
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_done : STD_LOGIC;
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_continue : STD_LOGIC;
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_idle : STD_LOGIC;
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_ready : STD_LOGIC;
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_out : STD_LOGIC;
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_write : STD_LOGIC;
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_input_layer_TREADY : STD_LOGIC;
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_din : STD_LOGIC_VECTOR (127 downto 0);
+    signal conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_write : STD_LOGIC;
     signal normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_ap_start : STD_LOGIC;
     signal normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_ap_done : STD_LOGIC;
     signal normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_ap_continue : STD_LOGIC;
@@ -253,7 +253,7 @@ architecture behav of myproject is
     signal start_for_dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_dout : STD_LOGIC_VECTOR (0 downto 0);
     signal start_for_dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_empty_n : STD_LOGIC;
 
-    component myproject_conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_s IS
+    component myproject_conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_s IS
     port (
         ap_clk : IN STD_LOGIC;
         ap_rst : IN STD_LOGIC;
@@ -900,24 +900,24 @@ architecture behav of myproject is
 
 
 begin
-    conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0 : component myproject_conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_s
+    conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0 : component myproject_conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_s
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst_n_inv,
-        ap_start => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_start,
+        ap_start => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_start,
         start_full_n => start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_full_n,
-        ap_done => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_done,
-        ap_continue => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_continue,
-        ap_idle => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_idle,
-        ap_ready => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_ready,
-        start_out => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_out,
-        start_write => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_write,
+        ap_done => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_done,
+        ap_continue => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_continue,
+        ap_idle => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_idle,
+        ap_ready => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_ready,
+        start_out => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_out,
+        start_write => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_write,
         input_layer_TDATA => input_layer_TDATA,
         input_layer_TVALID => input_layer_TVALID,
-        input_layer_TREADY => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_input_layer_TREADY,
-        layer2_out_din => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_din,
+        input_layer_TREADY => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_input_layer_TREADY,
+        layer2_out_din => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_din,
         layer2_out_full_n => layer2_out_full_n,
-        layer2_out_write => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_write,
+        layer2_out_write => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_write,
         layer2_out_num_data_valid => layer2_out_num_data_valid,
         layer2_out_fifo_cap => layer2_out_fifo_cap);
 
@@ -1175,9 +1175,9 @@ begin
         reset => ap_rst_n_inv,
         if_read_ce => ap_const_logic_1,
         if_write_ce => ap_const_logic_1,
-        if_din => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_din,
+        if_din => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_din,
         if_full_n => layer2_out_full_n,
-        if_write => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_write,
+        if_write => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_layer2_out_write,
         if_dout => layer2_out_dout,
         if_empty_n => layer2_out_empty_n,
         if_read => normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_layer2_out_read,
@@ -1342,7 +1342,7 @@ begin
         if_write_ce => ap_const_logic_1,
         if_din => start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_din,
         if_full_n => start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_full_n,
-        if_write => conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_write,
+        if_write => conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_start_write,
         if_dout => start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_dout,
         if_empty_n => start_for_normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_empty_n,
         if_read => normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_ap_ready);
@@ -1481,23 +1481,23 @@ begin
 
 
     ap_done <= dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_ap_done;
-    ap_idle <= (thresholded_relu_array_ap_fixed_array_thresholdedrelu_config14_U0_ap_idle and thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config8_U0_ap_idle and thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config4_U0_ap_idle and pooling1d_cl_array_ap_fixed_8u_array_ap_fixed_8_4_5_3_0_8u_config9_U0_ap_idle and pooling1d_cl_array_ap_fixed_8u_array_ap_fixed_8_4_5_3_0_8u_config5_U0_ap_idle and normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config7_U0_ap_idle and normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_ap_idle and normalize_array_ap_fixed_32u_array_ap_fixed_10_5_5_3_0_32u_config13_U0_ap_idle and dense_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_32u_config12_U0_ap_idle and dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_ap_idle and conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_idle and conv_1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config6_U0_ap_idle);
-    ap_ready <= conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_ready;
+    ap_idle <= (thresholded_relu_array_ap_fixed_array_thresholdedrelu_config14_U0_ap_idle and thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config8_U0_ap_idle and thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config4_U0_ap_idle and pooling1d_cl_array_ap_fixed_8u_array_ap_fixed_8_4_5_3_0_8u_config9_U0_ap_idle and pooling1d_cl_array_ap_fixed_8u_array_ap_fixed_8_4_5_3_0_8u_config5_U0_ap_idle and normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config7_U0_ap_idle and normalize_array_ap_fixed_8u_array_ap_fixed_10_5_5_3_0_8u_config3_U0_ap_idle and normalize_array_ap_fixed_32u_array_ap_fixed_10_5_5_3_0_32u_config13_U0_ap_idle and dense_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_32u_config12_U0_ap_idle and dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_ap_idle and conv_1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config6_U0_ap_idle and conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_idle);
+    ap_ready <= conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_ready;
 
     ap_rst_n_inv_assign_proc : process(ap_rst_n)
     begin
                 ap_rst_n_inv <= not(ap_rst_n);
     end process;
 
+    conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_continue <= ap_const_logic_1;
+    conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_start <= ap_start;
     conv_1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config6_U0_ap_continue <= ap_const_logic_1;
     conv_1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config6_U0_ap_start <= start_for_conv_1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config6_U0_empty_n;
-    conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_continue <= ap_const_logic_1;
-    conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_ap_start <= ap_start;
     dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_ap_continue <= ap_const_logic_1;
     dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_ap_start <= start_for_dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_empty_n;
     dense_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_32u_config12_U0_ap_continue <= ap_const_logic_1;
     dense_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_32u_config12_U0_ap_start <= start_for_dense_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_32u_config12_U0_empty_n;
-    input_layer_TREADY <= conv_1d_cl_array_ap_int_16_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_input_layer_TREADY;
+    input_layer_TREADY <= conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_U0_input_layer_TREADY;
     layer15_out_TDATA <= dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_layer15_out_TDATA;
     layer15_out_TVALID <= dense_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_3u_config15_U0_layer15_out_TVALID;
     normalize_array_ap_fixed_32u_array_ap_fixed_10_5_5_3_0_32u_config13_U0_ap_continue <= ap_const_logic_1;

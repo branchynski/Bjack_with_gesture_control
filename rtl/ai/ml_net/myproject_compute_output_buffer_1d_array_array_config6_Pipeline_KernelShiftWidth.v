@@ -21,28 +21,28 @@ module myproject_compute_output_buffer_1d_array_array_config6_Pipeline_KernelShi
         p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_33,
         p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_34,
         p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_35,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_19,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_19_ap_vld,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_18,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_18_ap_vld,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_17,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_17_ap_vld,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_16,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_16_ap_vld,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_15,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_15_ap_vld,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_14,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_14_ap_vld,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_13,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_13_ap_vld,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_12,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_12_ap_vld,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_i,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o_ap_vld,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_i,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o,
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o_ap_vld,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o,
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o_ap_vld,
         p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i,
         p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o,
         p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o_ap_vld,
@@ -79,28 +79,28 @@ input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9
 input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_33;
 input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_34;
 input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_35;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_19;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_19_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_18;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_18_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_17;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_17_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_16;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_16_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_15;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_15_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_14;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_14_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_13;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_13_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_12;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_12_ap_vld;
-input  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_i;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o_ap_vld;
-input  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_i;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o;
-output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o_ap_vld;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_ap_vld;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8_ap_vld;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7_ap_vld;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6_ap_vld;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5_ap_vld;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4_ap_vld;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3_ap_vld;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2_ap_vld;
+input  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o_ap_vld;
+input  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i;
+output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o;
+output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o_ap_vld;
 input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i;
 output  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o;
 output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o_ap_vld;
@@ -121,18 +121,18 @@ output  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL
 output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o_ap_vld;
 
 reg ap_idle;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_19_ap_vld;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_18_ap_vld;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_17_ap_vld;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_16_ap_vld;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_15_ap_vld;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_14_ap_vld;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_13_ap_vld;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_12_ap_vld;
-reg[7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o_ap_vld;
-reg[7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o;
-reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o_ap_vld;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_ap_vld;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8_ap_vld;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7_ap_vld;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6_ap_vld;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5_ap_vld;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4_ap_vld;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3_ap_vld;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2_ap_vld;
+reg[7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o_ap_vld;
+reg[7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o;
+reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o_ap_vld;
 reg[7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o;
 reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o_ap_vld;
 reg[7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o;
@@ -375,97 +375,97 @@ end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o = select_ln167_1_fu_166_p3;
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o = select_ln167_fu_154_p3;
     end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o = void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_i;
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o = void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o_ap_vld = 1'b1;
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o_ap_vld = 1'b1;
     end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_o_ap_vld = 1'b0;
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o_ap_vld = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2_ap_vld = 1'b1;
+    end else begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2_ap_vld = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3_ap_vld = 1'b1;
+    end else begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3_ap_vld = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4_ap_vld = 1'b1;
+    end else begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4_ap_vld = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5_ap_vld = 1'b1;
+    end else begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5_ap_vld = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6_ap_vld = 1'b1;
+    end else begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6_ap_vld = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7_ap_vld = 1'b1;
+    end else begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7_ap_vld = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8_ap_vld = 1'b1;
+    end else begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8_ap_vld = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_ap_vld = 1'b1;
+    end else begin
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_ap_vld = 1'b0;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o = select_ln167_fu_154_p3;
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o = select_ln167_1_fu_166_p3;
     end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o = void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_i;
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o = void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o_ap_vld = 1'b1;
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o_ap_vld = 1'b1;
     end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_o_ap_vld = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_12_ap_vld = 1'b1;
-    end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_12_ap_vld = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_13_ap_vld = 1'b1;
-    end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_13_ap_vld = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_14_ap_vld = 1'b1;
-    end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_14_ap_vld = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_15_ap_vld = 1'b1;
-    end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_15_ap_vld = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_16_ap_vld = 1'b1;
-    end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_16_ap_vld = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_17_ap_vld = 1'b1;
-    end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_17_ap_vld = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_18_ap_vld = 1'b1;
-    end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_18_ap_vld = 1'b0;
-    end
-end
-
-always @ (*) begin
-    if (((icmp_ln167_fu_246_p2 == 1'd1) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_19_ap_vld = 1'b1;
-    end else begin
-        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_19_ap_vld = 1'b0;
+        void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o_ap_vld = 1'b0;
     end
 end
 
@@ -500,7 +500,7 @@ assign icmp_ln167_1_fu_148_p2 = ((ap_sig_allocacmp_i_iw_5 == 2'd1) ? 1'b1 : 1'b0
 
 assign icmp_ln167_fu_246_p2 = ((ap_sig_allocacmp_i_iw_5 == 2'd0) ? 1'b1 : 1'b0);
 
-assign select_ln167_1_fu_166_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_29 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_i);
+assign select_ln167_1_fu_166_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_29 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i);
 
 assign select_ln167_2_fu_178_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_30 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i);
 
@@ -514,22 +514,22 @@ assign select_ln167_6_fu_226_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN
 
 assign select_ln167_7_fu_238_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_35 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_i);
 
-assign select_ln167_fu_154_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_28 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_i);
+assign select_ln167_fu_154_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_28 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_12 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_35 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_35 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_13 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_34 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_34 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_14 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_33 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_33 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_15 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_32 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_32 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_16 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_31 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_31 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_17 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_30 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_30 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_18 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_29 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_10_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_29 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_19 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_28 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_11_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_28 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i);
 
 endmodule //myproject_compute_output_buffer_1d_array_array_config6_Pipeline_KernelShiftWidth

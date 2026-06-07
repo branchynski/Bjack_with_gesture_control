@@ -12,7 +12,7 @@ config = hls4ml.utils.config_from_keras_model(model, granularity='name')
 config['Model']['Precision'] = 'ap_fixed<8,4>'
 config['Model']['ReuseFactor'] = 1
 config['Model']['Strategy'] = 'Resource'
-config['LayerName']['input_layer']['Precision'] = 'ap_int<16>'
+config['LayerName']['input_layer']['Precision'] = 'ap_fixed<16,6>'
 config['Model']['IOType'] = 'io_stream'
 #config['Model']['BramFactor'] = 0
 

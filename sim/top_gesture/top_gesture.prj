@@ -12,6 +12,7 @@
 sv work ../../rtl/ai/ai_type_pkg.sv \
         ../../rtl/ai/top_gesture.sv \
         ../../rtl/ai/top_sensor.sv \
+        ../../rtl/ai/sliding_window_buffer.sv \
         ../../rtl/ai/ring_buffer.sv \
         ../../rtl/ai/ml_sensor.v \
         ../../rtl/ai/model_controller_fsm.sv \
@@ -91,4 +92,6 @@ verilog work ../../rtl/ai/ml_net/myproject.v \
         ../../rtl/ai/ml_net/myproject_start_for_thresholded_relu_array_ap_fixed_array_thresholdedrelu_config14_U0.v \
         ../../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config4_s.v \
         ../../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config8_s.v \
-        ../../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_thresholdedrelu_config14_s.v
+        ../../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_thresholdedrelu_config14_s.v \
+        ../../rtl/ai/ml_net/myproject_mul_16s_10s_26_1_1.v \
+        ../../rtl/ai/ml_net/myproject_mul_16s_16s_26_1_1.v 

@@ -37,6 +37,7 @@ set sv_files {
     ../rtl/bjack_fsm/bjack_pkg.sv
     ../rtl/ai/ai_type_pkg.sv
     ../rtl/ai/sliding_window_buffer.sv
+    ../rtl/ai/ring_buffer.sv
     ../rtl/vga/vga_if.sv
     ../rtl/vga/vga_timing.sv
     ../rtl/vga/draw_bg.sv

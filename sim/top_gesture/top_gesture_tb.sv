@@ -44,9 +44,6 @@ module top_gesture_tb;
     
     logic signed [15:0] gx_int, gy_int, gz_int, ax_int, ay_int, az_int;
 
-    // Definiujemy ile łącznie próbek chcemy wysłać do systemu
-    // Okno ma 208 próbek, krok 20. Do 5 głosów potrzeba 208 + (4*20) = 288 próbek.
-    // 1000 próbek zapewni przejście przez co najmniej 3 pełne cykle głosowania.
     int TARGET_SAMPLES = 1000;
     int sample_count = 0;
 
@@ -67,10 +64,8 @@ module top_gesture_tb;
                 $finish;
             end
 
-            // Pomijamy nagłówek przy każdym otwarciu pliku
             status = $fgets(dummy_header, fd);
 
-            // Czytamy aż do końca pliku lub osiągnięcia docelowej liczby próbek
             while (!$feof(fd) && sample_count < TARGET_SAMPLES) begin
                 status = $fscanf(fd, "%f,%f,%f,%f,%f,%f,%f\n", ts, gx, gy, gz, ax, ay, az);
                 
@@ -84,13 +79,12 @@ module top_gesture_tb;
 
                     //$display("DEBUG: TS=%f | GX=%0d, GY=%0d, GZ=%0d", ts, gx_int, gy_int, gz_int);
 
-                    @(posedge clk); // Najpierw zsynchronizuj się ze zboczem zegara!
+                    @(posedge clk); 
                     force uut.data_in = {gz_int, gy_int, gx_int, az_int, ay_int, ax_int};
                     force uut.data_ready = 1'b1;
                     @(posedge clk);
                     force uut.data_ready = 1'b0;
 
-                    // Odstęp między próbkami (przyspieszony dla symulacji)
                     repeat(10000) @(posedge clk); 
                     
                     sample_count++;
@@ -99,7 +93,6 @@ module top_gesture_tb;
 
             $fclose(fd);
             
-            // Komunikat informacyjny, jeśli plik był za krótki i zaczynamy czytać go od nowa
             if (sample_count < TARGET_SAMPLES) begin
                 $display("INFO: Reached end of CSV. Reopening to generate more samples. (Current samples: %0d/%0d)", sample_count, TARGET_SAMPLES);
             end
@@ -140,7 +133,6 @@ module top_gesture_tb;
         end
     end
 
-    // Monitorowanie komunikacji AXI
     /*
     initial begin
         forever @(posedge clk) begin

@@ -1,8 +1,8 @@
 /**
  * Module name:   sliding_window_buffer
  * Author:        Bartłomiej Raczyński 
- * Version:       1.0
- * Last modified: 2026-06-07
+ * Version:       1.1
+ * Last modified: 2026-06-09
  * Description:   Replicates Python's deque(maxlen=208) with inference_step=20.
  * Uses BRAM to store the window and blasts it via AXI-Stream.
  */
@@ -51,15 +51,6 @@ module sliding_window_buffer #(
         end else begin
             
             if (wr_en) begin
-                mem[wr_ptr] <= data_in;
-
-                if (wr_ptr == WINDOW_SIZE - 1) begin
-                    wr_ptr <= '0;
-                    window_full <= 1'b1; 
-                end else begin
-                    wr_ptr <= wr_ptr + 1'b1;
-                end
-
                 if (step_cnt == STEP_SIZE - 1) begin
                     step_cnt <= '0;
                 end else begin
@@ -67,9 +58,20 @@ module sliding_window_buffer #(
                 end
             end
 
+            if (wr_en && (state == IDLE)) begin
+                mem[wr_ptr] <= data_in;
+
+                if (wr_ptr == WINDOW_SIZE - 1) begin
+                    wr_ptr <= '0;
+                    window_full <= 1'b1;
+                end else begin
+                    wr_ptr <= wr_ptr + 1'b1;
+                end
+            end
+
             case (state)
                 IDLE: begin
-                    if (wr_en && (step_cnt == STEP_SIZE - 1) && (window_full || wr_ptr == WINDOW_SIZE - 1)) begin
+                    if (trigger_condition) begin
                         state <= SENDING;
                         rd_count <= '0;
                     end
@@ -88,9 +90,12 @@ module sliding_window_buffer #(
         end
     end
 
-    assign actual_rd_ptr = (wr_ptr + rd_count >= WINDOW_SIZE) ? 
-                           (wr_ptr + rd_count - WINDOW_SIZE) : 
-                           (wr_ptr + rd_count);
+    logic [8:0] ptr_sum;
+    assign ptr_sum = {1'b0, wr_ptr} + {1'b0, rd_count};
+    
+    assign actual_rd_ptr = (ptr_sum >= WINDOW_SIZE) ? 
+                           (ptr_sum - WINDOW_SIZE) : 
+                           ptr_sum[7:0];
 
     assign m_axis_tvalid = (state == SENDING);
     assign m_axis_tdata  = mem[actual_rd_ptr];

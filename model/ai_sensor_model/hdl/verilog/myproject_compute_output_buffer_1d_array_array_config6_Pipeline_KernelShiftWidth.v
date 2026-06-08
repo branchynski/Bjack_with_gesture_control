@@ -13,14 +13,14 @@ module myproject_compute_output_buffer_1d_array_array_config6_Pipeline_KernelShi
         ap_done,
         ap_idle,
         ap_ready,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_28,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_29,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_30,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_31,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_32,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_33,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_34,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_35,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_68,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_69,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_70,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_71,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_72,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_73,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_74,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_75,
         void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9,
         void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_ap_vld,
         void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8,
@@ -43,24 +43,24 @@ module myproject_compute_output_buffer_1d_array_array_config6_Pipeline_KernelShi
         void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i,
         void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o,
         void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o_ap_vld,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o_ap_vld,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_i,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o_ap_vld,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_i,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o_ap_vld,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_i,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o_ap_vld,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_i,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o_ap_vld,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_i,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o,
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o_ap_vld
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_i,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o_ap_vld,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_i,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o_ap_vld,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_i,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o_ap_vld,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_i,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o_ap_vld,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_i,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o_ap_vld,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_i,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o,
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o_ap_vld
 );
 
 parameter    ap_ST_fsm_state1 = 1'd1;
@@ -71,54 +71,54 @@ input   ap_start;
 output   ap_done;
 output   ap_idle;
 output   ap_ready;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_28;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_29;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_30;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_31;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_32;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_33;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_34;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_35;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_68;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_69;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_70;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_71;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_72;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_73;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_74;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_75;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3_ap_vld;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2_ap_vld;
-input  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o;
+input  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o_ap_vld;
-input  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i;
-output  [7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o;
+input  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i;
+output  [15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o;
 output   void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o_ap_vld;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i;
-output  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o;
-output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o_ap_vld;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_i;
-output  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o;
-output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o_ap_vld;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_i;
-output  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o;
-output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o_ap_vld;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_i;
-output  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o;
-output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o_ap_vld;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_i;
-output  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o;
-output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o_ap_vld;
-input  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_i;
-output  [7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o;
-output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o_ap_vld;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_i;
+output  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o;
+output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o_ap_vld;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_i;
+output  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o;
+output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o_ap_vld;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_i;
+output  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o;
+output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o_ap_vld;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_i;
+output  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o;
+output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o_ap_vld;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_i;
+output  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o;
+output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o_ap_vld;
+input  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_i;
+output  [15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o;
+output   p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o_ap_vld;
 
 reg ap_idle;
 reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9_ap_vld;
@@ -129,22 +129,22 @@ reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data
 reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4_ap_vld;
 reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3_ap_vld;
 reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2_ap_vld;
-reg[7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o;
+reg[15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o;
 reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_o_ap_vld;
-reg[7:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o;
+reg[15:0] void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o;
 reg void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_o_ap_vld;
-reg[7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o;
-reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o_ap_vld;
-reg[7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o;
-reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o_ap_vld;
-reg[7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o;
-reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o_ap_vld;
-reg[7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o;
-reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o_ap_vld;
-reg[7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o;
-reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o_ap_vld;
-reg[7:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o;
-reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o_ap_vld;
+reg[15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o;
+reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o_ap_vld;
+reg[15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o;
+reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o_ap_vld;
+reg[15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o;
+reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o_ap_vld;
+reg[15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o;
+reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o_ap_vld;
+reg[15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o;
+reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o_ap_vld;
+reg[15:0] p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o;
+reg p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o_ap_vld;
 
 (* fsm_encoding = "none" *) reg   [0:0] ap_CS_fsm;
 wire    ap_CS_fsm_state1;
@@ -153,15 +153,15 @@ wire   [0:0] icmp_ln161_fu_132_p2;
 reg    ap_condition_exit_pp0_iter0_stage0;
 wire    ap_loop_exit_ready;
 reg    ap_ready_int;
-wire   [7:0] select_ln167_fu_154_p3;
+wire   [15:0] select_ln167_fu_154_p3;
 wire   [0:0] icmp_ln167_fu_246_p2;
-wire   [7:0] select_ln167_1_fu_166_p3;
-wire   [7:0] select_ln167_2_fu_178_p3;
-wire   [7:0] select_ln167_3_fu_190_p3;
-wire   [7:0] select_ln167_4_fu_202_p3;
-wire   [7:0] select_ln167_5_fu_214_p3;
-wire   [7:0] select_ln167_6_fu_226_p3;
-wire   [7:0] select_ln167_7_fu_238_p3;
+wire   [15:0] select_ln167_1_fu_166_p3;
+wire   [15:0] select_ln167_2_fu_178_p3;
+wire   [15:0] select_ln167_3_fu_190_p3;
+wire   [15:0] select_ln167_4_fu_202_p3;
+wire   [15:0] select_ln167_5_fu_214_p3;
+wire   [15:0] select_ln167_6_fu_226_p3;
+wire   [15:0] select_ln167_7_fu_238_p3;
 reg   [1:0] i_iw_fu_72;
 wire   [1:0] add_ln161_fu_138_p2;
 wire    ap_loop_init;
@@ -279,97 +279,97 @@ end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o = select_ln167_5_fu_214_p3;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o = select_ln167_5_fu_214_p3;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_i;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_i;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o_ap_vld = 1'b1;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o_ap_vld = 1'b1;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_o_ap_vld = 1'b0;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_o_ap_vld = 1'b0;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o = select_ln167_4_fu_202_p3;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o = select_ln167_4_fu_202_p3;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_i;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_i;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o_ap_vld = 1'b1;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o_ap_vld = 1'b1;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_o_ap_vld = 1'b0;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_o_ap_vld = 1'b0;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o = select_ln167_3_fu_190_p3;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o = select_ln167_3_fu_190_p3;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_i;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_i;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o_ap_vld = 1'b1;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o_ap_vld = 1'b1;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_o_ap_vld = 1'b0;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_o_ap_vld = 1'b0;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o = select_ln167_2_fu_178_p3;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o = select_ln167_2_fu_178_p3;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_i;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o_ap_vld = 1'b1;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o_ap_vld = 1'b1;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_o_ap_vld = 1'b0;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_o_ap_vld = 1'b0;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o = select_ln167_7_fu_238_p3;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o = select_ln167_7_fu_238_p3;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_i;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_i;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o_ap_vld = 1'b1;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o_ap_vld = 1'b1;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_o_ap_vld = 1'b0;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_o_ap_vld = 1'b0;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o = select_ln167_6_fu_226_p3;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o = select_ln167_6_fu_226_p3;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_i;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o = p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_i;
     end
 end
 
 always @ (*) begin
     if (((icmp_ln167_fu_246_p2 == 1'd0) & (icmp_ln161_fu_132_p2 == 1'd0) & (1'b0 == ap_block_state1_pp0_stage0_iter0) & (1'b1 == ap_CS_fsm_state1))) begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o_ap_vld = 1'b1;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o_ap_vld = 1'b1;
     end else begin
-        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_o_ap_vld = 1'b0;
+        p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_o_ap_vld = 1'b0;
     end
 end
 
@@ -500,36 +500,36 @@ assign icmp_ln167_1_fu_148_p2 = ((ap_sig_allocacmp_i_iw_5 == 2'd1) ? 1'b1 : 1'b0
 
 assign icmp_ln167_fu_246_p2 = ((ap_sig_allocacmp_i_iw_5 == 2'd0) ? 1'b1 : 1'b0);
 
-assign select_ln167_1_fu_166_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_29 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i);
+assign select_ln167_1_fu_166_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_69 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i);
 
-assign select_ln167_2_fu_178_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_30 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i);
+assign select_ln167_2_fu_178_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_70 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_i);
 
-assign select_ln167_3_fu_190_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_31 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_i);
+assign select_ln167_3_fu_190_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_71 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_i);
 
-assign select_ln167_4_fu_202_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_32 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_i);
+assign select_ln167_4_fu_202_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_72 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_i);
 
-assign select_ln167_5_fu_214_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_33 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_i);
+assign select_ln167_5_fu_214_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_73 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_i);
 
-assign select_ln167_6_fu_226_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_34 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_i);
+assign select_ln167_6_fu_226_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_74 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_i);
 
-assign select_ln167_7_fu_238_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_35 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_i);
+assign select_ln167_7_fu_238_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_75 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_i);
 
-assign select_ln167_fu_154_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_28 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i);
+assign select_ln167_fu_154_p3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_68 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_35 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_8_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_2 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_75 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_8_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_34 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_9_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_3 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_74 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_9_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_33 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_10_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_4 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_73 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_10_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_32 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_11_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_5 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_72 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_11_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_31 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_12_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_6 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_71 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_12_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_30 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_13_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_7 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_70 : p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_13_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_29 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_8 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_69 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_i);
 
-assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi8ELi4EL9ap_q_mode5EL9a_28 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i);
+assign void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_9 = ((icmp_ln167_1_fu_148_p2[0:0] == 1'b1) ? p_ZZN4nnet24compute_output_buffer_1dINS_5arrayI8ap_fixedILi16ELi6EL9ap_q_mode5EL9_68 : void_compute_output_buffer_1d_array_const_stream_weight_t_bias_t_kernel_data_1_i);
 
 endmodule //myproject_compute_output_buffer_1d_array_array_config6_Pipeline_KernelShiftWidth

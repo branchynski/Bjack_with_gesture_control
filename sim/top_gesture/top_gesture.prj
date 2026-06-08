@@ -94,4 +94,28 @@ verilog work ../../rtl/ai/ml_net/myproject.v \
         ../../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_config8_s.v \
         ../../rtl/ai/ml_net/myproject_thresholded_relu_array_ap_fixed_array_thresholdedrelu_config14_s.v \
         ../../rtl/ai/ml_net/myproject_mul_16s_10s_26_1_1.v \
+        ../../rtl/ai/ml_net/myproject_fifo_w128_d12_A.v \
+        ../../rtl/ai/ml_net/myproject_fifo_w128_d51_A.v \
+        ../../rtl/ai/ml_net/myproject_mul_16s_11ns_26_1_1.v \
+        ../../rtl/ai/ml_net/myproject_mul_16s_12ns_26_1_1.v \
+        ../../rtl/ai/ml_net/myproject_mul_16s_13ns_26_1_1.v \
+        ../../rtl/ai/ml_net/myproject_mul_16s_16s_28_1_1.v \
+        ../../rtl/ai/ml_net/myproject_mul_16s_8ns_24_1_1.v \
+        ../../rtl/ai/ml_net/myproject_mul_16s_9ns_24_1_1.v \
+        ../../rtl/ai/ml_net/myproject_mul_16s_9ns_25_1_1.v \
+        ../../rtl/ai/ml_net/myproject_normalize_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_32u_config13_s.v \
+        ../../rtl/ai/ml_net/myproject_normalize_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config3_s.v \
+        ../../rtl/ai/ml_net/myproject_normalize_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config7_s.v \
+        ../../rtl/ai/ml_net/myproject_pooling1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config5_s.v \
+        ../../rtl/ai/ml_net/myproject_pooling1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config9_s.v \
+        ../../rtl/ai/ml_net/myproject_sparsemux_193_7_16_1_1.v \
+        ../../rtl/ai/ml_net/myproject_sparsemux_49_5_16_1_1.v \
+        ../../rtl/ai/ml_net/myproject_sparsemux_65_5_16_1_1.v \
+        ../../rtl/ai/ml_net/myproject_sparsemux_7_2_20_1_1.v \
+        ../../rtl/ai/ml_net/myproject_start_for_normalize_array_ap_fixed_32u_array_ap_fixed_16_6_5_3_0_32u_config13kbM.v \
+        ../../rtl/ai/ml_net/myproject_start_for_normalize_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config3_U0.v \
+        ../../rtl/ai/ml_net/myproject_start_for_normalize_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config7_U0.v \
+        ../../rtl/ai/ml_net/myproject_start_for_pooling1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config5hbi.v \
+        ../../rtl/ai/ml_net/myproject_start_for_pooling1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config9jbC.v \
+        ../../rtl/ai/ml_net/myproject_start_for_thresholded_relu_array_ap_fixed_array_ap_fixed_8u_thresholdedrelu_cibs.v \
         ../../rtl/ai/ml_net/myproject_mul_16s_16s_26_1_1.v 

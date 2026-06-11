@@ -1,53 +1,78 @@
-/**
+/*
  * Module name:   top_gesture
  * Author:        Bartłomiej Raczyński
- * Version:       1.1
- * Last modified: 2026-06-09
- * Description:  module for the hardware AI gesture 
- * recognition system. This wrapper integrates four main sub-systems:
- * 1. SPI master interface for raw IMU data acquisition.
- * 2. 96-bit circular buffer (FIFO) for clock domain and rate matching.
- * 3. Vivado HLS 1D-CNN hardware accelerator.
- * 4. FSM controller managing inference cycles and AXI4-Stream handshakes.
+ * Version:       1.2
+ * Last modified: 2026-06-12
+ * Description:   Integrating wrapper: SPI IMU, cyclic buffer,
+ * HLS 1D-CNN accelerator, and FSM controller.
+ *
+ * Changes v1.2:
+ * - Fixed the packing order of scaled_data_in.
+ * HLS packs input[0] into the LSB, so gx (input[0]) must be
+ * at bits [15:0], and az (input[5]) at [95:80].
+ * The previous version sent {gx,gy,gz,ax,ay,az} which put
+ * gx on the MSB — each channel received another channel's weights.
+ * - CONFIDENCE_MARGIN lowered from 1000 to 300.
+ * The value 1000 caused the FSM to never detect a gesture
+ * when logit differences were in the hundreds.
  */
 
 import ai_type_pkg::*;
- 
+
 module top_gesture (
     input  logic clk,
     input  logic rst_n,
- 
+
     output logic cs_n,
     output logic sclk,
     output logic mosi,
     input  logic miso,
- 
+
     output gesture_out gesture
 );
- 
+
     timeunit 1ns;
     timeprecision 1ps;
- 
+
     logic        data_ready;
     logic [95:0] data_in;
- 
+
+    /*
+     * scaled_data_in: 
+     * Correct packing: input[5] at MSB, input[0] at LSB:
+     * bits[95:80] = az = input[5]
+     * bits[79:64] = ay = input[4]
+     * bits[63:48] = ax = input[3]
+     * bits[47:32] = gz = input[2]
+     * bits[31:16] = gy = input[1]
+     * bits[15:0]  = gx = input[0]
+     */
     logic [95:0] scaled_data_in;
- 
+
+    assign scaled_data_in = {
+        data_in[47:32],   
+        data_in[31:16],   
+        data_in[15:0],    
+        data_in[95:80],   
+        data_in[79:64],   
+        data_in[63:48]    
+    };
+
     logic [95:0] input_layer_TDATA;
     logic        input_layer_TREADY;
     logic        input_layer_TVALID;
- 
+
     logic [47:0] layer15_out_TDATA;
     logic        layer15_out_TREADY;
     logic        layer15_out_TVALID;
- 
+
     logic ap_done;
     logic ap_idle;
     logic ap_ready;
     logic ap_start;
- 
+
     logic start_inference;
- 
+
     top_sensor u_top_sensor (
         .clk       (clk),
         .rst_n     (rst_n),
@@ -63,16 +88,7 @@ module top_gesture (
         .acc_z     (data_in[47:32]),
         .data_ready(data_ready)
     );
- 
-    assign scaled_data_in = {
-    data_in[63:48],   // gx  
-    data_in[79:64],   // gy
-    data_in[95:80],   // gz
-    data_in[15:0],    // ax
-    data_in[31:16],   // ay
-    data_in[47:32]    // az
-};
- 
+
     sliding_window_buffer #(
         .DATA_WIDTH  (96),
         .WINDOW_SIZE (208),
@@ -102,11 +118,11 @@ module top_gesture (
         .ap_ready           (ap_ready),
         .ap_start           (ap_start)
     );
- 
+
     model_controller_fsm #(
-        .VOTE_THRESHOLD (5),
-        .FLUSH_INFERENCES (20),
-        .CONFIDENCE_MARGIN (16'sd1000)
+        .VOTE_THRESHOLD    (5),
+        .FLUSH_INFERENCES  (20),
+        .CONFIDENCE_MARGIN (16'sd300)
     ) u_model_controller_fsm (
         .clk                (clk),
         .rst_n              (rst_n),
@@ -120,5 +136,5 @@ module top_gesture (
         .layer15_out_TVALID (layer15_out_TVALID),
         .gesture            (gesture)
     );
- 
+
 endmodule

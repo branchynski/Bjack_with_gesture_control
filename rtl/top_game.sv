@@ -1,8 +1,8 @@
 /**
  * Module name:   top_game
  * Author:        Bartłomiej Raczyński
- * Version:       1.1
- * Last modified: 2026-05-30
+ * Version:       1.2
+ * Last modified: 2026-06-07
  * Description:  Top-level module for sensor input, game interface, and game logic
  */
 
@@ -28,7 +28,8 @@ module top_game (
         output logic [3:0] g,
         output logic [3:0] b,
 
-        output logic [0:2] leds
+        output logic [2:0] leds,
+        input logic [2:0] sw
     );
 
     timeunit 1ns;
@@ -38,11 +39,13 @@ module top_game (
      * Local variables and signals
      */
 
-    gesture_out gesture;
+    gesture_out gesture, gesture_test, gesture_ai;
 
     /**
      * Signals assignments
      */
+
+    assign gesture = (sw[2] == 1'b1) ? gesture_test : gesture_ai;
 
     /**
      * Submodules instances
@@ -54,7 +57,7 @@ module top_game (
         .sclk(sclk),
         .mosi(mosi),
         .miso(miso),
-        .gesture(gesture)
+        .gesture(gesture_ai)
     );
 
     top_vga u_top_vga(
@@ -73,10 +76,19 @@ module top_game (
     );
 
     gesture_monitor u_gesture_monitor (
-    .clk(clk),
-    .rst_n(rst_n),
-    .current_gesture(gesture),
-    .leds(leds)
-);
+        .clk(clk),
+        .rst_n(rst_n),
+        .current_gesture(gesture),
+        .leds(leds)
+    );
+
+    gesture_tdebug u_gesture_tdebug (
+        .clk(clk),
+        .rst_n(rst_n),
+        .btn_on(sw[2]),
+        .btn_knock(sw[1]),
+        .btn_swipe(sw[0]),
+        .gesture(gesture_test)
+    );
 
 endmodule

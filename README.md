@@ -1,250 +1,156 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/GdtzORCy)
-# uec2-lab1
+# Projekt FPGA SystemVerilog z modułem AI/ML i symulacją
 
-**Wszystkie komendy należy wywoływać z głównego folderu projektu** (w tym wypadku `uec2_lab1_student`).\
-_Każdy plik w projekcie posiada nagłówek z krótkim opisem jego funkcji._
+Ten projekt łączy:
 
-## Inicjalizacja środowiska
+- logikę sterującą napisaną w SystemVerilog,
+- testbenche i projekt symulacyjny w folderze `sim/`,
+- warstwę FPGA dla płyty Basys3 w `fpga/`,
+- wygenerowany silnik AI/ML w `rtl/ai/ml_net`,
+- narzędzia uruchamiające symulację, syntezę i programowanie.
 
-Aby rozpocząć pracę z projektem, należy uruchomić terminal w folderze projektu i zainicjalizować środowisko:
+## Szybki start
 
-```bash
-. env.sh
-```
+1. Otwórz terminal w katalogu projektu:
 
-Po tym kroku, jednorazowo (przy pierwszym uruchomieniu projektu) warto zapisać zmiany w repozytorium jako pierwszy *commit*:
+   ```bash
+   cd D:/programowanie/systemverilog/projekt
+   ```
 
-```bash
-git commit -am "Initial commit"
-```
+2. Jeśli używasz bash/WSL, załaduj środowisko:
 
-Komendę `. env.sh` trzeba uruchomić za każdym razem, gdy rozpoczynamy pracę w nowej sesji terminala. Następnie, pozostając w głównym folderze, można wywoływać dostępne narzędzia:
+   ```bash
+   . env.sh
+   ```
 
-* `run_simulation.sh`
-* `generate_bitstream.sh`
-* `program_fpga.sh`
-* `clean.sh`
+3. Sprawdź dostępne testy symulacyjne:
 
-Narzędzia te zostały opisane poniżej.
+   ```bash
+   tools/run_simulation.sh -l
+   ```
 
-## Uruchamianie symulacji
+4. Uruchom wybrany test, np. `top_gesture`:
 
-Symulacje uruchamia się skryptem `run_simulation.sh`.
+   ```bash
+   tools/run_simulation.sh -t top_gesture
+   ```
 
-### Przygotowanie testu
+5. Wygeneruj bitstream dla projektu FPGA:
 
-Aby skrypt poprawnie uruchomił symulacje, zawartość testu musi zostać przygotowana zgodnie z poniższym opisem:
+   ```bash
+   tools/generate_bitstream.sh
+   ```
 
-* w folderze `sim` należy utworzyć folder, którego nazwa będzie nazwą testu
-* w folderze testu należy umieścić:
-  * plik o tej samej nazwie, co nazwa testu, z rozszerzeniu `.prj`
-  * plik o tej samej nazwie, co nazwa testu, z dopiskiem `_tb.sv`
+6. Wgraj bitstream na Basys3:
 
-Przykładowa struktura:
-
-```text
-├── sim
-│   ├── and2
-│   │   ├── and2.prj
-│   │   ├── and2_tb.sv
-│   │   └── jakis_pomocniczy_modul_do_symulacji.v
-```
-
-W pliku `.prj` należy umieścić ścieżki do plików zawierających moduły używane w symulacji. Ścieżki te muszą zostać podane względem lokalizacji pliku `.prj`. Przykładowa zawartość pliku `.prj` wygląda następująco:
-
-```properties
-sv      work  and2_tb.sv \
-              ../../rtl/and2.sv
-verilog work  jakis_pomocniczy_modul_do_symulacji.v
-vhdl    work  ../../rtl/jakis_modul_w_vhdl.vhd
-```
-
-* pierwsze słowo określa język, w ktorym napisano moduł
-* drugie - bibliotekę (tutaj należy zostawić `work`)
-* trzecie i kolejne - ścieżki do plików (w przypadku vhdl należy podawać po jednym pliku na linię).
-
-Jeśli któryś z modułów importuje pakiet (_package_), to ścieżka do pakietu powinna pojawić się na liście *przed* ścieżkami do modułów.
-
-Jeśli w symulowanych modułach znajdują się bloki IP, to do pliku `.prj` należy dopisać poniższą linijkę:
-
-```properties
-verilog work ../common/glbl.v
-```
-
-W pliku `<nazwa_testu>_tb.sv` należy napisać moduł testowy. Nazwa modułu musi być taka sama, jak nazwa testu. (W ogóle należy przyjąć zasadę, że nazwa pliku powinna być identyczna jak nazwa modułu, który w nim zdefiniowano.)
-
-### Dostępne opcje skryptu `run_simulation.sh`
-
-* Wyświetlenie listy dostępnych testów
-
-  ```bash
-  run_simulation.sh -l
-  ```
-
-* Uruchamianie symulacji w trybie tekstowym
-
-  ```bash
-  run_simulation.sh -t <nazwa_testu>
-  ```
-
-* Uruchamianie symulacji w trybie graficznym
-
-  ```bash
-  run_simulation.sh -gt <nazwa_testu>
-  ```
-
-* Uruchamianie wszystkich symulacji
-
-  ```bash
-  run_simulation.sh -a
-  ```
-
-  W tym trybie, po kolei uruchamiane są wszystkie symulacje dostępne w folderze `sim`, a w terminalu wyświetlana jest informacja o ich wyniku:
-
-  * PASSED - jeśli nie wykryto żadnych błędów,
-  * FAILED - jeśli podczas symulacji wykryto błędy (w logu przynajmniej raz pojawiło się słowo _error_).
-
-  Aby test działał poprawnie, należy w testbenchu stosować **asercje**, które w przypadku niespełnienia warunku zwrócą `$error`.
-
-## Generowanie bitstreamu
-
-```bash
-generate_bitstream.sh
-```
-
-Skrypt ten uruchamia generację bitstreamu, który finalnie znajdzie się w folderze `results`. Następnie sprawdza logi z syntezy i implementacji pod kątem ewentualnych ostrzeżeń (_warning_, _critical warning_) i błędów (_error_), a w razie ich wystąpienie kopiuje ich treść do pliku `results/warning_summary.log`.
-
-## Wgrywanie bitstreamu do Basys3
-
-```bash
-program_fpga.sh
-```
-
-Aby skrypt poprawnie wgrał bitstream do FPGA, w folderze `results` musi znajdować się **tylko jeden** plik z rozszerzeniem `.bit`.
-
-## Sprzątanie projektu
-
-**UWAGA:** skrypt `clean.sh` kasuje wszystkie pliki i foldery, które są wymienione w `.gitignore`! Zanim go użyjesz, przeanalizuj zawartość `.gitignore` i upewnij się, że nie ma na liście żadnych plików lub folderów, które chcesz zignorować w kontroli wersji, ale nie chcesz ich kasować. Dopóki nie dodasz w folderze i podfolderach projektu (i do `.gitignore`) niestandardowych plików (np. konfiguracji w pliku `*.code-workspace`, folderze `.vscode`, czy niestandardowej konfiguracji w folderze `.dvt`), skorzystanie z `clean.sh` nie powinno powodować problemów.
-
-```bash
-clean.sh
-```
-
-Zadaniem tego skryptu jest usunięcie wszystkich plików tymczasowych wygenerowanych wskutek działania narzędzi. Pliki te muszą być wymienione w `.gitignore`, a w projekcie musi być zainicjalizowane repozytorium git (inicjalizację tę wykonuje `env.sh`).
-
-Ponadto, skrypty do symulacji oraz generacji bitstreamu, przy każdym ich uruchomieniu (o ile w projekcie zainicjalizowane jest repozytorium git), kasują wyniki poprzednich operacji przed uruchomieniem nowych.
-
-## Uruchamianie projektu w Vivado w trybie graficznym
-
-Aby otworzyć w Vivado w trybie graficznym zbudowany projekt (tzn. po zakończeniu działania `generate_bitstream.sh`), należy przejść do folderu `fpga/build` i wywołać w nim komendę:
-
-```bash
-vivado <nazwa_projektu>.xpr
-```
-
-## W razie niepowodzenia symulacji lub generacji bitstreamu
-
-Jeśli symulacja lub generacji bitstreamu nie przebiega poprawnie, należy szukać przyczyny czytając w terminalu log, ze szczególnym uwzględnieniem linijek zawierających *ERROR*. Często najcenniejszą informację znajdziemy szukając pierwszego wystąpienia *ERROR*a.
-
-Jeśli po uruchomienie narzędzia, w terminalu wyświetla się:
-
-```bash
-Vivado%
-```
-
-oznacza to, że skrypt poprawnie uruchomił Vivado w trybie tekstowym, ale prawdopodobnie wystąpił błąd w plikach źródłowych, lub w ogóle ich nie znaleziono. Aby zamknąć Vivado wystarczy wpisać w terminalu
-
-```tcl
-exit
-```
-
-Jeśli uważne przeglądnięcie logów nie przyniosło rozwiązania, można spróbować, zamiast zamykania Vivado, uruchomić tryb graficzny i przeglądnąć widzianą przez program zawartość projektu. Wówczas, widząc napis `Vivado%`, należy wpisać w terminalu:
-
-```tcl
-start_gui
-```
-
-Jeśli potrzebujemy przerwać uruchomiony proces, możemy skorzystać z kombinacji <kbd>Ctrl</kbd>+<kbd>C</kbd>.
+   ```bash
+   tools/program_fpga.sh
+   ```
 
 ## Struktura projektu
 
-Poniżej przedstawiono hierarchię plików w projekcie. Aby wszystkie narzędzia działały poprawnie, należy jej przestrzegać.
+- `rtl/` — syntezowalna logika projektu.
+- `rtl/ai/` — warstwa AI/ML i moduły sterujące modelem.
+- `rtl/ai/ml_net/` — wygenerowane pliki sieci neuronowej dla modelu FPGA.
+- `fpga/` — specyficzne pliki dla Basys3, w tym wrapper top i constraints.
+- `fpga/scripts/project_details.tcl` — lista plików syntezy i dane projektu Vivado.
+- `sim/` — katalog z testami symulacyjnymi.
+- `tools/` — skrypty do symulacji, generowania bitstreamu, programowania i czyszczenia.
+- `results/` — wynikowe pliki bitstreamu i raport ostrzeżeń.
 
-```text
-.
-├── env.sh                         - konfiguracja środowiska
-├── fpga                           - pliki związane z FPGA
-│   ├── constraints                - * pliki xdc
-│   │   └── top_vga_basys3.xdc
-│   ├── rtl                        - * syntezowalne pliki związane z FPGA
-│   │   └── top_vga_basys3.sv      - * * moduł instancjonujący nadrzędny moduł projektu rtl/top* oraz bloki
-│   │                                    specyficzne dla FPGA (np. bufory lub sentezator częstotliwości zegara)
-│   └── scripts                    - * skrypty tcl (uruchamiane odpowiednimi narzędziami z tools)
-│       ├── generate_bitstream.tcl
-│       ├── program_fpga.tcl
-│       └── project_details.tcl    - * * informacje o nazwie projektu, module top i plikach do syntezy
-├── README.md                      - ten plik
-├── results                        - pliki wynikowe generacji bitstreamu
-│   ├── top_vga_basys3.bit         - * bitstream
-│   └── warning_summary.log        - * podsumowanie ostrzeżeń i błędów
-├── rtl                            - syntezowalne pliki projektu (niezależne od FPGA)
-│   ├── draw_bg.sv
-│   ├── top_vga.sv                 - * moduł nadrzędny (top)
-│   ├── vga_pkg.sv                 - * pakiet zawierający stałe używane w projekcie
-│   └── vga_timing.sv
-├── sim                            - folder z testami
-│   ├── common                     - * pliki wspólne dla wielu testów
-│   │   └── glbl.v                 - * * plik potrzebny do symulacji z IP corami; tworzony przy wywołaniu env.sh
-│   │   └── tiff_writer.sv
-│   ├── top_fpga                   - * folder pojedynczego testu
-│   │   ├── top_fpga.prj           - * * lista plików z modułami używanymi w teście
-│   │   └── top_fpga_tb.sv         - * * kod testbenchu
-│   ├── top_vga
-│   │   ├── top_vga.prj
-│   │   └── top_vga_tb.sv
-│   └── vga_timing
-│       ├── vga_timing.prj
-│       └── vga_timing_tb.sv
-└── tools                          - narzędzia do pracy z projektem
-    ├── clean.sh                   - * czyszczenie plików tymczasowych
-    ├── generate_bitstream.sh      - * generacja bitstreamu (uruchamia też warning_summary.sh)
-    ├── program_fpga.sh            - * wgrywanie bitstreamu do FPGA
-    ├── run_simulation.sh          - * uruchamianie symulacji
-    ├── sim_cmd.tcl                - * komedy tcl używane przez run_simulation.sh (nie należy wywoływać samodzielnie)
-    └── warning_summary.sh         - * filtrowanie ostrzeżeń i błędów z generacji bitstreamu (wynik w results)
-```
+## Symulacja
 
-### Folder **fpga**
+Testy symulacyjne znajdują się w katalogu `sim/` jako osobne foldery. Każdy test powinien mieć:
 
-W tym folderze znajdują się pliki powiązane stricte z FPGA. Plik `fpga/rtl/top_*_basys3.sv` zawiera instancję funkcjonalnego topa projektu (`rtl/top*.sv`) oraz bloki IP specyficzne dla FPGA. Pozwala również zrealizować mapowanie funkcjonalnych portów projektu na fizyczne wyprowadzenia na PCB, np:
+- `sim/<nazwa_testu>/<nazwa_testu>.prj`
+- `sim/<nazwa_testu>/<nazwa_testu>_tb.sv`
 
-```sv
-.rst(btnC),
-.ready(led[0])
-```
+Przykłady dostępnych testów:
 
-W pliku `fpga/scripts/project_details.tcl` należy podać nazwę projektu, nazwę głównego modułu (top fpga) oraz ścieżki do wszystkich plików zawierających moduły używane do syntezy. Ścieżki te należy podawać **względem lokalizacji folderu `fpga`** (a nie względem pliku _.tcl_).
+- `sim/top_gesture/`
+- `sim/top_sensor/`
+- `sim/top_vga/`
+- `sim/vga_timing/`
+- `sim/bjack_fsm/`
+- `sim/card_drawing/`
 
-### Folder **rtl**
+### Uruchamianie symulacji
 
-Tutaj znajdują się syntezowalne pliki projektu, nie powiązane bezpośrednio z FPGA. Wśród nich znajduje się moduł nadrzędny (_top_), który powinien mieć budowę wyłącznie strukturalną (tzn. powinien zawierać instancje modułów podrzędnych i łączyć je ze sobą _wire_-ami, a nie powinien zawierać żadnych bloków _always_). W miarę przybywania plików w folderze `rtl`, warto rozważyć utworzenie podfolderów w celu grupowania powiązanych ze sobą tematycznie plików.
+- Lista testów:
 
-## Weryfikacja poprawności napisanego kodu
+  ```bash
+  tools/run_simulation.sh -l
+  ```
 
-Do sprawdzenia poprawności napisanego kodu w języku SystemVerilog na serwerze studenckim i stacjach roboczych w laboratorium P014 należy skorzystać ze skonfigorwanego w tym celu narzędzia _Cadence HDL analysis and lint tool (HAL)_.
+- Symulacja pojedynczego testu:
 
-Aby sprawdzić kod pod kątem syntezy należy wywołać polecenie:
+  ```bash
+  tools/run_simulation.sh -t <nazwa_testu>
+  ```
 
-```bash
-hal_mtm_rtl.sh <ścieżki do sprawdzanego pliku i plików zależnych>
-```
+- Symulacja z GUI:
 
-Aby sprawdzić kod pod kątem symulacji należy wywołać polecenie:
+  ```bash
+  tools/run_simulation.sh -gt <nazwa_testu>
+  ```
+
+- Uruchomienie wszystkich testów:
+
+  ```bash
+  tools/run_simulation.sh -a
+  ```
+
+## FPGA i generowanie bitstreamu
+
+Skrypt `tools/generate_bitstream.sh` uruchamia Vivado w trybie TCL i buduje projekt FPGA.
+
+W pliku `fpga/scripts/project_details.tcl` definiuje się:
+
+- `project_name`,
+- `top_module`,
+- `target` (urządzenie FPGA),
+- listę plików `sv_files`,
+- listę plików `verilog_files`,
+- pliki constraints `xdc`.
+
+Po poprawnej kompilacji wygenerowany bitstream jest kopiowany do katalogu `results/`.
+
+## Programowanie Basys3
+
+Uruchom:
 
 ```bash
-hal_mtm_tb.sh <ścieżki do sprawdzanego pliku i plików zależnych>
+tools/program_fpga.sh
 ```
 
-Podobnie jak w pliku `.prj`, pliki pakietów należy podawać jako pierwsze.
+Skrypt znajduje plik `.bit` w katalogu `results/` i przekazuje go do Vivado TCL.
 
-Wynik analizy prezentowany jest w terminalu, a pełny log dostępny jest w pliku `xrun.log`.
+> Upewnij się, że w `results/` jest dokładnie jeden plik `.bit`.
+
+## AI/ML w projekcie
+
+Sekcja `rtl/ai/ml_net/` zawiera wygenerowane pliki modelu `myproject` używane w symulacji i syntezie.
+Pliki te są odwoływane z projektu FPGA oraz z testów symulacyjnych, dlatego muszą być obecne w repozytorium.
+
+## Czyszczenie projektu
+
+Skrypt czyszczący:
+
+```bash
+tools/clean.sh
+```
+
+Usuwa pliki tymczasowe wygenerowane podczas symulacji i budowy. Przed użyciem sprawdź `.gitignore`, bo lista usuwanych elementów opiera się na plikach ignorowanych.
+
+## Uwagi praktyczne
+
+- `tools/run_simulation.sh` działa w katalogu `sim/` i wymaga środowiska Vivado oraz działających narzędzi `xelab`/`xsim`.
+- `tools/generate_bitstream.sh` uruchamia czyszczenie `fpga/` i wymaga Vivado.
+- `fpga/scripts/project_details.tcl` musi zawierać wszystkie używane pliki SV i Verilog.
+- Jeśli projekt używa IP lub `glbl.v`, odpowiednie pliki muszą znaleźć się w pliku `.prj` testu.
+
+## Kontakt
+
+Jeśli chcesz zmienić test lub dodać nowy moduł AI, najpierw zaktualizuj:
+
+- `sim/<nazwa_testu>/<nazwa_testu>.prj`
+- `fpga/scripts/project_details.tcl`

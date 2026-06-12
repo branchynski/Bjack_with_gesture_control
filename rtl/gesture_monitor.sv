@@ -1,3 +1,12 @@
+/**
+ * Module name:   gesture_monitor
+ * Author:        Bartłomiej Raczyński
+ * Version:       1.0
+ * Last modified: 2026-06-07
+ * Description:  module for monitoring the output of the gesture recognition system. 
+ * It takes the current gesture as input and drives a set of LEDs to 
+ * indicate which gesture is currently recognized. 
+ */
 
 import ai_type_pkg::*;
 

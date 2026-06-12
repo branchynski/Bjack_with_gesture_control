@@ -20,7 +20,7 @@ port (
     ap_ready : OUT STD_LOGIC;
     start_out : OUT STD_LOGIC;
     start_write : OUT STD_LOGIC;
-    input_layer_TDATA : IN STD_LOGIC_VECTOR (47 downto 0);
+    input_layer_TDATA : IN STD_LOGIC_VECTOR (95 downto 0);
     input_layer_TVALID : IN STD_LOGIC;
     input_layer_TREADY : OUT STD_LOGIC;
     layer2_out_din : OUT STD_LOGIC_VECTOR (127 downto 0);
@@ -47,11 +47,11 @@ architecture behav of myproject_conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6
     constant ap_const_lv8_0 : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
     constant ap_const_lv8_D0 : STD_LOGIC_VECTOR (7 downto 0) := "11010000";
     constant ap_const_lv8_1 : STD_LOGIC_VECTOR (7 downto 0) := "00000001";
-    constant ap_const_lv48_8 : STD_LOGIC_VECTOR (47 downto 0) := "000000000000000000000000000000000000000000001000";
-    constant ap_const_lv48_10 : STD_LOGIC_VECTOR (47 downto 0) := "000000000000000000000000000000000000000000010000";
-    constant ap_const_lv48_18 : STD_LOGIC_VECTOR (47 downto 0) := "000000000000000000000000000000000000000000011000";
-    constant ap_const_lv48_20 : STD_LOGIC_VECTOR (47 downto 0) := "000000000000000000000000000000000000000000100000";
-    constant ap_const_lv48_28 : STD_LOGIC_VECTOR (47 downto 0) := "000000000000000000000000000000000000000000101000";
+    constant ap_const_lv96_10 : STD_LOGIC_VECTOR (95 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000";
+    constant ap_const_lv96_20 : STD_LOGIC_VECTOR (95 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000";
+    constant ap_const_lv96_30 : STD_LOGIC_VECTOR (95 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000110000";
+    constant ap_const_lv96_40 : STD_LOGIC_VECTOR (95 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000";
+    constant ap_const_lv96_50 : STD_LOGIC_VECTOR (95 downto 0) := "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001010000";
 
 attribute shreg_extract : string;
     signal real_start : STD_LOGIC;
@@ -67,14 +67,14 @@ attribute shreg_extract : string;
     signal ap_CS_fsm_state2 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state2 : signal is "none";
     signal icmp_ln69_fu_212_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal trunc_ln74_fu_224_p1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal trunc_ln74_reg_289 : STD_LOGIC_VECTOR (7 downto 0);
+    signal trunc_ln74_fu_224_p1 : STD_LOGIC_VECTOR (15 downto 0);
+    signal trunc_ln74_reg_289 : STD_LOGIC_VECTOR (15 downto 0);
     signal ap_block_state2 : BOOLEAN;
-    signal ref_tmp_i_1_reg_294 : STD_LOGIC_VECTOR (7 downto 0);
-    signal ref_tmp_i_2_reg_299 : STD_LOGIC_VECTOR (7 downto 0);
-    signal ref_tmp_i_3_reg_304 : STD_LOGIC_VECTOR (7 downto 0);
-    signal ref_tmp_i_4_reg_309 : STD_LOGIC_VECTOR (7 downto 0);
-    signal ref_tmp_i_5_reg_314 : STD_LOGIC_VECTOR (7 downto 0);
+    signal ref_tmp_i_1_reg_294 : STD_LOGIC_VECTOR (15 downto 0);
+    signal ref_tmp_i_2_reg_299 : STD_LOGIC_VECTOR (15 downto 0);
+    signal ref_tmp_i_3_reg_304 : STD_LOGIC_VECTOR (15 downto 0);
+    signal ref_tmp_i_4_reg_309 : STD_LOGIC_VECTOR (15 downto 0);
+    signal ref_tmp_i_5_reg_314 : STD_LOGIC_VECTOR (15 downto 0);
     signal grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126_ap_start : STD_LOGIC;
     signal grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126_ap_done : STD_LOGIC;
     signal grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126_ap_idle : STD_LOGIC;
@@ -93,7 +93,7 @@ attribute shreg_extract : string;
     signal ap_ST_fsm_state2_blk : STD_LOGIC;
     signal ap_ST_fsm_state3_blk : STD_LOGIC;
     signal regslice_both_input_layer_U_apdone_blk : STD_LOGIC;
-    signal input_layer_TDATA_int_regslice : STD_LOGIC_VECTOR (47 downto 0);
+    signal input_layer_TDATA_int_regslice : STD_LOGIC_VECTOR (95 downto 0);
     signal input_layer_TVALID_int_regslice : STD_LOGIC;
     signal input_layer_TREADY_int_regslice : STD_LOGIC;
     signal regslice_both_input_layer_U_ack_in : STD_LOGIC;
@@ -107,12 +107,12 @@ attribute shreg_extract : string;
         ap_done : OUT STD_LOGIC;
         ap_idle : OUT STD_LOGIC;
         ap_ready : OUT STD_LOGIC;
-        p_read : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read1 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read2 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read3 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read4 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read5 : IN STD_LOGIC_VECTOR (7 downto 0);
+        p_read : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read1 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read2 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read3 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read4 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read5 : IN STD_LOGIC_VECTOR (15 downto 0);
         layer2_out_din : OUT STD_LOGIC_VECTOR (127 downto 0);
         layer2_out_full_n : IN STD_LOGIC;
         layer2_out_write : OUT STD_LOGIC;
@@ -161,7 +161,7 @@ begin
 
     regslice_both_input_layer_U : component myproject_regslice_both
     generic map (
-        DataWidth => 48)
+        DataWidth => 96)
     port map (
         ap_clk => ap_clk,
         ap_rst => ap_rst,
@@ -251,11 +251,11 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if (((ap_const_boolean_0 = ap_block_state2) and (ap_const_logic_1 = ap_CS_fsm_state2))) then
-                ref_tmp_i_1_reg_294 <= input_layer_TDATA_int_regslice(15 downto 8);
-                ref_tmp_i_2_reg_299 <= input_layer_TDATA_int_regslice(23 downto 16);
-                ref_tmp_i_3_reg_304 <= input_layer_TDATA_int_regslice(31 downto 24);
-                ref_tmp_i_4_reg_309 <= input_layer_TDATA_int_regslice(39 downto 32);
-                ref_tmp_i_5_reg_314 <= input_layer_TDATA_int_regslice(47 downto 40);
+                ref_tmp_i_1_reg_294 <= input_layer_TDATA_int_regslice(31 downto 16);
+                ref_tmp_i_2_reg_299 <= input_layer_TDATA_int_regslice(47 downto 32);
+                ref_tmp_i_3_reg_304 <= input_layer_TDATA_int_regslice(63 downto 48);
+                ref_tmp_i_4_reg_309 <= input_layer_TDATA_int_regslice(79 downto 64);
+                ref_tmp_i_5_reg_314 <= input_layer_TDATA_int_regslice(95 downto 80);
                 trunc_ln74_reg_289 <= trunc_ln74_fu_224_p1;
             end if;
         end if;
@@ -417,5 +417,5 @@ begin
         end if; 
     end process;
 
-    trunc_ln74_fu_224_p1 <= input_layer_TDATA_int_regslice(8 - 1 downto 0);
+    trunc_ln74_fu_224_p1 <= input_layer_TDATA_int_regslice(16 - 1 downto 0);
 end behav;

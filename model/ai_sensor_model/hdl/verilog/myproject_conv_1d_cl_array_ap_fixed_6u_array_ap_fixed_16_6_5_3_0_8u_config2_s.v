@@ -41,7 +41,7 @@ output   ap_idle;
 output   ap_ready;
 output   start_out;
 output   start_write;
-input  [47:0] input_layer_TDATA;
+input  [95:0] input_layer_TDATA;
 input   input_layer_TVALID;
 output   input_layer_TREADY;
 output  [127:0] layer2_out_din;
@@ -63,14 +63,14 @@ reg    internal_ap_ready;
 reg    input_layer_TDATA_blk_n;
 wire    ap_CS_fsm_state2;
 wire   [0:0] icmp_ln69_fu_212_p2;
-wire   [7:0] trunc_ln74_fu_224_p1;
-reg   [7:0] trunc_ln74_reg_289;
+wire   [15:0] trunc_ln74_fu_224_p1;
+reg   [15:0] trunc_ln74_reg_289;
 reg    ap_block_state2;
-reg   [7:0] ref_tmp_i_1_reg_294;
-reg   [7:0] ref_tmp_i_2_reg_299;
-reg   [7:0] ref_tmp_i_3_reg_304;
-reg   [7:0] ref_tmp_i_4_reg_309;
-reg   [7:0] ref_tmp_i_5_reg_314;
+reg   [15:0] ref_tmp_i_1_reg_294;
+reg   [15:0] ref_tmp_i_2_reg_299;
+reg   [15:0] ref_tmp_i_3_reg_304;
+reg   [15:0] ref_tmp_i_4_reg_309;
+reg   [15:0] ref_tmp_i_5_reg_314;
 wire    grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126_ap_start;
 wire    grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126_ap_done;
 wire    grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s_fu_126_ap_idle;
@@ -88,7 +88,7 @@ reg    ap_ST_fsm_state1_blk;
 reg    ap_ST_fsm_state2_blk;
 reg    ap_ST_fsm_state3_blk;
 wire    regslice_both_input_layer_U_apdone_blk;
-wire   [47:0] input_layer_TDATA_int_regslice;
+wire   [95:0] input_layer_TDATA_int_regslice;
 wire    input_layer_TVALID_int_regslice;
 reg    input_layer_TREADY_int_regslice;
 wire    regslice_both_input_layer_U_ack_in;
@@ -124,7 +124,7 @@ myproject_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config2_s 
 );
 
 myproject_regslice_both #(
-    .DataWidth( 48 ))
+    .DataWidth( 96 ))
 regslice_both_input_layer_U(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
@@ -191,11 +191,11 @@ end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state2) & (1'b1 == ap_CS_fsm_state2))) begin
-        ref_tmp_i_1_reg_294 <= {{input_layer_TDATA_int_regslice[15:8]}};
-        ref_tmp_i_2_reg_299 <= {{input_layer_TDATA_int_regslice[23:16]}};
-        ref_tmp_i_3_reg_304 <= {{input_layer_TDATA_int_regslice[31:24]}};
-        ref_tmp_i_4_reg_309 <= {{input_layer_TDATA_int_regslice[39:32]}};
-        ref_tmp_i_5_reg_314 <= {{input_layer_TDATA_int_regslice[47:40]}};
+        ref_tmp_i_1_reg_294 <= {{input_layer_TDATA_int_regslice[31:16]}};
+        ref_tmp_i_2_reg_299 <= {{input_layer_TDATA_int_regslice[47:32]}};
+        ref_tmp_i_3_reg_304 <= {{input_layer_TDATA_int_regslice[63:48]}};
+        ref_tmp_i_4_reg_309 <= {{input_layer_TDATA_int_regslice[79:64]}};
+        ref_tmp_i_5_reg_314 <= {{input_layer_TDATA_int_regslice[95:80]}};
         trunc_ln74_reg_289 <= trunc_ln74_fu_224_p1;
     end
 end
@@ -345,6 +345,6 @@ assign layer2_out_write = grp_compute_output_buffer_1d_array_array_ap_fixed_16_6
 
 assign start_out = real_start;
 
-assign trunc_ln74_fu_224_p1 = input_layer_TDATA_int_regslice[7:0];
+assign trunc_ln74_fu_224_p1 = input_layer_TDATA_int_regslice[15:0];
 
 endmodule //myproject_conv_1d_cl_array_ap_fixed_6u_array_ap_fixed_16_6_5_3_0_8u_config2_s

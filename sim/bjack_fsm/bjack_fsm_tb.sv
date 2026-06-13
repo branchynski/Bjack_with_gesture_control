@@ -17,12 +17,12 @@
     logic rst_n;
     logic btn_start;
     
-    // Sygnały P0
+    // P0 signals
     logic btn_p0_hit;
     logic btn_p0_stand;
     logic p0_bust;
     
-    // Sygnały P1
+    // P1 signals
     logic btn_p1_hit;
     logic btn_p1_stand;
     logic p1_bust;
@@ -30,7 +30,7 @@
     logic deal_done;
     logic dealer_done;
 
-    // Wyjścia z FSM
+    // FSM outputs
     logic busy;
     logic sig_deal_enable;
     logic sig_p0_turn;
@@ -98,7 +98,7 @@
 
         #20;
 
-        // Ruchy Gracza 0
+        // P0 moves
         btn_p0_hit = 1;
         #10; btn_p0_hit = 0;
         $display("[%0t ns] P0 Hit.                           | p0_turn: %b", $time, sig_p0_turn);
@@ -110,7 +110,7 @@
         
         #20;
 
-        // Ruchy Gracza 1
+        // P1 moves
         btn_p1_hit = 1;
         #10; btn_p1_hit = 0;
         $display("[%0t ns] P1 Hit.                           | p1_turn: %b", $time, sig_p1_turn);
@@ -122,7 +122,7 @@
         
         #40;
 
-        // Krupier kończy
+        // Dealer move
         dealer_done = 1;
         #10;
         dealer_done = 0;
@@ -130,7 +130,7 @@
 
         #40;
 
-        // Nowa runda
+        // New round
         btn_start = 1;
         #10;
         btn_start = 0;
@@ -146,7 +146,7 @@
         
         #20;
 
-        // Gracz 0 Bust
+        // P0 Bust
         btn_p0_hit = 1;
         #10; btn_p0_hit = 0;
         #10; 
@@ -156,7 +156,7 @@
 
         #30;
 
-        // Gracz 1 Bust
+        // P1 Bust
         btn_p1_hit = 1;
         #10; btn_p1_hit = 0;
         #10; 

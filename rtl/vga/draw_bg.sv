@@ -22,7 +22,7 @@
     timeunit 1ns;
     timeprecision 1ps;
 
-    // --- Parametry wymiarów stref (3 poziome pasy) ---
+    // --- Zones' dimensions (3 horizontal stripes) ---
     localparam BOX_X_START = 180;
     localparam BOX_X_END   = 800; 
     
@@ -35,14 +35,14 @@
     localparam P2_BOX_Y_START = 510;
     localparam P2_BOX_Y_END   = 710;
 
-    // --- Parametry paneli Retro (Prawa strona) ---
+    // --- Panels' parameters (right side) ---
     localparam HUD_X  = 820;
     localparam HUD_W  = 160;
     localparam HUD_H  = 60;
     localparam HUD1_Y = 30;  
     localparam HUD2_Y = 630; 
 
-    // --- 1. Logika kombinacyjna ---
+    // --- 1. Combitional logic ---
     logic in_dealer_box, in_p1_box, in_p2_box;
     logic in_slot_x, in_dealer_slot, in_p1_slot, in_p2_slot;
     logic in_hud1_panel, in_hud1_border;
@@ -56,7 +56,7 @@
     logic [11:0] bg_color;
 
     always_comb begin
-        // Namierzanie głównych boksów
+        // Main boxes tracking
         in_dealer_box = (vga_in.hcount >= BOX_X_START && vga_in.hcount < BOX_X_END && 
                          vga_in.vcount >= D_BOX_Y_START && vga_in.vcount < D_BOX_Y_END);
         in_p1_box = (vga_in.hcount >= BOX_X_START && vga_in.hcount < BOX_X_END && 
@@ -64,7 +64,7 @@
         in_p2_box = (vga_in.hcount >= BOX_X_START && vga_in.hcount < BOX_X_END && 
                      vga_in.vcount >= P2_BOX_Y_START && vga_in.vcount < P2_BOX_Y_END);
 
-        // Namierzanie pustych slotów na karty
+        // Empty card slots tracking
         in_slot_x = ((vga_in.hcount >= 200 && vga_in.hcount < 300) ||
                      (vga_in.hcount >= 320 && vga_in.hcount < 420) ||
                      (vga_in.hcount >= 440 && vga_in.hcount < 540) ||
@@ -75,7 +75,7 @@
         in_p1_slot = in_slot_x && (vga_in.vcount >= P1_BOX_Y_START + 30 && vga_in.vcount < P1_BOX_Y_END - 30);
         in_p2_slot = in_slot_x && (vga_in.vcount >= P2_BOX_Y_START + 30 && vga_in.vcount < P2_BOX_Y_END - 30);
 
-        // Geometria paneli kasy
+        // Money panel
         in_hud1_panel = (vga_in.hcount >= HUD_X && vga_in.hcount < HUD_X + HUD_W &&
                          vga_in.vcount >= HUD1_Y && vga_in.vcount < HUD1_Y + HUD_H);
         in_hud1_border = in_hud1_panel && (vga_in.hcount < HUD_X + 4 || vga_in.hcount >= HUD_X + HUD_W - 4 ||
@@ -90,7 +90,7 @@
         in_m1_text = 1'b0; in_m2_text = 1'b0;
         target_char = 8'h20; char_x_bit = '0; char_y_line = '0; rom_addr = '0;
 
-        // --- Renderowanie kasy Gracza 0 (Z 2 sztywnymi zerami na końcu) ---
+        // --- P0 Money (two 0s added) ---
         if (in_hud1_panel && !in_hud1_border && 
             vga_in.hcount >= HUD_X + 8 && vga_in.hcount < HUD_X + 152 && 
             vga_in.vcount >= HUD1_Y + 14 && vga_in.vcount < HUD1_Y + 46) begin
@@ -111,7 +111,7 @@
             endcase
             rom_addr = {target_char[6:0], char_y_line};
         end
-        // --- Renderowanie kasy Gracza 1 (Z 2 sztywnymi zerami na końcu) ---
+        // --- P1 Money (two 0s added) ---
         else if (in_hud2_panel && !in_hud2_border && 
             vga_in.hcount >= HUD_X + 8 && vga_in.hcount < HUD_X + 152 && 
             vga_in.vcount >= HUD2_Y + 14 && vga_in.vcount < HUD2_Y + 46) begin
@@ -132,7 +132,7 @@
             endcase
             rom_addr = {target_char[6:0], char_y_line};
         end
-        // --- Renderowanie tekstu "DEALER WOJNA" ---
+        // --- "DEALER WOJNA" text ---
         else if (in_dealer_box && vga_in.hcount >= 394 && vga_in.hcount < 586 && 
                  vga_in.vcount >= D_BOX_Y_START + 5 && vga_in.vcount < D_BOX_Y_START + 37) begin
             in_d_text = 1'b1;
@@ -145,7 +145,7 @@
             endcase
             rom_addr = {target_char[6:0], char_y_line};
         end
-        // --- Renderowanie tekstu "PLAYER 0" ---
+        // --- "PLAYER 0" text ---
         else if (in_p1_box && vga_in.hcount >= 426 && vga_in.hcount < 554 && 
                  vga_in.vcount >= P1_BOX_Y_START + 5 && vga_in.vcount < P1_BOX_Y_START + 37) begin
             in_p1_text = 1'b1;
@@ -157,7 +157,7 @@
             endcase
             rom_addr = {target_char[6:0], char_y_line};
         end
-        // --- Renderowanie tekstu "PLAYER 1" ---
+        // --- "PLAYER 1" text ---
         else if (in_p2_box && vga_in.hcount >= 426 && vga_in.hcount < 554 && 
                  vga_in.vcount >= P2_BOX_Y_START + 5 && vga_in.vcount < P2_BOX_Y_START + 37) begin
             in_p2_text = 1'b1;
@@ -170,7 +170,7 @@
             rom_addr = {target_char[6:0], char_y_line};
         end
 
-        // --- Kolorowanie Tła z wygaszaniem martwych stref ---
+        // --- Backgroung ---
         if (vga_in.hblnk || vga_in.vblnk) bg_color = 12'h0_0_0; 
         else if (in_hud1_border || in_hud2_border) bg_color = 12'hf_a_0; 
         else if (in_hud1_panel || in_hud2_panel) bg_color = 12'h1_1_2;   
@@ -183,13 +183,13 @@
         else bg_color = 12'h0_6_1;                      
     end
 
-    // --- 2. Instancja Pamięci ROM ---
+    // --- 2. ROM instance ---
     logic [7:0] rom_pixels;
     font_rom u_font_rom (
         .clk(clk), .addr(rom_addr), .char_line_pixels(rom_pixels)
     );
 
-    // --- 3. Pakowanie sygnałów do opóźnienia ---
+    // --- 3. Delay signals ---
     localparam DEL_W = 11 + 11 + 1 + 1 + 1 + 1 + 12 + 5 + 3; // 46 bitów
     logic [DEL_W-1:0] delay_in, delay_out;
 
@@ -213,7 +213,7 @@
         .clk(clk), .rst_n(rst_n), .din(delay_in), .dout(delay_out)
     );
 
-    // --- 4. Ostateczny Pędzel ---
+    // --- 4. Final paintbrush ---
     logic [10:0] out_hcount, out_vcount;
     logic        out_hsync, out_vsync, out_hblnk, out_vblnk;
     logic [11:0] out_rgb;

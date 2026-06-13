@@ -17,7 +17,6 @@
      input  logic rst_n,       
      input  logic btn_start,
      
-     // Podział na dwa zestawy wejść
      input  logic btn_p0_hit,
      input  logic btn_p0_stand,
      input  logic btn_p1_hit,

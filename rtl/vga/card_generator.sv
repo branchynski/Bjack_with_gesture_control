@@ -13,12 +13,12 @@
     input  logic clk,
     input  logic rst_n,
 
-    // Karty od dwóch graczy i krupiera
+    // Cards of dealer and both players
     input  logic [5:0] p0_cards [0:4],
     input  logic [5:0] p1_cards [0:4],
     input  logic [5:0] dealer_cards [0:4],
     
-    // Liczniki leżących kart
+    // Drawn cards counter
     input  logic [2:0] p0_card_cnt,
     input  logic [2:0] p1_card_cnt,
     input  logic [2:0] dealer_card_cnt,
@@ -30,7 +30,7 @@
     timeunit 1ns;
     timeprecision 1ps;
 
-    // --- Parametry wymiarów  ---
+    // --- Dimensions' parameters  ---
     localparam CARD_W = 100;
     localparam CARD_H = 140;
     
@@ -42,7 +42,7 @@
     assign SLOT_X[0] = 200; assign SLOT_X[1] = 320; 
     assign SLOT_X[2] = 440; assign SLOT_X[3] = 560; assign SLOT_X[4] = 680;
 
-    // --- Funkcja dekodująca ASCII ---
+    // --- ASCII decode function ---
     function automatic logic [15:0] get_card_ascii(input logic [5:0] card_val);
         logic [3:0] rank; logic [1:0] suit; logic [7:0] char_rank, char_suit;
         rank = card_val % 13; suit = card_val / 13;
@@ -59,7 +59,7 @@
         return {char_rank, char_suit};
     endfunction
 
-    // --- STAGE 1: Logika kombinacyjna ---
+    // --- STAGE 1: Combinational logic ---
     logic in_card, is_red, in_text, is_flipped; 
     logic [7:0] target_char;
     logic [5:0] active_card_val;
@@ -81,7 +81,7 @@
             active_zone = 1'b0;
             base_y = '0;
             
-            // Namierzanie - w której strefie i na którym slocie jesteśmy
+            // Zones and slots tracking
             if (i < p0_card_cnt && vga_in.hcount >= SLOT_X[i] && vga_in.hcount < SLOT_X[i] + CARD_W && 
                 vga_in.vcount >= P0_Y && vga_in.vcount < P0_Y + CARD_H) begin
                 active_zone = 1'b1; active_card_val = p0_cards[i]; base_y = P0_Y;
@@ -95,13 +95,13 @@
                 active_zone = 1'b1; active_card_val = dealer_cards[i]; base_y = DEALER_Y;
             end
 
-            // Logika rysowania symboli 
+            // Symbols' drawing logic 
             if (active_zone) begin
                 in_card = 1'b1;
                 is_red = (active_card_val / 13 == 0) || (active_card_val / 13 == 1); 
                 temp_ascii = get_card_ascii(active_card_val); 
                 
-                // Figura
+                // Figure
                 if (vga_in.hcount >= SLOT_X[i] + 5 && vga_in.hcount < SLOT_X[i] + 21 && 
                     vga_in.vcount >= base_y + 5 && vga_in.vcount < base_y + 37) begin
                     in_text = 1'b1; is_flipped = 1'b0; target_char = temp_ascii[15:8]; 
@@ -109,7 +109,7 @@
                     char_x_bit  = (vga_in.hcount - (SLOT_X[i] + 5)) >> 1; 
                     rom_addr = {target_char[6:0], char_y_line};
                 end
-                // Kolor
+                // Color
                 else if (vga_in.hcount >= SLOT_X[i] + 25 && vga_in.hcount < SLOT_X[i] + 41 && 
                          vga_in.vcount >= base_y + 5 && vga_in.vcount < base_y + 37) begin
                     in_text = 1'b1; is_flipped = 1'b0; target_char = temp_ascii[7:0]; 
@@ -117,7 +117,7 @@
                     char_x_bit  = (vga_in.hcount - (SLOT_X[i] + 25)) >> 1; 
                     rom_addr = {target_char[6:0], char_y_line};
                 end
-                // Figura (obrót)  
+                // Figure (bottom)  
                 else if (vga_in.hcount >= SLOT_X[i] + 79 && vga_in.hcount < SLOT_X[i] + 95 && 
                          vga_in.vcount >= base_y + 103 && vga_in.vcount < base_y + 135) begin
                     in_text = 1'b1; is_flipped = 1'b1; target_char = temp_ascii[15:8]; 
@@ -125,7 +125,7 @@
                     char_x_bit  = (vga_in.hcount - (SLOT_X[i] + 79)) >> 1; 
                     rom_addr = {target_char[6:0], char_y_line};
                 end
-                // Kolor (obrót)  
+                // Color (bottom)  
                 else if (vga_in.hcount >= SLOT_X[i] + 59 && vga_in.hcount < SLOT_X[i] + 75 && 
                          vga_in.vcount >= base_y + 103 && vga_in.vcount < base_y + 135) begin
                     in_text = 1'b1; is_flipped = 1'b1; target_char = temp_ascii[7:0]; 
@@ -137,11 +137,11 @@
         end
     end
 
-    // --- INSTANCJA PAMIĘCI ---
+    // --- Memory instance ---
     font_rom u_font_rom (.clk(clk), .addr(rom_addr), .char_line_pixels(rom_pixels));
 
-    // --- PAKOWANIE SYGNAŁÓW DO MODUŁU DELAY ---
-    localparam DEL_W = 11 + 11 + 12 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 3 + 1; // 45 bitów
+    // --- Packing signals to delay module ---
+    localparam DEL_W = 11 + 11 + 12 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 3 + 1; // 45 bits
     logic [DEL_W-1:0] delay_in, delay_out;
 
     assign delay_in = {
@@ -160,7 +160,7 @@
 
     delay #(.WIDTH(DEL_W), .CLK_DEL(1)) u_delay (.clk(clk), .rst_n(rst_n), .din(delay_in), .dout(delay_out));
 
-    // --- STAGE 2: Rejestrowanie wyjść ---
+    // --- STAGE 2: Outputs logging ---
     logic [10:0] out_hcount, out_vcount; 
     logic out_hsync, out_vsync, out_hblnk, out_vblnk; 
     logic [11:0] out_rgb;

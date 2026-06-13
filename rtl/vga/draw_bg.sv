@@ -1,19 +1,19 @@
 /********************************************************************************
  * Module Name:    draw_bg
  * Author:         Eryk Rutka
- * Date:           2026-06-04
- * Version:        4.2 (Fixed-Point Money Scaling - 10-bit)
+ * Date:           2026-06-13
+ * Version:        4.3 (Integrated Gesture Instructions)
  * Description:    
  * Draws the casino green background, a black zone for dealer, 
  * red zone for Player 0, and blue zone for Player 1. 
  * Includes 2 retro arcade money panels with player labels.
- * Optimized money rendering using hardware 100x multiplier (fixed zeros).
+ * Added embedded dynamic text generator for gesture instructions with arrows.
  ********************************************************************************/
 
  module draw_bg (
     input  logic clk,
     input  logic rst_n,
-    input  logic [9:0] p1_money, // Pieniadze gracza skalowane x100
+    input  logic [9:0] p1_money, 
     input  logic [9:0] p2_money, 
     vga_if.in  vga_in,
     vga_if.out vga_out
@@ -42,13 +42,21 @@
     localparam HUD1_Y = 30;  
     localparam HUD2_Y = 630; 
 
+    // --- Instructions parameters (Footer) ---
+    localparam INSTR_Y  = 720;
+    localparam INSTR1_X = 180;
+    localparam INSTR2_X = 460;
+
     // --- 1. Combitional logic ---
     logic in_dealer_box, in_p1_box, in_p2_box;
     logic in_slot_x, in_dealer_slot, in_p1_slot, in_p2_slot;
     logic in_hud1_panel, in_hud1_border;
     logic in_hud2_panel, in_hud2_border;
     
+    // Nowe flagi dla instrukcji
     logic in_d_text, in_p1_text, in_p2_text, in_m1_text, in_m2_text;
+    logic in_i1_text, in_i2_text;
+    
     logic [7:0] target_char;
     logic [10:0] rom_addr;
     logic [2:0] char_x_bit;
@@ -88,9 +96,10 @@
 
         in_d_text = 1'b0; in_p1_text = 1'b0; in_p2_text = 1'b0; 
         in_m1_text = 1'b0; in_m2_text = 1'b0;
+        in_i1_text = 1'b0; in_i2_text = 1'b0;
         target_char = 8'h20; char_x_bit = '0; char_y_line = '0; rom_addr = '0;
 
-        // --- P0 Money (two 0s added) ---
+        // --- P0 Money ---
         if (in_hud1_panel && !in_hud1_border && 
             vga_in.hcount >= HUD_X + 8 && vga_in.hcount < HUD_X + 152 && 
             vga_in.vcount >= HUD1_Y + 14 && vga_in.vcount < HUD1_Y + 46) begin
@@ -98,20 +107,16 @@
             char_x_bit = (vga_in.hcount - (HUD_X + 8)) >> 1;
             char_y_line = (vga_in.vcount - (HUD1_Y + 14)) >> 1;
             case ((vga_in.hcount - (HUD_X + 8)) >> 4)
-                0: target_char = 8'h50; // P
-                1: target_char = 8'h30; // 0
-                2: target_char = 8'h20; // [spacja]
-                3: target_char = 8'h24; // $
+                0: target_char = 8'h50; 1: target_char = 8'h30; 2: target_char = 8'h20; 3: target_char = 8'h24;
                 4: target_char = 8'h30 + ((p1_money / 100) % 10); 
                 5: target_char = 8'h30 + ((p1_money / 10) % 10);  
                 6: target_char = 8'h30 + (p1_money % 10);         
-                7: target_char = 8'h30;                           
-                8: target_char = 8'h30;                           
+                7: target_char = 8'h30; 8: target_char = 8'h30;                           
                 default: target_char = 8'h20;
             endcase
             rom_addr = {target_char[6:0], char_y_line};
         end
-        // --- P1 Money (two 0s added) ---
+        // --- P1 Money ---
         else if (in_hud2_panel && !in_hud2_border && 
             vga_in.hcount >= HUD_X + 8 && vga_in.hcount < HUD_X + 152 && 
             vga_in.vcount >= HUD2_Y + 14 && vga_in.vcount < HUD2_Y + 46) begin
@@ -119,15 +124,11 @@
             char_x_bit = (vga_in.hcount - (HUD_X + 8)) >> 1;
             char_y_line = (vga_in.vcount - (HUD2_Y + 14)) >> 1;
             case ((vga_in.hcount - (HUD_X + 8)) >> 4)
-                0: target_char = 8'h50; // P
-                1: target_char = 8'h31; // 1
-                2: target_char = 8'h20; // [spacja]
-                3: target_char = 8'h24; // $
+                0: target_char = 8'h50; 1: target_char = 8'h31; 2: target_char = 8'h20; 3: target_char = 8'h24;
                 4: target_char = 8'h30 + ((p2_money / 100) % 10); 
                 5: target_char = 8'h30 + ((p2_money / 10) % 10);  
                 6: target_char = 8'h30 + (p2_money % 10);         
-                7: target_char = 8'h30;                           
-                8: target_char = 8'h30;                           
+                7: target_char = 8'h30; 8: target_char = 8'h30;                           
                 default: target_char = 8'h20;
             endcase
             rom_addr = {target_char[6:0], char_y_line};
@@ -169,6 +170,35 @@
             endcase
             rom_addr = {target_char[6:0], char_y_line};
         end
+        // --- INSTRUCTION 1: KNOCK ---
+        else if (vga_in.hcount >= INSTR1_X && vga_in.hcount < INSTR1_X + 224 && 
+                 vga_in.vcount >= INSTR_Y && vga_in.vcount < INSTR_Y + 32) begin
+            in_i1_text = 1'b1;
+            char_x_bit = (vga_in.hcount - INSTR1_X) >> 1; char_y_line = (vga_in.vcount - INSTR_Y) >> 1;
+            case ((vga_in.hcount - INSTR1_X) >> 4)
+                0: target_char=8'h19; // arrow down
+                1: target_char=8'h20; 2: target_char=8'h4B; 3: target_char=8'h4E; 4: target_char=8'h4F;
+                5: target_char=8'h43; 6: target_char=8'h4B; 7: target_char=8'h20; 8: target_char=8'h2D;
+                9: target_char=8'h20; 10:target_char=8'h48; 11:target_char=8'h49; 12:target_char=8'h54;
+                default: target_char=8'h20;
+            endcase
+            rom_addr = {target_char[6:0], char_y_line};
+        end
+        // --- INSTRUCTION 2: SWIPE ---
+        else if (vga_in.hcount >= INSTR2_X && vga_in.hcount < INSTR2_X + 240 && 
+                 vga_in.vcount >= INSTR_Y && vga_in.vcount < INSTR_Y + 32) begin
+            in_i2_text = 1'b1;
+            char_x_bit = (vga_in.hcount - INSTR2_X) >> 1; char_y_line = (vga_in.vcount - INSTR_Y) >> 1;
+            case ((vga_in.hcount - INSTR2_X) >> 4)
+                0: target_char=8'h1A; // arrow right
+                1: target_char=8'h20; 2: target_char=8'h53; 3: target_char=8'h57; 4: target_char=8'h49;
+                5: target_char=8'h50; 6: target_char=8'h45; 7: target_char=8'h20; 8: target_char=8'h2D;
+                9: target_char=8'h20; 10:target_char=8'h53; 11:target_char=8'h54; 12:target_char=8'h41;
+                13:target_char=8'h4E; 14:target_char=8'h44;
+                default: target_char=8'h20;
+            endcase
+            rom_addr = {target_char[6:0], char_y_line};
+        end
 
         // --- Backgroung ---
         if (vga_in.hblnk || vga_in.vblnk) bg_color = 12'h0_0_0; 
@@ -190,23 +220,26 @@
     );
 
     // --- 3. Delay signals ---
-    localparam DEL_W = 11 + 11 + 1 + 1 + 1 + 1 + 12 + 5 + 3; // 46 bitów
+    localparam DEL_W = 11 + 11 + 1 + 1 + 1 + 1 + 12 + 7 + 3; // 48 bits
     logic [DEL_W-1:0] delay_in, delay_out;
 
     assign delay_in = {
         vga_in.hcount, vga_in.vcount, vga_in.hsync, vga_in.vsync, vga_in.hblnk, vga_in.vblnk, 
-        bg_color, in_d_text, in_p1_text, in_p2_text, in_m1_text, in_m2_text, char_x_bit
+        bg_color, in_d_text, in_p1_text, in_p2_text, in_m1_text, in_m2_text, 
+        in_i1_text, in_i2_text, char_x_bit
     };
 
     logic [10:0] d_hcount, d_vcount;
     logic d_hsync, d_vsync, d_hblnk, d_vblnk;
     logic [11:0] d_bg_color;
     logic d_in_d_text, d_in_p1_text, d_in_p2_text, d_in_m1_text, d_in_m2_text;
+    logic d_in_i1_text, d_in_i2_text;
     logic [2:0] d_char_x_bit;
 
     assign {
         d_hcount, d_vcount, d_hsync, d_vsync, d_hblnk, d_vblnk, 
-        d_bg_color, d_in_d_text, d_in_p1_text, d_in_p2_text, d_in_m1_text, d_in_m2_text, d_char_x_bit
+        d_bg_color, d_in_d_text, d_in_p1_text, d_in_p2_text, d_in_m1_text, d_in_m2_text, 
+        d_in_i1_text, d_in_i2_text, d_char_x_bit
     } = delay_out;
 
     delay #(.WIDTH(DEL_W), .CLK_DEL(1)) u_delay (
@@ -227,10 +260,17 @@
             out_hsync <= d_hsync; out_vsync <= d_vsync;
             out_hblnk <= d_hblnk; out_vblnk <= d_vblnk;
 
-            if (d_in_d_text || d_in_p1_text || d_in_p2_text) begin
+            // Draw Instruction (yellow)
+            if (d_in_i1_text || d_in_i2_text) begin
+                if (rom_pixels[7 - d_char_x_bit]) out_rgb <= 12'hf_e_0; 
+                else out_rgb <= d_bg_color;
+            end
+            // Draw Players & Dealer names (white)
+            else if (d_in_d_text || d_in_p1_text || d_in_p2_text) begin
                 if (rom_pixels[7 - d_char_x_bit]) out_rgb <= 12'hf_f_f; 
                 else out_rgb <= d_bg_color; 
             end 
+            // Draw Money (green)
             else if (d_in_m1_text || d_in_m2_text) begin
                 if (rom_pixels[7 - d_char_x_bit]) out_rgb <= 12'h0_f_0; 
                 else out_rgb <= d_bg_color;

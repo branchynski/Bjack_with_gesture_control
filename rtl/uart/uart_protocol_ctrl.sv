@@ -130,4 +130,104 @@
                         // Sending P1 card (Bits 7:6 = 01)
                         tx_data <= {2'b01, p1_cards[p1_cnt_reg]}; 
                         wr_uart <= 1'b1;
-                        p1_cnt_reg <=
+                        p1_cnt_reg <= p1_cnt_reg + 1;
+                    end
+                    else if (dealer_card_cnt > d_cnt_reg) begin
+                        // Sending Dealer card (Bits 7:6 = 10)
+                        tx_data <= {2'b10, dealer_cards[d_cnt_reg]}; 
+                        wr_uart <= 1'b1;
+                        d_cnt_reg <= d_cnt_reg + 1;
+                    end
+                    else if (pending_money) begin
+                        // Safe 10-bit money transmission in 3 stages
+                        if (sync_money_step == 2'd0) begin
+                            tx_data <= {4'b1101, master_p2_money[9:6]}; // Bits 9-6
+                            wr_uart <= 1'b1;
+                            sync_money_step <= 2'd1;
+                        end else if (sync_money_step == 2'd1) begin
+                            tx_data <= {4'b1110, master_p2_money[5:2]}; // Bits 5-2
+                            wr_uart <= 1'b1;
+                            sync_money_step <= 2'd2;
+                        end else begin
+                            tx_data <= {6'b111100, master_p2_money[1:0]}; // Bits 1-0
+                            wr_uart <= 1'b1;
+                            pending_money <= 1'b0;
+                            master_money_reg <= master_p2_money; 
+                        end
+                    end
+                end 
+                else begin 
+                    // Transmission logic for SLAVE
+                    if (pending_hit) begin
+                        tx_data <= {4'b1100, 4'b0001}; // Slave Action: Hit
+                        wr_uart <= 1'b1;
+                        pending_hit <= 1'b0;
+                    end
+                    else if (pending_stand) begin
+                        tx_data <= {4'b1100, 4'b0010}; // Slave Action: Stand
+                        wr_uart <= 1'b1;
+                        pending_stand <= 1'b0;
+                    end
+                end
+            end
+        end
+    end
+
+    // --- 3. RECEIVE LOGIC (RX Decoder) ---
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            rd_uart <= 1'b0;
+            uart_card_valid <= 1'b0;
+            uart_card_val <= 6'd0;
+            uart_card_dst <= 2'd0;
+            uart_new_game <= 1'b0;
+            slave_req_hit <= 1'b0;
+            slave_req_stand <= 1'b0;
+            slave_p2_money_out <= 10'd0;
+            temp_money_high <= 4'd0;
+            temp_money_mid <= 4'd0;
+        end else begin
+            rd_uart <= 1'b0;
+            uart_card_valid <= 1'b0;
+            uart_new_game <= 1'b0;
+            slave_req_hit <= 1'b0;
+            slave_req_stand <= 1'b0;
+
+            if (!rx_empty && !rd_uart) begin
+                rd_uart <= 1'b1; 
+
+                if (rx_data[7:6] != 2'b11) begin 
+                    // --- CARD RECEIVED --- (Unpacked by Slave only)
+                    if (!is_master) begin
+                        uart_card_valid <= 1'b1;
+                        uart_card_dst <= rx_data[7:6]; // Mapping matches Datapath (0=P0, 1=P1, 2=Dlr)
+                        uart_card_val <= rx_data[5:0];
+                    end
+                end
+                else begin 
+                    // --- COMMAND RECEIVED ---
+                    case (rx_data[5:4])
+                        2'b00: begin // PLAYER OR SYSTEM ACTION
+                            if (is_master) begin
+                                if (rx_data[3:0] == 4'b0001) slave_req_hit <= 1'b1;
+                                if (rx_data[3:0] == 4'b0010) slave_req_stand <= 1'b1;
+                            end else begin
+                                if (rx_data[3:0] == 4'b0100) uart_new_game <= 1'b1;
+                            end
+                        end
+                        2'b01: begin // MONEY HIGH BYTE
+                            if (!is_master) temp_money_high <= rx_data[3:0];
+                        end
+                        2'b10: begin // MONEY MID BYTE
+                            if (!is_master) temp_money_mid <= rx_data[3:0];
+                        end
+                        2'b11: begin // MONEY LOW BYTE (Merges the whole packet to output)
+                            if (!is_master) slave_p2_money_out <= {temp_money_high, temp_money_mid, rx_data[1:0]};
+                        end
+                    endcase
+                end
+            end
+        end
+    end
+
+endmodule

@@ -48,7 +48,7 @@ module top_menu (
     top_string #(
         .X_POS(470),  
         .Y_POS(432),
-        .ROM_DELAY(2),
+        .ROM_DELAY(1),
         .TEXT("START")
     ) str_start (
         .clk(clk),

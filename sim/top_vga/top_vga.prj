@@ -25,6 +25,7 @@ sv work ../../rtl/vga/vga_pkg.sv \
         ../../rtl/vga/string/delay.sv \
         ../../rtl/uart/uart_protocol_ctrl.sv \
         ../../rtl/vga/draw_start.sv \
+        ../../rtl/vga/draw_game_over.sv \
         ../../rtl/vga/string/top_string.sv \
         ../../rtl/vga/string/draw_rect_char.sv \
         ../../rtl/vga/string/char_rom.sv \

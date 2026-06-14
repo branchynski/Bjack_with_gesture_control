@@ -9,7 +9,7 @@
  * Description:
  * The project top module. Integrates VGA rendering, Blackjack logic,
  * Master-Slave UART communication, Context-Aware Gesture Inputs,
- * Turn Indicator, and full Money/Betting synchronization.
+ * Turn Indicator, full Money/Betting synchronization, and Game Over Screen.
  */
 
  import vga_pkg::*;
@@ -39,6 +39,7 @@
      vga_if vga_bg();
      vga_if vga_cards();
      vga_if vga_menu();
+     vga_if vga_game_over(); // ADDED: Game Over VGA pipe
  
      // --- Gesture edge detection ---
      gesture_out prev_gesture;
@@ -56,6 +57,10 @@
      assign gest_knock_pulse = (current_gesture == KNOCK)       && (prev_gesture != KNOCK);
      assign gest_swipe_pulse = (current_gesture == SWIPE_RIGHT) && (prev_gesture != SWIPE_RIGHT);
 
+     // --- Internal wires for FSM additions ---
+     logic sig_game_over_sig;
+     logic sig_exit_to_menu_sig;
+
      // --- Hardware contextual demultiplexer ---
      logic is_start_screen;
      logic go_to_game_sig;
@@ -71,6 +76,8 @@
          end else begin
              if (safe_start_cmd) begin
                  is_start_screen <= 1'b0; 
+             end else if (sig_exit_to_menu_sig) begin // ADDED: Wake up menu from Game Over
+                 is_start_screen <= 1'b1;
              end
          end
      end
@@ -209,17 +216,18 @@
      logic [11:0] game_rgb_with_indicator;
      
      always_comb begin
-         game_rgb_with_indicator = vga_cards.rgb; 
+         game_rgb_with_indicator = vga_game_over.rgb; // Base is now Game Over overlay
 
-         if (vga_tim.hcount >= 10 && vga_tim.hcount <= 40 && vga_tim.vcount >= 10 && vga_tim.vcount <= 40) begin
+         // Hide indicator when game over screen is active
+         if (!sig_game_over_sig && vga_tim.hcount >= 10 && vga_tim.hcount <= 40 && vga_tim.vcount >= 10 && vga_tim.vcount <= 40) begin
              if (sig_p0_turn_sig)          game_rgb_with_indicator = 12'hF00; 
              else if (sig_p1_turn_sig)     game_rgb_with_indicator = 12'h00F; 
              else if (sig_dealer_turn_sig) game_rgb_with_indicator = 12'h555; 
          end
      end
 
-     assign vs = is_start_screen ? vga_menu.vsync : vga_cards.vsync;
-     assign hs = is_start_screen ? vga_menu.hsync : vga_cards.hsync;
+     assign vs = is_start_screen ? vga_menu.vsync : vga_game_over.vsync;
+     assign hs = is_start_screen ? vga_menu.hsync : vga_game_over.hsync;
      assign {r,g,b} = is_start_screen ? vga_menu.rgb : game_rgb_with_indicator;
  
      // --- Instances ---
@@ -267,7 +275,10 @@
          .deal_done(deal_done_sig), .dealer_done(dealer_done_sig),
          .busy(busy_sig), .sig_deal_enable(sig_deal_enable_sig),
          .sig_p0_turn(sig_p0_turn_sig), .sig_p1_turn(sig_p1_turn_sig),
-         .sig_dealer_turn(sig_dealer_turn_sig), .sig_update_money(sig_update_money_sig)
+         .sig_dealer_turn(sig_dealer_turn_sig), 
+         .sig_update_money(sig_update_money_sig),
+         .sig_game_over(sig_game_over_sig),         // ADDED: Game Over state output
+         .sig_exit_to_menu(sig_exit_to_menu_sig)    // ADDED: Wake up menu output
      );
  
      bjack_datapath u_bjack_datapath (
@@ -300,6 +311,17 @@
          .p0_cards(dpath_p0_cards), .p1_cards(dpath_p1_cards), .dealer_cards(dpath_dealer_cards),
          .p0_card_cnt(dpath_p0_cnt), .p1_card_cnt(dpath_p1_cnt), .dealer_card_cnt(dpath_dealer_cnt),
          .vga_in(vga_bg), .vga_out(vga_cards)
+     );
+
+     // --- ADDED: Game Over Overlay ---
+     draw_game_over u_draw_game_over (
+         .clk(clk), .rst_n(rst_n),
+         .sig_game_over(sig_game_over_sig),
+         .p0_score(p0_score), .p1_score(p1_score), .d_score(d_score), 
+         .p0_win(p0_win), .p0_draw(p0_draw), 
+         .p1_win(p1_win), .p1_draw(p1_draw),
+         .vga_in(vga_cards),       
+         .vga_out(vga_game_over)   
      );
  
  endmodule

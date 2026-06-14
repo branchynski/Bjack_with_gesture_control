@@ -1,6 +1,6 @@
 /********************************************************************************
  * Module Name:    draw_game_over
- * Author:         Eryk Rutka / Bartłomiej Raczyński
+ * Author:         Eryk Rutka 
  * Date:           2026-06-14
  * Version:        1.0
  * Description:    
@@ -142,7 +142,7 @@
                  endcase
              end
              // --- Instruction 1: KNOCK (Y: 520) ---
-             else if (vga_in.vcount >= 520 && vga_in.vcount < 552 && vga_in.hcount >= 360 && vga_in.hcount < 664) begin
+             else if (vga_in.vcount >= 520 && vga_in.vcount < 552 && vga_in.hcount >= 360 && vga_in.hcount < 680) begin
                  in_instr1 = 1'b1;
                  char_x_bit = (vga_in.hcount - 360) >> 1; char_y_line = (vga_in.vcount - 520) >> 1;
                  case ((vga_in.hcount - 360) >> 4)
@@ -156,7 +156,7 @@
                  endcase
              end
              // --- Instruction 2: SWIPE (Y: 560) ---
-             else if (vga_in.vcount >= 560 && vga_in.vcount < 592 && vga_in.hcount >= 360 && vga_in.hcount < 648) begin
+             else if (vga_in.vcount >= 560 && vga_in.vcount < 592 && vga_in.hcount >= 360 && vga_in.hcount < 712) begin
                  in_instr2 = 1'b1;
                  char_x_bit = (vga_in.hcount - 360) >> 1; char_y_line = (vga_in.vcount - 560) >> 1;
                  case ((vga_in.hcount - 360) >> 4)
@@ -231,7 +231,7 @@
                      else if (d_in_p0_res && rom_pixels[7 - d_char_x_bit]) vga_out.rgb <= d_p0_draw ? 12'h8_8_8 : (d_p0_win ? 12'h0_F_0 : 12'hF_0_0);
                      else if (d_in_p1_res && rom_pixels[7 - d_char_x_bit]) vga_out.rgb <= d_p1_draw ? 12'h8_8_8 : (d_p1_win ? 12'h0_F_0 : 12'hF_0_0);
                      else if ((d_in_instr1 || d_in_instr2) && rom_pixels[7 - d_char_x_bit]) vga_out.rgb <= 12'h0_F_F; // Instructions - cyan
-                     else vga_out.rgb <= 12'h1_1_2; // Panel background
+                     else vga_out.rgb <= 12'h1_1_2; // Background panel 
                  end else begin
                      vga_out.rgb <= d_rgb; // Darker background
                  end

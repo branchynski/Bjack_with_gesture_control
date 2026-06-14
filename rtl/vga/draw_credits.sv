@@ -1,6 +1,6 @@
 /********************************************************************************
  * Module Name:    draw_credits
- * Author:         Eryk Rutka / Bartlomiej Raczynski
+ * Author:         Eryk Rutka 
  * Date:           2026-06-14
  * Version:        1.2 (Syntax Fix)
  * Description:    Credits overlay. Dims the menu background and displays authors.

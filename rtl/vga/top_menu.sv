@@ -1,7 +1,7 @@
 /**
  * Module name: top_menu
  * Author:      Bartlomiej Raczynski / Eryk Rutka
- * Version:     1.5 (Clean Pipeline & English Comments)
+ * Version:     1.5 
  * Description: Main start menu top-level module. Draws buttons, 
  * gesture-based selection, and arcade instructions.
  * The scaled title is generated inside draw_start.sv.
@@ -29,7 +29,7 @@
      output logic go_to_credits
  );
  
-     /* Pipeline (daisy-chain) for text overlays */
+     /* Pipeline for text overlays */
      vga_if vga_bg();
      vga_if vga_inst1();
      vga_if vga_inst2();
@@ -54,7 +54,7 @@
          .clk(clk), .rst_n(rst_n), .vga_in(vga_bg), .vga_out(vga_inst1)
      );
  
-     /* 3. Instruction: Knock to enter (Next to the first one) */
+     /* 3. Instruction: Knock to enter */
      top_string #(
          .X_POS(250), .Y_POS(730), .ROM_DELAY(2), .TEXT("\x19 KNOCK - ENTER")
      ) str_inst2 (

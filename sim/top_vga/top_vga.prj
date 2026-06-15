@@ -25,10 +25,12 @@ sv work ../../rtl/vga/vga_pkg.sv \
         ../../rtl/vga/string/delay.sv \
         ../../rtl/uart/uart_protocol_ctrl.sv \
         ../../rtl/vga/draw_start.sv \
+        ../../rtl/vga/draw_game_over.sv \
         ../../rtl/vga/string/top_string.sv \
         ../../rtl/vga/string/draw_rect_char.sv \
         ../../rtl/vga/string/char_rom.sv \
         ../../rtl/vga/top_menu.sv \
+        ../../rtl/vga/draw_credits.sv \
         top_vga_tb.sv
 
 verilog work ../../rtl/uart/uart.v

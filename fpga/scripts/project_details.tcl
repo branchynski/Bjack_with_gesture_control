@@ -65,6 +65,8 @@ set sv_files {
     ../rtl/ai/top_gesture.sv
     ../rtl/ai/model_controller_fsm.sv
     ../rtl/gesture_tdebug.sv
+    ../rtl/vga/draw_game_over.sv 
+    ../rtl/vga/draw_credits.sv
     rtl/top_vga_basys3.sv
 }
 

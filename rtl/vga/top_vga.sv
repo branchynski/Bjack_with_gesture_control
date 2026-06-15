@@ -76,7 +76,7 @@
              ui_state <= ST_MENU; 
          end else begin
              if (ui_state == ST_MENU) begin
-                 if (gest_knock_pulse || go_to_game_sig) ui_state <= ST_GAME;
+                 if (go_to_game_sig)       ui_state <= ST_GAME;
                  else if (go_to_credits_sig) ui_state <= ST_CREDITS;
              end 
              else if (ui_state == ST_GAME) begin
@@ -88,9 +88,12 @@
          end
      end
 
-     assign safe_start_cmd = (gest_knock_pulse | go_to_game_sig) & (ui_state == ST_MENU);
+     assign safe_start_cmd = go_to_game_sig & (ui_state == ST_MENU);
      assign safe_hit_cmd   = gest_knock_pulse & (ui_state == ST_GAME);
  
+     logic reset_game_sig;
+     assign reset_game_sig = safe_start_cmd | (gest_knock_pulse & sig_game_over_sig & (ui_state == ST_GAME));
+
      // --- Internal wires ---
      logic p0_bust_sig, p1_bust_sig;
      logic deal_done_sig, dealer_done_sig;
@@ -122,8 +125,25 @@
      logic [5:0] uart_c_val_sig;
      logic [1:0] uart_c_dst_sig;
      logic uart_new_game_sig;
+
+     // --- P1 (UART) Edge Detectors ---
+     logic slave_hit_q, slave_stand_q;
+     logic p1_hit_pulse, p1_stand_pulse;
+
+     always_ff @(posedge clk or negedge rst_n) begin
+         if (!rst_n) begin
+             slave_hit_q   <= 1'b0;
+             slave_stand_q <= 1'b0;
+         end else begin
+             slave_hit_q   <= slave_req_hit_sig;
+             slave_stand_q <= slave_req_stand_sig;
+         end
+     end
+
+     assign p1_hit_pulse   = slave_req_hit_sig & ~slave_hit_q;
+     assign p1_stand_pulse = slave_req_stand_sig & ~slave_stand_q;
      
-     // --- Financial system ---
+     // --- Financial system (Hardware referee) ---
      logic update_money_prev;
      logic update_money_pulse;
      always_ff @(posedge clk or negedge rst_n) begin
@@ -198,7 +218,7 @@
          .update_en(update_money_pulse && sw_master), 
          .win(p0_win),
          .draw_flag(p0_draw),
-         .bet_amount(8'd1), // POPRAWKA: Wewnętrzne 1 to $100 na ekranie!
+         .bet_amount(8'd1), 
          .balance(p0_balance_16)
      );
 
@@ -208,12 +228,17 @@
          .update_en(update_money_pulse && sw_master), 
          .win(p1_win),
          .draw_flag(p1_draw),
-         .bet_amount(8'd1), // POPRAWKA: Wewnętrzne 1 to $100 na ekranie!
+         .bet_amount(8'd1), 
          .balance(p1_balance_16)
      );
 
      assign master_p1_money_internal = p0_balance_16[9:0];
      assign master_p2_money_internal = p1_balance_16[9:0];
+
+     // --- FIX 3: Combinational fallback for initial Slave balance ($10000 -> internal 100) ---
+     logic [9:0] active_p2_money;
+     assign active_p2_money = sw_master ? master_p2_money_internal : 
+                              ((slave_p2_money_rcv == 10'd0) ? 10'd100 : slave_p2_money_rcv);
 
      // --- Dealer reveal logic ---
      logic reveal_dealer_sig;
@@ -221,7 +246,6 @@
 
      // --- Turn indicator ---
      logic [11:0] game_rgb_with_indicator;
-     
      always_comb begin
          game_rgb_with_indicator = vga_game_over.rgb; 
          if (!sig_game_over_sig && vga_tim.hcount >= 10 && vga_tim.hcount <= 40 && vga_tim.vcount >= 10 && vga_tim.vcount <= 40) begin
@@ -254,7 +278,7 @@
          .p0_cards(dpath_p0_cards), .p0_card_cnt(dpath_p0_cnt),
          .p1_cards(dpath_p1_cards), .p1_card_cnt(dpath_p1_cnt),
          .dealer_cards(dpath_dealer_cards), .dealer_card_cnt(dpath_dealer_cnt),
-         .btn_start_master(safe_start_cmd), 
+         .btn_start_master(reset_game_sig), // Route unified reset 
          .btn_hit_slave(safe_hit_cmd), .btn_stand_slave(gest_swipe_pulse),
          .slave_req_hit(slave_req_hit_sig), .slave_req_stand(slave_req_stand_sig),
          .uart_card_valid(uart_c_valid_sig), .uart_card_val(uart_c_val_sig),
@@ -269,9 +293,9 @@
  
      bjack_fsm u_bjack_fsm (
          .clk(clk), .rst_n(rst_n),
-         .btn_start(safe_start_cmd), 
+         .btn_start(reset_game_sig), // FIX 4: Listen to unified reset
          .btn_p0_hit(safe_hit_cmd), .btn_p0_stand(gest_swipe_pulse & (ui_state == ST_GAME)),
-         .btn_p1_hit(slave_req_hit_sig), .btn_p1_stand(slave_req_stand_sig),
+         .btn_p1_hit(p1_hit_pulse), .btn_p1_stand(p1_stand_pulse), 
          .p0_bust(p0_bust_sig), .p1_bust(p1_bust_sig),
          .deal_done(deal_done_sig), .dealer_done(dealer_done_sig),
          .busy(busy_sig), .sig_deal_enable(sig_deal_enable_sig),
@@ -286,8 +310,8 @@
          .clk(clk), .rst_n(rst_n),
          .sig_deal_enable(sig_deal_enable_sig), .sig_p0_turn(sig_p0_turn_sig),
          .sig_p1_turn(sig_p1_turn_sig), .sig_dealer_turn(sig_dealer_turn_sig),
-         .btn_p0_hit(safe_hit_cmd), .btn_p1_hit(slave_req_hit_sig),
-         .btn_start(safe_start_cmd), 
+         .btn_p0_hit(safe_hit_cmd), .btn_p1_hit(p1_hit_pulse),
+         .btn_start(reset_game_sig), // FIX 4: Listen to unified reset to clear cards
          .p0_bust(p0_bust_sig), .p1_bust(p1_bust_sig),
          .deal_done(deal_done_sig), .dealer_done(dealer_done_sig),
          .card_value(card_val_sig), .card_valid(card_valid_sig), .card_req(card_req_sig),
@@ -303,7 +327,7 @@
      draw_bg u_draw_bg (
          .clk(clk), .rst_n(rst_n),
          .p1_money(master_p1_money_internal), 
-         .p2_money(sw_master ? master_p2_money_internal : slave_p2_money_rcv), 
+         .p2_money(active_p2_money), // FIX 3: Wire the updated fallback budget
          .vga_in(vga_tim), .vga_out(vga_bg)
      );
  
@@ -332,7 +356,7 @@
          .vga_out(vga_credits) 
      );
 
-     // --- FINAL MUX ---
+     // --- Final MUX ---
      assign vs = (ui_state == ST_GAME) ? vga_game_over.vsync : vga_credits.vsync;
      assign hs = (ui_state == ST_GAME) ? vga_game_over.hsync : vga_credits.hsync;
      assign {r,g,b} = (ui_state == ST_GAME) ? game_rgb_with_indicator : vga_credits.rgb;

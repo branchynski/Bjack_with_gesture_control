@@ -7,7 +7,7 @@
  */
 
 module spi_ce_gen #(
-    parameter MAIN_CLK = 100_000_000, 
+    parameter MAIN_CLK = 65_000_000, 
     parameter SPI_CLK  = 1_000_000    
 ) (
     input  logic clk,

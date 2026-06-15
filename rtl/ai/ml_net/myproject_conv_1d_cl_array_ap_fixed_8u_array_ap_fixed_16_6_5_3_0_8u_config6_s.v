@@ -43,7 +43,7 @@ output   ap_idle;
 output   ap_ready;
 output   start_out;
 output   start_write;
-input  [63:0] layer5_out_dout;
+input  [127:0] layer5_out_dout;
 input   layer5_out_empty_n;
 output   layer5_out_read;
 input  [6:0] layer5_out_num_data_valid;
@@ -68,16 +68,16 @@ reg    internal_ap_ready;
 reg    layer5_out_blk_n;
 wire    ap_CS_fsm_state2;
 wire   [0:0] icmp_ln69_fu_204_p2;
-wire   [7:0] trunc_ln74_fu_216_p1;
-reg   [7:0] trunc_ln74_reg_313;
+wire   [15:0] trunc_ln74_fu_216_p1;
+reg   [15:0] trunc_ln74_reg_313;
 reg    ap_block_state2;
-reg   [7:0] trunc_ln74_1_reg_318;
-reg   [7:0] trunc_ln74_2_reg_323;
-reg   [7:0] trunc_ln74_3_reg_328;
-reg   [7:0] trunc_ln74_4_reg_333;
-reg   [7:0] trunc_ln74_5_reg_338;
-reg   [7:0] trunc_ln74_6_reg_343;
-reg   [7:0] trunc_ln74_7_reg_348;
+reg   [15:0] trunc_ln74_1_reg_318;
+reg   [15:0] trunc_ln74_2_reg_323;
+reg   [15:0] trunc_ln74_3_reg_328;
+reg   [15:0] trunc_ln74_4_reg_333;
+reg   [15:0] trunc_ln74_5_reg_338;
+reg   [15:0] trunc_ln74_6_reg_343;
+reg   [15:0] trunc_ln74_7_reg_348;
 wire    grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start;
 wire    grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_done;
 wire    grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_idle;
@@ -88,7 +88,7 @@ reg    grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s
 reg    ap_block_state2_ignore_call11;
 wire    ap_CS_fsm_state3;
 reg   [5:0] i_iw_fu_118;
-wire   [5:0] i_iw_4_fu_210_p2;
+wire   [5:0] i_iw_2_fu_210_p2;
 reg    ap_block_state1;
 reg   [2:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
@@ -175,19 +175,19 @@ always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state1) & (1'b1 == ap_CS_fsm_state1))) begin
         i_iw_fu_118 <= 6'd0;
     end else if (((1'b0 == ap_block_state2) & (icmp_ln69_fu_204_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state2))) begin
-        i_iw_fu_118 <= i_iw_4_fu_210_p2;
+        i_iw_fu_118 <= i_iw_2_fu_210_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
     if (((1'b0 == ap_block_state2) & (1'b1 == ap_CS_fsm_state2))) begin
-        trunc_ln74_1_reg_318 <= {{layer5_out_dout[15:8]}};
-        trunc_ln74_2_reg_323 <= {{layer5_out_dout[23:16]}};
-        trunc_ln74_3_reg_328 <= {{layer5_out_dout[31:24]}};
-        trunc_ln74_4_reg_333 <= {{layer5_out_dout[39:32]}};
-        trunc_ln74_5_reg_338 <= {{layer5_out_dout[47:40]}};
-        trunc_ln74_6_reg_343 <= {{layer5_out_dout[55:48]}};
-        trunc_ln74_7_reg_348 <= {{layer5_out_dout[63:56]}};
+        trunc_ln74_1_reg_318 <= {{layer5_out_dout[31:16]}};
+        trunc_ln74_2_reg_323 <= {{layer5_out_dout[47:32]}};
+        trunc_ln74_3_reg_328 <= {{layer5_out_dout[63:48]}};
+        trunc_ln74_4_reg_333 <= {{layer5_out_dout[79:64]}};
+        trunc_ln74_5_reg_338 <= {{layer5_out_dout[95:80]}};
+        trunc_ln74_6_reg_343 <= {{layer5_out_dout[111:96]}};
+        trunc_ln74_7_reg_348 <= {{layer5_out_dout[127:112]}};
         trunc_ln74_reg_313 <= trunc_ln74_fu_216_p1;
     end
 end
@@ -325,7 +325,7 @@ assign ap_ready = internal_ap_ready;
 
 assign grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start = grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start_reg;
 
-assign i_iw_4_fu_210_p2 = (i_iw_fu_118 + 6'd1);
+assign i_iw_2_fu_210_p2 = (i_iw_fu_118 + 6'd1);
 
 assign icmp_ln69_fu_204_p2 = ((i_iw_fu_118 == 6'd51) ? 1'b1 : 1'b0);
 
@@ -335,6 +335,6 @@ assign layer6_out_write = grp_compute_output_buffer_1d_array_array_ap_fixed_16_6
 
 assign start_out = real_start;
 
-assign trunc_ln74_fu_216_p1 = layer5_out_dout[7:0];
+assign trunc_ln74_fu_216_p1 = layer5_out_dout[15:0];
 
 endmodule //myproject_conv_1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6_5_3_0_8u_config6_s

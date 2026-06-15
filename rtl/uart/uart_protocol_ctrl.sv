@@ -58,7 +58,7 @@
 
     // --- Internal registers for edge detection and state tracking ---
     logic [2:0] p0_cnt_reg, p1_cnt_reg, d_cnt_reg; // ADDED: State register for P0
-    logic [9:0] master_money_reg;
+    logic [9:0] master_money_reg;https://github.com/branchynski/projekt_uec2/pull/9/conflict?name=rtl%252Fuart%252Fuart_protocol_ctrl.sv&ancestor_oid=d67fc7e480028f45b7fe399879290687b12ab113&base_oid=353dae193a55fa175b24d0e3c269f1a2a2d3a2a2&head_oid=785f8dc7eb22256016faeabc4ca0287f8f2fcdca
     logic [1:0] sync_money_step; // 0, 1, 2 (Split into 3 safe packets)
     logic pending_money;
 

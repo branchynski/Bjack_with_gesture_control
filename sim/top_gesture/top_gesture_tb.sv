@@ -1,8 +1,8 @@
 /**
  * Testbench name: top_gesture_tb
  * Author:        Bartłomiej Raczyński
- * Version:       1.0
- * Last modified: 2026-05-30
+ * Version:       2.0
+ * Last modified: 2026-06-07
  * Description:  Testbench for the top_gesture module, simulating the entire gesture recognition system.
  */
 
@@ -33,7 +33,7 @@ module top_gesture_tb;
 
     initial begin
         clk = 0;
-        forever #5 clk = ~clk;
+        forever #7.69 clk = ~clk; 
     end
 
     int fd;
@@ -42,8 +42,10 @@ module top_gesture_tb;
     
     real ts, gx, gy, gz, ax, ay, az; 
     
-    logic [15:0] gx_int, gy_int, gz_int, ax_int, ay_int, az_int;
-    logic [95:0] payload;
+    logic signed [15:0] gx_int, gy_int, gz_int, ax_int, ay_int, az_int;
+
+    int TARGET_SAMPLES = 1000;
+    int sample_count = 0;
 
     initial begin
         rst_n = 0;
@@ -51,64 +53,91 @@ module top_gesture_tb;
         #100;
         rst_n = 1;
         #100;
-        $display("START SIMULATION: Opening data file:");
+        $display("=================================================");
+        $display("START SIMULATION: Reading data with auto-looping...");
+        $display("=================================================");
 
-        fd = $fopen("../top_gesture/knock.csv", "r");
-        if (fd == 0) begin
-            $error("ERROR: Cannot open file knock.csv! Check that the file exists in sim/build or sim/top_gesture.");
-            $finish;
-        end
+        while (sample_count < TARGET_SAMPLES) begin
+            fd = $fopen("../top_gesture/swiper.csv", "r");
+            if (fd == 0) begin
+                $error("ERROR: Cannot open file knock.csv! Check that the file exists in sim/build or sim/top_gesture.");
+                $finish;
+            end
 
-        status = $fgets(dummy_header, fd);
+            status = $fgets(dummy_header, fd);
 
-        while (!$feof(fd)) begin
-            status = $fscanf(fd, "%f,%f,%f,%f,%f,%f,%f\n", ts, gx, gy, gz, ax, ay, az);
-            
-            if (status == 7) begin
-                gx_int = int'(gx);
-                gy_int = int'(gy);
-                gz_int = int'(gz);
-                ax_int = int'(ax);
-                ay_int = int'(ay);
-                az_int = int'(az);
-
-                payload = {gz_int, gy_int, gx_int, az_int, ay_int, ax_int};
-
-                force uut.data_in = payload;
-                force uut.data_ready = 1'b1;
+            while (!$feof(fd) && sample_count < TARGET_SAMPLES) begin
+                status = $fscanf(fd, "%f,%f,%f,%f,%f,%f,%f\n", ts, gx, gy, gz, ax, ay, az);
                 
-                @(posedge clk);
-                force uut.data_ready = 1'b0;
+                if (status == 7) begin
+                    gx_int = int'(gx);
+                    gy_int = int'(gy);
+                    gz_int = int'(gz);
+                    ax_int = int'(ax);
+                    ay_int = int'(ay);
+                    az_int = int'(az);
 
-                repeat(10000) @(posedge clk); 
+                    //$display("DEBUG: TS=%f | GX=%0d, GY=%0d, GZ=%0d", ts, gx_int, gy_int, gz_int);
+
+                    @(posedge clk); 
+                    force uut.data_in = {gz_int, gy_int, gx_int, az_int, ay_int, ax_int};
+                    force uut.data_ready = 1'b1;
+                    @(posedge clk);
+                    force uut.data_ready = 1'b0;
+
+                    repeat(10000) @(posedge clk); 
+                    
+                    sample_count++;
+                end
+            end
+
+            $fclose(fd);
+            
+            if (sample_count < TARGET_SAMPLES) begin
+                $display("INFO: Reached end of CSV. Reopening to generate more samples. (Current samples: %0d/%0d)", sample_count, TARGET_SAMPLES);
             end
         end
 
-        $fclose(fd);
-        $display("Finished reading file. Waiting for pipelines to drain...");
+        $display("Finished generating %0d samples. Waiting for pipelines and voting to finish...", TARGET_SAMPLES);
         
-        repeat(150000) @(posedge clk); 
+        repeat(50000) @(posedge clk); 
 
+        $display("=================================================");
         $display("END OF SIMULATION.");
+        $display("=================================================");
         $finish;
     end
 
-    initial begin
-        $monitor("Time: %0t ns | GESTURE DETECTED: %s", $time, gesture.name());
+    gesture_out prev_gesture = NOTHING;
+    always @(posedge clk) begin
+        if (gesture != prev_gesture) begin
+            if (gesture != NOTHING) begin
+                $display(">>> [T=%0t ns] DETECTED: %s (Cooldown timer started!) <<<", $time, gesture.name());
+            end else begin
+                $display("--- [T=%0t ns] SYSTEM IDLE: %s (Cooldown finished or reset) ---", $time, gesture.name());
+            end
+            prev_gesture = gesture;
+        end
     end
-        
-    initial begin
-        @(posedge rst_n);
-        forever @(posedge clk)
-            if (uut.data_ready)
-                $display("T=%0t | data_ready PULSE | data_in=%h", $time, uut.data_in);
-    end 
 
+    always_ff @(posedge clk) begin
+        if (uut.layer15_out_TVALID && uut.layer15_out_TREADY) begin
+            $display("SCORES: nothing=%0d swipe=%0d knock=%0d | votes N=%0d S=%0d K=%0d cnt=%0d",
+                    uut.u_model_controller_fsm.score_nothing,
+                    uut.u_model_controller_fsm.score_swipe,
+                    uut.u_model_controller_fsm.score_knock,
+                    uut.u_model_controller_fsm.votes_nothing_nxt,
+                    uut.u_model_controller_fsm.votes_swipe_nxt,
+                    uut.u_model_controller_fsm.votes_knock_nxt,
+                    uut.u_model_controller_fsm.vote_cnt_nxt);
+        end
+    end
+
+    /*
     initial begin
         forever @(posedge clk) begin
-
             if (uut.ap_start)
-                $display("T=%0t | >>> AP_START <<<", $time);
+                $display("T=%0t | >>> AP_START (Inference Begun) <<<", $time);
 
             if (uut.ap_done)
                 $display("T=%0t | AP_DONE | raw_out=%h", $time, uut.layer15_out_TDATA);
@@ -118,10 +147,7 @@ module top_gesture_tb;
 
             if (uut.input_layer_TVALID && uut.input_layer_TREADY)
                 $display("T=%0t | IN  handshake OK | data=%h", $time, uut.input_layer_TDATA);
-
-            if (uut.full_buffer)
-                $display("T=%0t | BUFFER FULL", $time);
         end
     end
-
+    */
 endmodule

@@ -20,7 +20,7 @@ port (
     ap_ready : OUT STD_LOGIC;
     start_out : OUT STD_LOGIC;
     start_write : OUT STD_LOGIC;
-    layer5_out_dout : IN STD_LOGIC_VECTOR (63 downto 0);
+    layer5_out_dout : IN STD_LOGIC_VECTOR (127 downto 0);
     layer5_out_empty_n : IN STD_LOGIC;
     layer5_out_read : OUT STD_LOGIC;
     layer5_out_num_data_valid : IN STD_LOGIC_VECTOR (6 downto 0);
@@ -49,20 +49,20 @@ architecture behav of myproject_conv_1d_cl_array_ap_fixed_8u_array_ap_fixed_16_6
     constant ap_const_lv6_0 : STD_LOGIC_VECTOR (5 downto 0) := "000000";
     constant ap_const_lv6_33 : STD_LOGIC_VECTOR (5 downto 0) := "110011";
     constant ap_const_lv6_1 : STD_LOGIC_VECTOR (5 downto 0) := "000001";
-    constant ap_const_lv32_8 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000001000";
-    constant ap_const_lv32_F : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000001111";
     constant ap_const_lv32_10 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000010000";
-    constant ap_const_lv32_17 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000010111";
-    constant ap_const_lv32_18 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000011000";
     constant ap_const_lv32_1F : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000011111";
     constant ap_const_lv32_20 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000100000";
-    constant ap_const_lv32_27 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000100111";
-    constant ap_const_lv32_28 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000101000";
     constant ap_const_lv32_2F : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000101111";
     constant ap_const_lv32_30 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000110000";
-    constant ap_const_lv32_37 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000110111";
-    constant ap_const_lv32_38 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000111000";
     constant ap_const_lv32_3F : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000111111";
+    constant ap_const_lv32_40 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000001000000";
+    constant ap_const_lv32_4F : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000001001111";
+    constant ap_const_lv32_50 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000001010000";
+    constant ap_const_lv32_5F : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000001011111";
+    constant ap_const_lv32_60 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000001100000";
+    constant ap_const_lv32_6F : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000001101111";
+    constant ap_const_lv32_70 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000001110000";
+    constant ap_const_lv32_7F : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000001111111";
 
 attribute shreg_extract : string;
     signal real_start : STD_LOGIC;
@@ -78,16 +78,16 @@ attribute shreg_extract : string;
     signal ap_CS_fsm_state2 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state2 : signal is "none";
     signal icmp_ln69_fu_204_p2 : STD_LOGIC_VECTOR (0 downto 0);
-    signal trunc_ln74_fu_216_p1 : STD_LOGIC_VECTOR (7 downto 0);
-    signal trunc_ln74_reg_313 : STD_LOGIC_VECTOR (7 downto 0);
+    signal trunc_ln74_fu_216_p1 : STD_LOGIC_VECTOR (15 downto 0);
+    signal trunc_ln74_reg_313 : STD_LOGIC_VECTOR (15 downto 0);
     signal ap_block_state2 : BOOLEAN;
-    signal trunc_ln74_1_reg_318 : STD_LOGIC_VECTOR (7 downto 0);
-    signal trunc_ln74_2_reg_323 : STD_LOGIC_VECTOR (7 downto 0);
-    signal trunc_ln74_3_reg_328 : STD_LOGIC_VECTOR (7 downto 0);
-    signal trunc_ln74_4_reg_333 : STD_LOGIC_VECTOR (7 downto 0);
-    signal trunc_ln74_5_reg_338 : STD_LOGIC_VECTOR (7 downto 0);
-    signal trunc_ln74_6_reg_343 : STD_LOGIC_VECTOR (7 downto 0);
-    signal trunc_ln74_7_reg_348 : STD_LOGIC_VECTOR (7 downto 0);
+    signal trunc_ln74_1_reg_318 : STD_LOGIC_VECTOR (15 downto 0);
+    signal trunc_ln74_2_reg_323 : STD_LOGIC_VECTOR (15 downto 0);
+    signal trunc_ln74_3_reg_328 : STD_LOGIC_VECTOR (15 downto 0);
+    signal trunc_ln74_4_reg_333 : STD_LOGIC_VECTOR (15 downto 0);
+    signal trunc_ln74_5_reg_338 : STD_LOGIC_VECTOR (15 downto 0);
+    signal trunc_ln74_6_reg_343 : STD_LOGIC_VECTOR (15 downto 0);
+    signal trunc_ln74_7_reg_348 : STD_LOGIC_VECTOR (15 downto 0);
     signal grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start : STD_LOGIC;
     signal grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_done : STD_LOGIC;
     signal grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_idle : STD_LOGIC;
@@ -99,7 +99,7 @@ attribute shreg_extract : string;
     signal ap_CS_fsm_state3 : STD_LOGIC;
     attribute fsm_encoding of ap_CS_fsm_state3 : signal is "none";
     signal i_iw_fu_118 : STD_LOGIC_VECTOR (5 downto 0) := "000000";
-    signal i_iw_4_fu_210_p2 : STD_LOGIC_VECTOR (5 downto 0);
+    signal i_iw_2_fu_210_p2 : STD_LOGIC_VECTOR (5 downto 0);
     signal ap_block_state1 : BOOLEAN;
     signal ap_NS_fsm : STD_LOGIC_VECTOR (2 downto 0);
     signal ap_ST_fsm_state1_blk : STD_LOGIC;
@@ -115,14 +115,14 @@ attribute shreg_extract : string;
         ap_done : OUT STD_LOGIC;
         ap_idle : OUT STD_LOGIC;
         ap_ready : OUT STD_LOGIC;
-        p_read : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read1 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read2 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read3 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read4 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read5 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read6 : IN STD_LOGIC_VECTOR (7 downto 0);
-        p_read7 : IN STD_LOGIC_VECTOR (7 downto 0);
+        p_read : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read1 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read2 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read3 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read4 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read5 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read6 : IN STD_LOGIC_VECTOR (15 downto 0);
+        p_read7 : IN STD_LOGIC_VECTOR (15 downto 0);
         layer6_out_din : OUT STD_LOGIC_VECTOR (127 downto 0);
         layer6_out_full_n : IN STD_LOGIC;
         layer6_out_write : OUT STD_LOGIC;
@@ -225,7 +225,7 @@ begin
             if (((ap_const_boolean_0 = ap_block_state1) and (ap_const_logic_1 = ap_CS_fsm_state1))) then 
                 i_iw_fu_118 <= ap_const_lv6_0;
             elsif (((ap_const_boolean_0 = ap_block_state2) and (icmp_ln69_fu_204_p2 = ap_const_lv1_0) and (ap_const_logic_1 = ap_CS_fsm_state2))) then 
-                i_iw_fu_118 <= i_iw_4_fu_210_p2;
+                i_iw_fu_118 <= i_iw_2_fu_210_p2;
             end if; 
         end if;
     end process;
@@ -233,13 +233,13 @@ begin
     begin
         if (ap_clk'event and ap_clk = '1') then
             if (((ap_const_boolean_0 = ap_block_state2) and (ap_const_logic_1 = ap_CS_fsm_state2))) then
-                trunc_ln74_1_reg_318 <= layer5_out_dout(15 downto 8);
-                trunc_ln74_2_reg_323 <= layer5_out_dout(23 downto 16);
-                trunc_ln74_3_reg_328 <= layer5_out_dout(31 downto 24);
-                trunc_ln74_4_reg_333 <= layer5_out_dout(39 downto 32);
-                trunc_ln74_5_reg_338 <= layer5_out_dout(47 downto 40);
-                trunc_ln74_6_reg_343 <= layer5_out_dout(55 downto 48);
-                trunc_ln74_7_reg_348 <= layer5_out_dout(63 downto 56);
+                trunc_ln74_1_reg_318 <= layer5_out_dout(31 downto 16);
+                trunc_ln74_2_reg_323 <= layer5_out_dout(47 downto 32);
+                trunc_ln74_3_reg_328 <= layer5_out_dout(63 downto 48);
+                trunc_ln74_4_reg_333 <= layer5_out_dout(79 downto 64);
+                trunc_ln74_5_reg_338 <= layer5_out_dout(95 downto 80);
+                trunc_ln74_6_reg_343 <= layer5_out_dout(111 downto 96);
+                trunc_ln74_7_reg_348 <= layer5_out_dout(127 downto 112);
                 trunc_ln74_reg_313 <= trunc_ln74_fu_216_p1;
             end if;
         end if;
@@ -345,7 +345,7 @@ begin
 
     ap_ready <= internal_ap_ready;
     grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start <= grp_compute_output_buffer_1d_array_array_ap_fixed_16_6_5_3_0_8u_config6_s_fu_128_ap_start_reg;
-    i_iw_4_fu_210_p2 <= std_logic_vector(unsigned(i_iw_fu_118) + unsigned(ap_const_lv6_1));
+    i_iw_2_fu_210_p2 <= std_logic_vector(unsigned(i_iw_fu_118) + unsigned(ap_const_lv6_1));
     icmp_ln69_fu_204_p2 <= "1" when (i_iw_fu_118 = ap_const_lv6_33) else "0";
 
     internal_ap_ready_assign_proc : process(ap_CS_fsm_state2, icmp_ln69_fu_204_p2, ap_block_state2)
@@ -400,5 +400,5 @@ begin
         end if; 
     end process;
 
-    trunc_ln74_fu_216_p1 <= layer5_out_dout(8 - 1 downto 0);
+    trunc_ln74_fu_216_p1 <= layer5_out_dout(16 - 1 downto 0);
 end behav;

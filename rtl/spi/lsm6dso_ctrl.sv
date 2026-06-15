@@ -7,6 +7,12 @@
  * performing initialization, status polling, and burst data reading for gyroscope and accelerometer outputs.
  */
 
+
+(* mark_debug = "true" *) logic spi_start;
+(* mark_debug = "true" *) logic [7:0] spi_data_tx;
+(* mark_debug = "true" *) logic [7:0] spi_data_rx;
+(* mark_debug = "true" *) logic spi_valid;
+
 import lsm6dso_pkg::*;
 
 module lsm6dso_ctrl (

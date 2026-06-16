@@ -11,7 +11,7 @@
  * Master-Slave UART communication, Context-Aware Gesture Inputs,
  * Turn Indicator, full Money/Betting synchronization, and Game Over Screen.
  */
-
+ 
  import vga_pkg::*;
  import ai_type_pkg::*;
  
@@ -210,8 +210,12 @@
      logic [15:0] p0_balance_16, p1_balance_16;
      logic [9:0] master_p1_money_internal;
      logic [9:0] master_p2_money_internal;
+     
+     // UART received financial nodes
+     logic [9:0] slave_p1_money_rcv; // NEW: Holds transmitted Master's balance
      logic [9:0] slave_p2_money_rcv;
 
+     // RESTORED: Algorithm untamed, sw_master lock enforced
      bjack_money u_money_p0 (
          .clk(clk),
          .rst_n(rst_n),
@@ -235,7 +239,11 @@
      assign master_p1_money_internal = p0_balance_16[9:0];
      assign master_p2_money_internal = p1_balance_16[9:0];
 
-     // --- FIX 3: Combinational fallback for initial Slave balance ($10000 -> internal 100) ---
+     // --- Combinational fallbacks for initial startup states ($10000 -> internal 100) ---
+     logic [9:0] active_p1_money;
+     assign active_p1_money = sw_master ? master_p1_money_internal : 
+                              ((slave_p1_money_rcv == 10'd0) ? 10'd100 : slave_p1_money_rcv);
+
      logic [9:0] active_p2_money;
      assign active_p2_money = sw_master ? master_p2_money_internal : 
                               ((slave_p2_money_rcv == 10'd0) ? 10'd100 : slave_p2_money_rcv);
@@ -278,12 +286,18 @@
          .p0_cards(dpath_p0_cards), .p0_card_cnt(dpath_p0_cnt),
          .p1_cards(dpath_p1_cards), .p1_card_cnt(dpath_p1_cnt),
          .dealer_cards(dpath_dealer_cards), .dealer_card_cnt(dpath_dealer_cnt),
-         .btn_start_master(reset_game_sig), // Route unified reset 
+         .btn_start_master(reset_game_sig), 
          .btn_hit_slave(safe_hit_cmd), .btn_stand_slave(gest_swipe_pulse),
          .slave_req_hit(slave_req_hit_sig), .slave_req_stand(slave_req_stand_sig),
          .uart_card_valid(uart_c_valid_sig), .uart_card_val(uart_c_val_sig),
          .uart_card_dst(uart_c_dst_sig), .uart_new_game(uart_new_game_sig),
-         .master_p2_money(master_p2_money_internal), .slave_p2_money_out(slave_p2_money_rcv)
+         
+         // NEW UART FINANCIAL PORTS: Wire these inside uart_protocol_ctrl.sv
+         .master_p1_money(master_p1_money_internal),     
+         .slave_p1_money_out(slave_p1_money_rcv),       
+         
+         .master_p2_money(master_p2_money_internal), 
+         .slave_p2_money_out(slave_p2_money_rcv)
      );
  
      card_drawing u_card_drawing (
@@ -293,7 +307,7 @@
  
      bjack_fsm u_bjack_fsm (
          .clk(clk), .rst_n(rst_n),
-         .btn_start(reset_game_sig), // FIX 4: Listen to unified reset
+         .btn_start(reset_game_sig), 
          .btn_p0_hit(safe_hit_cmd), .btn_p0_stand(gest_swipe_pulse & (ui_state == ST_GAME)),
          .btn_p1_hit(p1_hit_pulse), .btn_p1_stand(p1_stand_pulse), 
          .p0_bust(p0_bust_sig), .p1_bust(p1_bust_sig),
@@ -311,7 +325,7 @@
          .sig_deal_enable(sig_deal_enable_sig), .sig_p0_turn(sig_p0_turn_sig),
          .sig_p1_turn(sig_p1_turn_sig), .sig_dealer_turn(sig_dealer_turn_sig),
          .btn_p0_hit(safe_hit_cmd), .btn_p1_hit(p1_hit_pulse),
-         .btn_start(reset_game_sig), // FIX 4: Listen to unified reset to clear cards
+         .btn_start(reset_game_sig), 
          .p0_bust(p0_bust_sig), .p1_bust(p1_bust_sig),
          .deal_done(deal_done_sig), .dealer_done(dealer_done_sig),
          .card_value(card_val_sig), .card_valid(card_valid_sig), .card_req(card_req_sig),
@@ -326,8 +340,8 @@
      
      draw_bg u_draw_bg (
          .clk(clk), .rst_n(rst_n),
-         .p1_money(master_p1_money_internal), 
-         .p2_money(active_p2_money), // FIX 3: Wire the updated fallback budget
+         .p1_money(active_p1_money), // FIXED: Routes dynamically synced Master cash
+         .p2_money(active_p2_money), 
          .vga_in(vga_tim), .vga_out(vga_bg)
      );
  

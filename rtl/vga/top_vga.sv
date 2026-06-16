@@ -11,8 +11,8 @@
  * Master-Slave UART communication, Context-Aware Gesture Inputs,
  * Turn Indicator, full Money/Betting synchronization, and Game Over Screen.
  */
- 
- import vga_pkg::*;
+
+  import vga_pkg::*;
  import ai_type_pkg::*;
  
  module top_vga (
@@ -211,11 +211,11 @@
      logic [9:0] master_p1_money_internal;
      logic [9:0] master_p2_money_internal;
      
-     // UART received financial nodes
-     logic [9:0] slave_p1_money_rcv; // NEW: Holds transmitted Master's balance
+     // UART received synced states
+     logic [9:0] slave_p1_money_rcv; 
      logic [9:0] slave_p2_money_rcv;
+     logic [1:0] slave_turn_rcv; // NEW: Holds transmitted active turn
 
-     // RESTORED: Algorithm untamed, sw_master lock enforced
      bjack_money u_money_p0 (
          .clk(clk),
          .rst_n(rst_n),
@@ -239,7 +239,6 @@
      assign master_p1_money_internal = p0_balance_16[9:0];
      assign master_p2_money_internal = p1_balance_16[9:0];
 
-     // --- Combinational fallbacks for initial startup states ($10000 -> internal 100) ---
      logic [9:0] active_p1_money;
      assign active_p1_money = sw_master ? master_p1_money_internal : 
                               ((slave_p1_money_rcv == 10'd0) ? 10'd100 : slave_p1_money_rcv);
@@ -248,18 +247,24 @@
      assign active_p2_money = sw_master ? master_p2_money_internal : 
                               ((slave_p2_money_rcv == 10'd0) ? 10'd100 : slave_p2_money_rcv);
 
-     // --- Dealer reveal logic ---
      logic reveal_dealer_sig;
      assign reveal_dealer_sig = sig_dealer_turn_sig | sig_update_money_sig | sig_game_over_sig;
 
-     // --- Turn indicator ---
+     // --- Turn indicator (Now UART Synchronized!) ---
+     logic active_p0_turn, active_p1_turn, active_dealer_turn;
+     
+     // Select true source based on board role
+     assign active_p0_turn     = sw_master ? sig_p0_turn_sig     : (slave_turn_rcv == 2'd0);
+     assign active_p1_turn     = sw_master ? sig_p1_turn_sig     : (slave_turn_rcv == 2'd1);
+     assign active_dealer_turn = sw_master ? sig_dealer_turn_sig : (slave_turn_rcv == 2'd2);
+
      logic [11:0] game_rgb_with_indicator;
      always_comb begin
          game_rgb_with_indicator = vga_game_over.rgb; 
          if (!sig_game_over_sig && vga_tim.hcount >= 10 && vga_tim.hcount <= 40 && vga_tim.vcount >= 10 && vga_tim.vcount <= 40) begin
-             if (sig_p0_turn_sig)          game_rgb_with_indicator = 12'hF00; 
-             else if (sig_p1_turn_sig)     game_rgb_with_indicator = 12'h00F; 
-             else if (sig_dealer_turn_sig) game_rgb_with_indicator = 12'h555; 
+             if (active_p0_turn)          game_rgb_with_indicator = 12'hF00; 
+             else if (active_p1_turn)     game_rgb_with_indicator = 12'h00F; 
+             else if (active_dealer_turn) game_rgb_with_indicator = 12'h555; 
          end
      end
  
@@ -283,19 +288,26 @@
          .clk(clk), .rst_n(rst_n), .is_master(sw_master),
          .tx_full(uart_tx_full), .rx_empty(uart_rx_empty), .rx_data(uart_rx_data),
          .tx_data(uart_tx_data), .wr_uart(uart_wr), .rd_uart(uart_rd),
+         
          .p0_cards(dpath_p0_cards), .p0_card_cnt(dpath_p0_cnt),
          .p1_cards(dpath_p1_cards), .p1_card_cnt(dpath_p1_cnt),
          .dealer_cards(dpath_dealer_cards), .dealer_card_cnt(dpath_dealer_cnt),
+         
          .btn_start_master(reset_game_sig), 
          .btn_hit_slave(safe_hit_cmd), .btn_stand_slave(gest_swipe_pulse),
+         
+         // NEW: Connecting FSM Turn Signals to Protocol
+         .sig_p0_turn(sig_p0_turn_sig),
+         .sig_p1_turn(sig_p1_turn_sig),
+         .sig_dealer_turn(sig_dealer_turn_sig),
+         .slave_active_turn(slave_turn_rcv),
+         
          .slave_req_hit(slave_req_hit_sig), .slave_req_stand(slave_req_stand_sig),
          .uart_card_valid(uart_c_valid_sig), .uart_card_val(uart_c_val_sig),
          .uart_card_dst(uart_c_dst_sig), .uart_new_game(uart_new_game_sig),
          
-         // NEW UART FINANCIAL PORTS: Wire these inside uart_protocol_ctrl.sv
          .master_p1_money(master_p1_money_internal),     
          .slave_p1_money_out(slave_p1_money_rcv),       
-         
          .master_p2_money(master_p2_money_internal), 
          .slave_p2_money_out(slave_p2_money_rcv)
      );
@@ -340,7 +352,7 @@
      
      draw_bg u_draw_bg (
          .clk(clk), .rst_n(rst_n),
-         .p1_money(active_p1_money), // FIXED: Routes dynamically synced Master cash
+         .p1_money(active_p1_money), 
          .p2_money(active_p2_money), 
          .vga_in(vga_tim), .vga_out(vga_bg)
      );

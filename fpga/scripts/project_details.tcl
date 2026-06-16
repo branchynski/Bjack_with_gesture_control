@@ -16,7 +16,7 @@
 set project_name game_project
 
 # Top module name                               -- EDIT
-set top_module top_vga_basys3
+set top_module top_game_basys3
 
 # FPGA device
 set target xc7a35tcpg236-1
@@ -26,7 +26,7 @@ set target xc7a35tcpg236-1
 #-----------------------------------------------------#
 # Specify .xdc files location                   -- EDIT
 set xdc_files {
-    constraints/top_vga_basys3.xdc
+    constraints/top_game_basys3.xdc
     constraints/clk_wiz_0.xdc
     constraints/clk_wiz_0_late.xdc
 }
@@ -67,7 +67,7 @@ set sv_files {
     ../rtl/gesture_tdebug.sv
     ../rtl/vga/draw_game_over.sv 
     ../rtl/vga/draw_credits.sv
-    rtl/top_vga_basys3.sv
+    rtl/top_game_basys3.sv
 }
 
 # Specify Verilog design files location         -- EDIT

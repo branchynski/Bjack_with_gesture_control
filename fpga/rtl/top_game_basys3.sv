@@ -12,7 +12,7 @@
  * Top level synthesizable module including the project top and all the FPGA-referred modules.
  */
 
-module top_vga_basys3 (
+module top_game_basys3 (
         input  wire clk,
         input  wire btnC,
         output wire Vsync,

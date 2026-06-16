@@ -36,7 +36,8 @@ dvt_build.log
 xcelium.d
 xrun.log
 
-results/
+results/**
+!results/**/*.bit
 
 daq/.devcontainer
 daq/.vscode
